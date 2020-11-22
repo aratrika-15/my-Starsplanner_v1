@@ -116,6 +116,10 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.displayReviews();
                         break;
                     case 12://updated
+                        fc.saveSchoolList();
+                        fc.saveStudentList();
+                        fc.saveAdminList();
+                        fc.saveCourseList();
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
