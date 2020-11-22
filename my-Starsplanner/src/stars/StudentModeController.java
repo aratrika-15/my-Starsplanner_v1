@@ -18,23 +18,26 @@ public class StudentModeController {
 
             //Check if applied before (either accepted/waitlisted)
 
-
-                for(RegisteredCourse registeredCourse : student.getRegCourses()) {
-                    Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
-                    if(idx.getCourse().equals(course)) {
-                        System.out.printf("You have already been registered for index %d", idx.getIndexNum());
-                        System.out.printf("The current status is %s\n", registeredCourse.getRegStatus());
-                        return;
+                if(student.getRegCourses() != null) {
+                    for(RegisteredCourse registeredCourse : student.getRegCourses()) {
+                        Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
+                        if(idx.getCourse().equals(course)) {
+                            System.out.printf("You have already been registered for index %d", idx.getIndexNum());
+                            System.out.printf("The current status is %s\n", registeredCourse.getRegStatus());
+                            return;
+                        }
                     }
                 }
 
 
-
             //Check if clash with current timetable
             ArrayList<StudyGroup> s = student.getStudyGroups();
-            if (checkClash(index, s)) {
-                return;
+            if (!s.isEmpty()) {
+                if (checkClash(index, s)) {
+                    return;
+                }
             }
+
 
             String status;
             //Get Vacancy
