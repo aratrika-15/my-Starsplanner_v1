@@ -7,20 +7,35 @@ public class Review implements Serializable {
     private boolean recommended;
     private String student;
     private String course;
+    private String reviewID;
     FileController fc= new FileController();
+
+
 
     public Review(String review, boolean recommended, String username, String courseCode) {
         this.review = review;
         this.recommended = recommended;
         this.student = username;
         this.course = courseCode;
+        this.reviewID = username+courseCode;
         Course theCourse= fc.getCourseByCode(courseCode);
         Student stu = fc.getStudentByUsername(username);
         theCourse.addReview(this);
         stu.addMyReview(this);
 
     }
+    public Review(String review, boolean recommended, String courseCode) {
+        this.review = review;
+        this.recommended = recommended;
+        this.course = courseCode;
+        this.reviewID = "NA";
+        Course theCourse= fc.getCourseByCode(courseCode);
+        theCourse.addReview(this);
 
+    }
+    public String getReviewID() {
+        return reviewID;
+    }
     public String getReview() {
         return review;
     }

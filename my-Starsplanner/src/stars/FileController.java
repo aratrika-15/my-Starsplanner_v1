@@ -433,6 +433,14 @@ public class FileController implements Serializable {
 
         std2.setPastCourses(pastC);
         std5.setPastCourses(pastC);
+        Review r1 = new Review("My TA was awesome! How do I get him again for future courses??", true, "CZ2002");
+        Review r2 = new Review("While it was taught well, gotta say I didnt really enjoy OODP", false, "CZ2002");
+        Review r3 = new Review("Learnt so much from this mod. Was able to apply a lot of it during my internship!", true,  "CZ2002");
+        Review rr1 = new Review("Executed badly, My brain was not made for this! Could have catered better for the not so smart people like me.",false,"CZ2001");
+        Review rr2= new Review("Very useful for any aspiring software developers. Otherwise, dont waste your brain cells", true, "CZ2001");
+
+
+//
 
         studentList.add(std1);
         studentList.add(std2);

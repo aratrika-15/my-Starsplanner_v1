@@ -139,8 +139,7 @@ public class Course implements Serializable {
     }
     public void deleteReview(Review rev) {
         for (int i = 0 ; i < this.reviews.size(); i ++){
-
-            if(this.reviews.get(i).equals(rev)){
+            if(this.reviews.get(i).getReviewID().equals(rev.getReviewID())){
                 this.reviews.remove(i);
                 double positive = this.percRecommended * this.totalReviews;
                 if (rev.isRecommended()) {positive = positive - 1;}
