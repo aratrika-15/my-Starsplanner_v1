@@ -131,31 +131,35 @@ public class Index implements Serializable {
         int vacancy;
 
         for (vacancy = index.getVacancies(); vacancy > 0; vacancy--) {
-            student = waitList.poll();
+            if (waitList != null){
+                student = waitList.poll();
+                if (student != null) {
 
-            if (student != null) {
-
-                for(RegisteredCourse registeredCourse : student.getRegCourses()) {
-                    Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
-                    if(idx.getCourse().equals(course)) {
-                        if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
-                            student.removeRegCourses(registeredCourse);
-                            index.regList.remove(registeredCourse);
-                            vacancy++;
-                        } else {
-                            student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
-                            registeredCourse.setRegStatus("Registered");
-                            // set timetable
-                            //
+                    for(RegisteredCourse registeredCourse : student.getRegCourses()) {
+                        Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
+                        if(idx.getCourse().equals(course)) {
+                            if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
+                                student.removeRegCourses(registeredCourse);
+                                index.regList.remove(registeredCourse);
+                                vacancy++;
+                            } else {
+                                student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
+                                registeredCourse.setRegStatus("Registered");
+                                // set timetable
+                                //
+                            }
                         }
+                        //set new timetable schedule
                     }
-                    //set new timetable schedule
+                    NotificationController nc = new NotificationController();
+                    nc.notify(student, this);
+                } else {
+                    setVacancies(vacancy);
+                    break;
                 }
-            } else {
-                setVacancies(vacancy);
-                break;
             }
         }
+
         setVacancies(vacancy);
     }
 

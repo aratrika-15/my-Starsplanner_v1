@@ -58,21 +58,12 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
 
                         break;
                     case 2:
-                        do {
-                            System.out.println("Enter the course code for the course you wish to add");
-                            String cCode = sc.nextLine().trim();
-                            c=fc.getCourseByCode(cCode);
-                            if(c==null)
-                                System.out.println("This course code does not exist");
-                        }while(c!=null);
-                        do {
-                            System.out.println("Enter the index number for the course you wish to add");
-                            int indexNum=sc.nextInt();
-                            i= fc.getIndexByID(indexNum);
-                            if(i==null)
-                                System.out.println("This index number does not exist");
-                        }while(i!=null);
-                        smc.dropCourse(student, c,i);
+                        RegisteredCourse rc = dd.selectRegisteredCourses(student);
+                        if (rc != null) {
+                            Index idx = fc.getIndexByID(rc.getRegIndex());
+                            Course cDrop = fc.getCourseByCode(idx.getCourse());
+                            smc.dropCourse(student, cDrop, idx);
+                        }
                         break;
                     case 3:
                         smc.printRegisteredCourses(student);
