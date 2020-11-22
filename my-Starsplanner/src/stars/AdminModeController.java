@@ -1,12 +1,11 @@
 package stars;
+import java.text.ParseException;
 import java.util.*;
 import java.io.Console;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
@@ -179,6 +178,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         fc.printStudentList();
     }
 
+    //method for admin to add a student
 
 
 

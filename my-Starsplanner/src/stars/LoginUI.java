@@ -1,5 +1,6 @@
 package stars;
 
+import java.io.Console;
 import java.util.*;
 
 public class LoginUI {
@@ -14,20 +15,36 @@ private static String typeOfUser;
         displayWelcomeMessage();
         Scanner sc = new Scanner(System.in);
         LoginController login = new LoginController();
+        Console console = System.console();
+        String enteredPassword;
 
 
         System.out.print("Enter your username: ");
         enteredUsername= sc.next();
-        System.out.print("Enter your password: ");
-        enteredPassword = sc.next();
+        if (console != null) {
+            System.out.print("Please enter your password ");
+            char[] passString = console.readPassword();
+            enteredPassword = new String(passString);
+
+        } else {
+            System.out.print("Please enter your password :");
+            enteredPassword = sc.next().trim();
+        }
         System.out.print("Enter type of User (Student/Admin): ");
         typeOfUser = sc.next();
         while (!login.validateLogin(enteredUsername, enteredPassword, typeOfUser)) {
 
             System.out.print("Enter your username: ");
             enteredUsername = sc.next();
-            System.out.print("Enter your password: ");
-            enteredPassword = sc.next();
+            if (console != null) {
+                System.out.print("Please enter your password ");
+                char[] passString = console.readPassword();
+                enteredPassword = new String(passString);
+
+            } else {
+                System.out.print("Please enter your password :");
+                enteredPassword = sc.next().trim();
+            }
             System.out.print("Enter type of User (Student/Admin): ");
             typeOfUser = sc.next();
 
