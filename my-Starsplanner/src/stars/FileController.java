@@ -427,6 +427,13 @@ public class FileController implements Serializable {
         Student std14 = new Student("Mary Poppins", "2469", "Female", "Singapore", 4, "NANYANG_BUSINESS_SCHOOL", "email", "mary@gmail.com", "mary@ntu.edu.sg", "password374", "Student", "Mary_Poppins");
         Student std15 = new Student("Lim Jin Long", "2470", "Male", "Singapore", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "email", "limj@gmail.com", "limj@ntu.edu.sg", "password375", "Student", "Lim_Jin_Long");
 
+        ArrayList<Course> pastC = new ArrayList<Course>();
+        pastC.add(CZ2001);
+        pastC.add(CZ2002);
+
+        std2.setPastCourses(pastC);
+        std5.setPastCourses(pastC);
+
         studentList.add(std1);
         studentList.add(std2);
         studentList.add(std3);

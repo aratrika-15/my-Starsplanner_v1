@@ -141,6 +141,7 @@ public class Course implements Serializable {
         for (int i = 0 ; i < this.reviews.size(); i ++){
 
             if(this.reviews.get(i).equals(rev)){
+                System.out.println(reviews.get(i).getReview());
                 this.reviews.remove(i);
                 double positive = this.percRecommended * this.totalReviews;
                 if (rev.isRecommended()) {positive = positive - 1;}

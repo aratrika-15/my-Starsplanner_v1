@@ -1,6 +1,8 @@
 package stars;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private String review;
     private boolean recommended;
     private String student;

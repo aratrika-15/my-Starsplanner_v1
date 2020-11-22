@@ -25,5 +25,17 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://C:/NTU/Y2S1/2002 oop/javamail" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/NTU/Y2S1/2002 oop/javamail" />
+        </SOURCES>
+        <jarDirectory url="file://C:/NTU/Y2S1/2002 oop/javamail" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

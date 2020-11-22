@@ -3,7 +3,6 @@
 # Comments can be made by starting a line with #
 # Grawlox will convert all words to lower case and remove special characters and leetspeak.
 # Therefore it is unnecessary to add words like 'foo', 'Foo', 'f0o' etc. multiple times.
-foo
 bar
 2 girls 1 cup
 50 yard cunt punt
@@ -1162,7 +1161,7 @@ kunilingus
 kunnilingus
 kunt
 kunts
-kuntz   
+kuntz
 l3i+ch
 l3itch
 labia
@@ -1171,8 +1170,6 @@ laid
 lameass
 lapdance
 lardass
-laughing my ass off
-laughing my freaking ass off
 lesbain
 lesbayn
 lesbian
@@ -1625,7 +1622,7 @@ raped
 raper
 raping
 rapist
-raunch 
+raunch
 rearend
 rearentry
 recktum
@@ -1904,9 +1901,6 @@ sucked
 sucker
 sucking
 suckme
-suck my ass
-suck my dick
-suck my tit
 suck off
 sucks
 suicide
@@ -2068,8 +2062,6 @@ wh00r
 wh0re
 wh0reface
 whacker
-what the fuck
-where is my fucking
 whigger
 whiskey dick
 whisky dick
@@ -2089,7 +2081,6 @@ whorehopper
 whore house
 whores
 whoring
-why the fuck
 wigger
 williewanker
 wog

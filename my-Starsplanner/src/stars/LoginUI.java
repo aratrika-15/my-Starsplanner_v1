@@ -32,6 +32,7 @@ private static String typeOfUser;
         }
         System.out.print("Enter type of User (Student/Admin): ");
         typeOfUser = sc.next();
+
         while (!login.validateLogin(enteredUsername, enteredPassword, typeOfUser)) {
 
             System.out.print("Enter your username: ");
