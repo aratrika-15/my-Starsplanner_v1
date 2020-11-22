@@ -26,13 +26,13 @@ public class AdminModeController implements DisplayErrorMsgUI{
             System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
             String startDate=sc.next();
             convertedStartDate = format.parse(startDate);
-            //System.out.println(convertedStartDate);
-            //System.out.println(format.format(convertedStartDate));
+            System.out.println(convertedStartDate);
+            System.out.println(format.format(convertedStartDate));
             System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
             String endDate=sc.next();
             convertedEndDate = format.parse(endDate);
-            //System.out.println(convertedEndDate);
-            //System.out.println(format.format(convertedEndDate));
+            System.out.println(convertedEndDate);
+            System.out.println(format.format(convertedEndDate));
         } catch (ParseException e) {
             e.printStackTrace();
             System.out.println("Invalid registration period format");

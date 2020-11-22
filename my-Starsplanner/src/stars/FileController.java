@@ -10,9 +10,6 @@ public class FileController implements Serializable {
     private static final String studentFileLoc = "./source/Student.dat";
     private static final String schoolFileLoc = "./source/School.dat";
     private static final String courseFileLoc="./source/Course.dat";
-    //my-Starsplanner/source
-    //my-Starsplanner/source
-    ///Users/saiteja_11/IdeaProjects/my-Starsplanner_v1/my-Starsplanner/source
 
     private static ArrayList<Admin> adminList = new ArrayList<Admin>();
     private static ArrayList<Student> studentList = new ArrayList<Student>();
@@ -214,15 +211,6 @@ public class FileController implements Serializable {
         }
         return null;
     }
-    /*public Course getCourseByCode(String cCode)
-    {
-        for(int i=0;i<courseList.size();i++)
-        {
-            if(courseList.get(i).getCourseCode()==cCode)
-                return courseList.get(i);
-        }
-        return null;
-    }*/
     /*public void populate(){
         // write to serialized file - update/insert/delete
         // example - add one more Admin
@@ -260,15 +248,6 @@ public class FileController implements Serializable {
         // list.remove(p);  // remove if p equals object in the list
 
         saveAdminList();
-
-        //School(String name, Date registrationStartPeriod, Date registrationEndPeriod, ArrayList<Student> students, ArrayList<Course> courses)
-        //ArrayList<Course> courseList = new ArrayList<Course>();
-        //Course(String name, String courseCode, School school, String courseType,int vacancy, int totalAUs)
-        //ArrayList<Index> indexList = new ArrayList<Index>();
-        //Index(int indexNum, String groupNum, int vacancies, Course course)
-        //ArrayList<StudyGroup> 1024_SG = new ArrayList<StudyGroup>();
-        //StudyGroup(String venue, String startTime, String endTime, int dayOfWeek, String weekType, String lessonType,Index index)
-
         String sdate_SCSE = "11/11/2019";
         String edate_SCSE = "11/12/2021";
         String sdate_NBS = "11/11/2016";
@@ -282,8 +261,8 @@ public class FileController implements Serializable {
         schoolList.add(SCSE);
 
         ArrayList<Course> SCSE_courses = new ArrayList<Course>();
-        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 3, 3);
-        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 3, 3);
+        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20,3, 2);
+        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20,3, 2);
         //Course CZ2005 = new Course("OPERATING SYSTEMS", "CZ2005", SCSE, "LEC_TUT_LAB", 70, 3);
         SCSE_courses.add(CZ2001);
         SCSE_courses.add(CZ2002);
@@ -323,13 +302,11 @@ public class FileController implements Serializable {
         Index_10124.setStudyGroup(SG_10125);
 
         ArrayList<Index> CZ2002_Index = new ArrayList<Index>();
-        Index Index_10126 = new Index(10126, "SSP1", 10, "CZ2002");
-        Index Index_10127 = new Index(10127, "SSP2", 10, "CZ2002");
+        Index Index_10126 = new Index(10126, "SSP1", 10, "CZ2001");
+        Index Index_10127 = new Index(10127, "SSP2", 10, "CZ2001");
         CZ2002_Index.add(Index_10126);
         CZ2002_Index.add(Index_10127);
         CZ2002.setIndexList(CZ2002_Index);
-        //CZ2002.setIndex(10126, "SSP1", 10);
-        //CZ2002.setIndex(10127, "SSP2", 10);
 
         ArrayList<StudyGroup> SG_10126 = new ArrayList<StudyGroup>();
         StudyGroup CS2_LEC1_10126 = new StudyGroup("LT11", 830, 930, 4, "Even and Odd", LessonType.LECTURE, 10126);
@@ -357,8 +334,8 @@ public class FileController implements Serializable {
         schoolList.add(NBS);
 
         ArrayList<Course> NBS_courses = new ArrayList<Course>();
-        Course AD2101 = new Course("MANAGEMENT ACCOUNTING", "CZ2001", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 4, 3);
-        Course BC2407 = new Course("ANALYTICS II: ADVANCED PREDICTIVE TECHNIQUES", "CZ2002", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 4, 3);
+        Course AD2101 = new Course("MANAGEMENT ACCOUNTING", "AD2101", "NANYANG_BUSINESS_SCHOOL", CourseType.LEC, 50, 3,3);
+        Course BC2407 = new Course("ANALYTICS II: ADVANCED PREDICTIVE TECHNIQUES", "BC2407", "NANYANG_BUSINESS_SCHOOL", CourseType.LEC, 50,3, 3);
         NBS_courses.add(AD2101);
         NBS_courses.add(BC2407);
         NBS.setCourses(NBS_courses);
@@ -377,11 +354,6 @@ public class FileController implements Serializable {
         AD2101_Index.add(Index_00149);
         AD2101_Index.add(Index_00150);
         AD2101.setIndexList(AD2101_Index);
-        //AD2101.setIndex(146, "SEM1", 10);
-        //AD2101.setIndex(147, "SEM2", 10);
-        //AD2101.setIndex(148, "SEM3", 10);
-        //AD2101.setIndex(149, "SEM4", 10);
-        //AD2101.setIndex(150, "SEM5", 10);
 
         ArrayList<StudyGroup> SG_00146 = new ArrayList<StudyGroup>();
         StudyGroup SEM1_00146 = new StudyGroup("ONLINE", 830, 1130, 1, "Even and Odd", LessonType.SEMINAR, 146);
@@ -416,11 +388,6 @@ public class FileController implements Serializable {
         BC2407_Index.add(Index_00679);
         BC2407_Index.add(Index_00680);
         BC2407.setIndexList(BC2407_Index);
-        //BC2407.setIndex(676, "SEM1", 10);
-        //BC2407.setIndex(677, "SEM2", 10);
-        //BC2407.setIndex(678, "SEM3", 10);
-        //BC2407.setIndex(679, "SEM4", 10);
-        //BC2407.setIndex(680, "SEM5", 10);
 
         ArrayList<StudyGroup> SG_00676 = new ArrayList<StudyGroup>();
         StudyGroup SEM1_00676 = new StudyGroup("S3-SR4", 930, 1230, 1, "Even and Odd", LessonType.SEMINAR, 676);
@@ -509,19 +476,6 @@ public class FileController implements Serializable {
         saveSchoolList();
         saveCourseList();
     }
-    /*public void printStudentList()
-    {   System.out.println("");
-        System.out.println("List of students");
-        System.out.println("Student Name\t Matriculation Number \t Gender \t Nationality \t School\t Year of Study\t");
-        System.out.println("_____________________________________________________________________________________");
-        for(int i=0;i<studentList.size();i++)
-        {
-            Student student=studentList.get(i);
-            System.out.println((i+1)+". "+student.getName()+"\t"+student.getMatricNumber()+"\t"+student.getGender()+"\t"+student.getNationality()+"\t"+student.getSchool()+"\t"+student.getYear());
-
-        }
-
-    }*/
     public void printStudentList()
     {   System.out.println("");
         System.out.println("List of students");
@@ -540,8 +494,6 @@ public class FileController implements Serializable {
             String formatInfo = column0Format+ ". " + column1Format + " " + column2Format + " " + column3Format + " " + column4Format + " " + column5Format + " " + column6Format;
             System.out.format(formatInfo, (i+1), student.getName(), student.getMatricNumber(), student.getGender(), student.getNationality(), getSchoolByName(student.getSchool()).getName(), student.getYear());
             System.out.println();
-            //System.out.println((i+1)+". "+student.getName()+"\t"+student.getMatricNumber()+"\t"+student.getGender()+"\t"+student.getNationality()+"\t"+student.getSchool().getName()+"\t"+student.getYear());
-
         }
 
     }

@@ -109,14 +109,13 @@ public class StudentModeController {
         }
 
     public void printRegisteredCourses(Student student) {
-        //TODO
-        System.out.println("   CourseID   CourseName   Index   ");
-        System.out.println("===================================");
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
         if (!regCourses.isEmpty()) {
             for (int i = 0; i < regCourses.size(); i++) {
                 Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
                 Course course = fc.getCourseByCode(idx.getCourse());
+                System.out.println("   CourseID   CourseName   Index   ");
+                System.out.println("===================================");
                 System.out.println(
                         "   " + course.getCourseCode() + "       " + course.getName()+ "         " + regCourses.get(i).getRegIndex());
             }
@@ -125,23 +124,6 @@ public class StudentModeController {
         }
         return;
     }
-
-
-
-
-    /*public void checkVacanciesAvailable(int index) {
-        //TODO
-        Index indObj = fc.getIndexByID(index);
-                if(indObj!=null){
-                    System.out.println("Number Of Vacancies available" + indObj.getVacancies() + "outOf" + indObj.getTotalSlots());
-                }
-                else{
-                    System.out.println("There is no Index with IndexNum "+index+" available");
-                }
-
-
-
-    }*/
     public void checkVacanciesAvailable() {
         //TODO
         DisplayDataController dd = new DisplayDataController();
@@ -234,7 +216,6 @@ public class StudentModeController {
         return;
     }
     public void checkAccessPeriod(School school) {
-        //TODO
         Date regStartDate=school.getRegistrationStartPeriod();
         Date regEndDate=school.getRegistrationEndPeriod();
         System.out.println("The registration access period is::  "+regStartDate+" to "+regEndDate);
