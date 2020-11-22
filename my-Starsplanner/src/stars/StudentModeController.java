@@ -1,6 +1,8 @@
 package stars;
 import java.util.*;
 import de.zabuza.grawlox.*;
+import jdk.jfr.Registered;
+
 import java.io.*;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
@@ -69,15 +71,16 @@ public class StudentModeController {
                 student.setNumberOfAUs(student.getNumberOfAUs()+course.getTotalAUs());
                 index.setVacancies(index.getVacancies()-1);
                 RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), "Registered", student.getUserName());
-                student.getRegCourses().add(rc);
-                if(index.getRegisteredCourses() != null){
+                student.addRegCourses(rc);
+                index.addToRegList(rc);
+               /* if(index.getRegisteredCourses() != null){
                     index.getRegisteredCourses().add(rc);
                 }
                 else{
                     ArrayList<RegisteredCourse> regList = new ArrayList<RegisteredCourse>();
                     regList.add(rc);
                     index.setRegisteredCourses(regList);
-                }
+                }*/
 
             }
 
@@ -106,11 +109,20 @@ public class StudentModeController {
 
                 index.allocateVacancies(course, index);
                 ArrayList<RegisteredCourse> stuRegList = student.getRegCourses();
-
+                ArrayList<RegisteredCourse> indRegList=index.getRegList();
                 if(!stuRegList.isEmpty()) {
                     for(int i = 0;i < stuRegList.size(); i++) {
                         if(stuRegList.get(i).getRegIndex() == index.getIndexNum()) {
-                            student.getRegCourses().remove(i);
+                            student.removeRegCourses(stuRegList.get(i));
+
+                        }
+                    }
+                }
+                if(!indRegList.isEmpty()) {
+                    for(int i = 0;i < indRegList.size(); i++) {
+                        if(indRegList.get(i).getStudent()==student.getUserName()) {
+                            index.removeFromRegList(indRegList.get(i));
+
                         }
                     }
                 }
