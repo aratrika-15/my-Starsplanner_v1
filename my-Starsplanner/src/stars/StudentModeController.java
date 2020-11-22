@@ -102,7 +102,7 @@ public class StudentModeController {
         System.out.println("   CourseID   CourseName   Index   ");
         System.out.println("===================================");
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
-        if (regCourses != null) {
+        if (!regCourses.isEmpty()) {
             for (int i = 0; i < regCourses.size(); i++) {
                 Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
                 Course course = fc.getCourseByCode(idx.getCourse());

@@ -123,5 +123,39 @@ public class DisplayDataController {
         return null;
     }
 
+    public RegisteredCourse selectRegisteredCourses(Student s) {
+        ArrayList<RegisteredCourse> regCourses = s.getRegCourses();
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+        int choice;
 
+        do {
+            if (!regCourses.isEmpty()) {
+                System.out.println("Select the course:");
+                for(int i =0; i< regCourses.size(); i++) {
+                    Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
+                    Course c = fc.getCourseByCode(idx.getCourse());
+                    System.out.println(i+1+ ". " + c.getCourseCode());
+                }
+            }
+            else {
+                System.out.println("No registered courses.");
+                flag = false;
+                break;
+            }
+
+            choice = sc.nextInt();
+
+            if(choice> 0 && choice < regCourses.size()+1){
+                RegisteredCourse rc = regCourses.get(choice - 1);
+                flag = false;
+                return rc;
+            }
+            else {
+                System.out.println("Invalid selection.");
+            }
+        }while(flag);
+
+        return null;
+    }
 }
