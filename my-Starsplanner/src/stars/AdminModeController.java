@@ -499,8 +499,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         }
     }
 
-    public void checkAvailableSlot() {
-        //TODO
+    /*public void checkAvailableSlot() {
 
         System.out.println("Enter the Index you want to check for: ");
         int indexID = sc.nextInt();
@@ -512,6 +511,23 @@ public class AdminModeController implements DisplayErrorMsgUI{
             System.out.println("Index not found!");
         }
 
+    }*/
+    public void checkAvailableSlot() {
+        //TODO
+        DisplayDataController dd = new DisplayDataController();
+        School school = dd.schSelection();
+        if (school != null) {
+            Course course = dd.courseSelection(school);
+            if(course != null) {
+                Index index = dd.indexSelection(course);
+                if(index != null){
+                    System.out.println("Number Of Vacancies available " + index.getVacancies() + " outOf " + index.getTotalSlots());
+                }
+                else{
+                    System.out.println("There is no Index with IndexNum "+index+" available");
+                }
+            }
+        }
     }
 
     /**

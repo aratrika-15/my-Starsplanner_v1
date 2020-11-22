@@ -140,7 +140,7 @@ public class StudentModeController {
                     System.out.println("Number Of Vacancies available " + index.getVacancies() + " outOf " + index.getTotalSlots());
                 }
                 else{
-                    System.out.println("Invalid selection");
+                    System.out.println("There is no Index with IndexNum "+index+" available");
                 }
             }
         }
