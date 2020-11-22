@@ -160,10 +160,14 @@ public class Student extends User implements Serializable{
 
         ArrayList<StudyGroup> studyGroups = new ArrayList<>();
 
-        if (this.getRegCourses() != null ) {
+        if (this.getRegCourses().isEmpty()==false ) {
             for (RegisteredCourse regCourse : this.regCourses) {
+                //System.out.println("Hello");
+                //System.out.println(regCourse.getRegIndex());
                 Index idx = fc.getIndexByID(regCourse.getRegIndex());
+
                 for (StudyGroup studyGroup : idx.getStudyGroup()) {
+
                     studyGroups.add(studyGroup);
                 };
             }

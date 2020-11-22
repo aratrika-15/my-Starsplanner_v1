@@ -275,6 +275,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         Index index = c.setIndex(indexNum, groupNum, vacancy);
         if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
             addStudyGroup(index, LessonType.LAB);
+            addStudyGroup(index, LessonType.TUTORIAL);
         }
         if (c.getCourseType().equals(CourseType.LEC_TUT)) {
             addStudyGroup(index, LessonType.TUTORIAL);

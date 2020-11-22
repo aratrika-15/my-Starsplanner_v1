@@ -302,8 +302,8 @@ public class FileController implements Serializable {
         Index_10124.setStudyGroup(SG_10125);
 
         ArrayList<Index> CZ2002_Index = new ArrayList<Index>();
-        Index Index_10126 = new Index(10126, "SSP1", 10, "CZ2001");
-        Index Index_10127 = new Index(10127, "SSP2", 10, "CZ2001");
+        Index Index_10126 = new Index(10126, "SSP3", 10, "CZ2002");
+        Index Index_10127 = new Index(10127, "SSP4", 10, "CZ2002");
         CZ2002_Index.add(Index_10126);
         CZ2002_Index.add(Index_10127);
         CZ2002.setIndexList(CZ2002_Index);

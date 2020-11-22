@@ -18,12 +18,13 @@ public class StudentModeController {
             }
 
             //Check if applied before (either accepted/waitlisted)
-
-                if(student.getRegCourses() != null) {
+        //System.out.println(student.getRegCourses());
+                if(student.getRegCourses().isEmpty()==false) {
                     for(RegisteredCourse registeredCourse : student.getRegCourses()) {
                         Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
-                        if(idx.getCourse().equals(course)) {
-                            System.out.printf("You have already been registered for index %d", idx.getIndexNum());
+                        //System.out.println(idx.getIndexNum());
+                        if(idx.getCourse().equals(course.getCourseCode())) {
+                            System.out.printf("You have already been registered for index %d\n", idx.getIndexNum());
                             System.out.printf("The current status is %s\n", registeredCourse.getRegStatus());
                             return;
                         }
@@ -33,7 +34,11 @@ public class StudentModeController {
 
             //Check if clash with current timetable
             ArrayList<StudyGroup> s = student.getStudyGroups();
-            if (!s.isEmpty()) {
+            if (s!=null) {
+               // for(int i=0;i<s.size();i++)
+                //{
+                   // System.out.println(s.get(i).getIndex());
+                //}
                 if (checkClash(index, s)) {
                     return;
                 }
@@ -112,11 +117,12 @@ public class StudentModeController {
     public void printRegisteredCourses(Student student) {
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
         if (!regCourses.isEmpty()) {
+            System.out.println("   CourseID   CourseName   Index   ");
+            System.out.println("===================================");
             for (int i = 0; i < regCourses.size(); i++) {
                 Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
                 Course course = fc.getCourseByCode(idx.getCourse());
-                System.out.println("   CourseID   CourseName   Index   ");
-                System.out.println("===================================");
+
                 System.out.println(
                         "   " + course.getCourseCode() + "       " + course.getName()+ "         " + regCourses.get(i).getRegIndex());
             }
@@ -510,8 +516,8 @@ public class StudentModeController {
         for (StudyGroup studyGroup : index.getStudyGroup()) {
             for (StudyGroup studyGroup2 : studyGroups) {
                 if (studyGroup.getDayOfWeek() == studyGroup2.getDayOfWeek()) {
-                    if (studyGroup.getStartTime() <= studyGroup2.getEndTime()
-                            && studyGroup.getEndTime() >= studyGroup2.getStartTime()) {
+                    if (studyGroup.getStartTime() < studyGroup2.getEndTime()
+                            && studyGroup.getEndTime() > studyGroup2.getStartTime()) {
 
                         time_1 = String.valueOf(studyGroup.getStartTime());
                         time_2 = String.valueOf(studyGroup.getEndTime());
@@ -537,7 +543,7 @@ public class StudentModeController {
                         Index idx= fc.getIndexByID(studyGroup2.getIndex());
                         Course theCourse = fc.getCourseByCode(idx.getCourse());
                         System.out.printf("The index you are trying to add %d (%s) clashes with index %d (%s)\n",
-                                index.getIndexNum(), theCourse.getName(), idx.getIndexNum(), theCourse.getName());
+                                index.getIndexNum(), index.getCourse(), idx.getIndexNum(), theCourse.getCourseCode());
 
                         System.out.println(day.get(studyGroup.getDayOfWeek()));
 
