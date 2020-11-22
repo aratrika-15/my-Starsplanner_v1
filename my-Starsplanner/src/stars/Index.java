@@ -22,6 +22,7 @@ public class Index implements Serializable {
         this.vacancies=totalSlots;
         this.totalSlots=totalSlots;
         this.studyGroup=new ArrayList<StudyGroup>();
+        this.regList=new ArrayList<RegisteredCourse>();
     }
     public void setIndexNum(int indexNum)
     {
@@ -106,7 +107,10 @@ public class Index implements Serializable {
     public void setRegList(ArrayList<RegisteredCourse> regList) {
         this.regList = regList;
     }
-
+    public void addToRegList(RegisteredCourse regCourse)
+    {
+        this.regList.add(regCourse);
+    }
 
     public void addStudyGroup(String venue, int startTime, int endTime, int dayOfWeek, String weekType,LessonType lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, indexNum);
