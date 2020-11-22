@@ -85,7 +85,8 @@ public class StudentModeController {
             RegisteredCourse registeredCourse = new RegisteredCourse(index.getIndexNum(), status, student.getUserName());
 
             //Add course to student's list of registered courses
-            student.addRegCourses(registeredCourse);
+        //student.addRegCourses(registeredCourse);
+         //index.addToRegList(registeredCourse);
 
             //Set Registered
             System.out.printf("You have been registered for index %d\n", index.getIndexNum());
