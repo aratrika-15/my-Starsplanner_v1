@@ -280,10 +280,10 @@ public class FileController implements Serializable {
         //CZ2001.setIndex(10125, "SSP2", 10);
 
         ArrayList<StudyGroup> SG_10124 = new ArrayList<StudyGroup>();
-        StudyGroup CS2_LEC1_10124 = new StudyGroup("LT10", 830, 930, 5, "Even and Odd", LessonType.LECTURE, 10124);
-        StudyGroup CS2_LEC2_10124 = new StudyGroup("LT11", 1030, 1130, 1, "Even and Odd", LessonType.LECTURE, 10124);
-        StudyGroup SSR1_TUT_10124 = new StudyGroup("TR+9", 1630, 1730, 4, "Even and Odd", LessonType.TUTORIAL, 10124);
-        StudyGroup SSR1_LAB_10124 = new StudyGroup("HWLAB1", 1030, 1230, 3, "Odd", LessonType.LAB, 10124);
+        StudyGroup CS2_LEC1_10124 = new StudyGroup("LT10", 830, 930, 5, "ALL", LessonType.LECTURE, 10124);
+        StudyGroup CS2_LEC2_10124 = new StudyGroup("LT11", 1030, 1130, 1, "ALL", LessonType.LECTURE, 10124);
+        StudyGroup SSR1_TUT_10124 = new StudyGroup("TR+9", 1630, 1730, 4, "ALL", LessonType.TUTORIAL, 10124);
+        StudyGroup SSR1_LAB_10124 = new StudyGroup("HWLAB1", 1030, 1230, 3, "ODD", LessonType.LAB, 10124);
         SG_10124.add(CS2_LEC1_10124);
         SG_10124.add(CS2_LEC2_10124);
         SG_10124.add(SSR1_TUT_10124);
@@ -291,10 +291,10 @@ public class FileController implements Serializable {
         Index_10124.setStudyGroup(SG_10124);
 
         ArrayList<StudyGroup> SG_10125 = new ArrayList<StudyGroup>();
-        StudyGroup CS2_LEC1_10125 = new StudyGroup("LT10", 830, 930, 5, "Even and Odd", LessonType.LECTURE, 10125);
-        StudyGroup CS2_LEC2_10125 = new StudyGroup("LT11", 1030, 1130, 1, "Even and Odd", LessonType.LECTURE, 10125);
-        StudyGroup SSR5_TUT_10125 = new StudyGroup("TR+15", 1330, 1430, 3, "Even and Odd", LessonType.TUTORIAL, 10125);
-        StudyGroup SSR5_LAB_10125 = new StudyGroup("HWLAB2", 830, 1030, 3, "Odd", LessonType.LAB, 10125);
+        StudyGroup CS2_LEC1_10125 = new StudyGroup("LT10", 830, 930, 5, "ALL", LessonType.LECTURE, 10125);
+        StudyGroup CS2_LEC2_10125 = new StudyGroup("LT11", 1030, 1130, 1, "ALL", LessonType.LECTURE, 10125);
+        StudyGroup SSR5_TUT_10125 = new StudyGroup("TR+15", 1330, 1430, 3, "ALL", LessonType.TUTORIAL, 10125);
+        StudyGroup SSR5_LAB_10125 = new StudyGroup("HWLAB2", 830, 1030, 3, "ODD", LessonType.LAB, 10125);
         SG_10125.add(CS2_LEC1_10125);
         SG_10125.add(CS2_LEC2_10125);
         SG_10125.add(SSR5_TUT_10125);
@@ -309,10 +309,10 @@ public class FileController implements Serializable {
         CZ2002.setIndexList(CZ2002_Index);
 
         ArrayList<StudyGroup> SG_10126 = new ArrayList<StudyGroup>();
-        StudyGroup CS2_LEC1_10126 = new StudyGroup("LT11", 830, 930, 4, "Even and Odd", LessonType.LECTURE, 10126);
-        StudyGroup CS2_LEC2_10126 = new StudyGroup("LT11", 1430, 1530, 2, "Even and Odd", LessonType.LECTURE, 10126);
-        StudyGroup FEP1_TUT_10126 = new StudyGroup("TR+17", 930, 1030, 3, "Even and Odd", LessonType.TUTORIAL, 10126);
-        StudyGroup FEP1_LAB_10126 = new StudyGroup("SPL", 1230, 1630, 1, "Odd", LessonType.LECTURE.LAB, 10126);
+        StudyGroup CS2_LEC1_10126 = new StudyGroup("LT11", 830, 930, 4, "ALL", LessonType.LECTURE, 10126);
+        StudyGroup CS2_LEC2_10126 = new StudyGroup("LT11", 1430, 1530, 2, "ALL", LessonType.LECTURE, 10126);
+        StudyGroup FEP1_TUT_10126 = new StudyGroup("TR+17", 930, 1030, 3, "ALL", LessonType.TUTORIAL, 10126);
+        StudyGroup FEP1_LAB_10126 = new StudyGroup("SPL", 1230, 1630, 1, "ODD", LessonType.LECTURE.LAB, 10126);
         SG_10126.add(CS2_LEC1_10126);
         SG_10126.add(CS2_LEC2_10126);
         SG_10126.add(FEP1_TUT_10126);
@@ -320,10 +320,10 @@ public class FileController implements Serializable {
         Index_10126.setStudyGroup(SG_10126);
 
         ArrayList<StudyGroup> SG_10127 = new ArrayList<StudyGroup>();
-        StudyGroup CS2_LEC1_10127 = new StudyGroup("LT11", 830, 930, 4, "Even and Odd", LessonType.LECTURE, 10127);
-        StudyGroup CS2_LEC2_10127 = new StudyGroup("LT11", 1430, 1530, 2, "Even and Odd", LessonType.LECTURE, 10127);
-        StudyGroup FSP3_TUT_10127 = new StudyGroup("TR+9", 1330, 1430, 3, "Even and Odd", LessonType.TUTORIAL, 10127);
-        StudyGroup FSP3_LAB_10127 = new StudyGroup("SPL", 1430, 1630, 1, "Even", LessonType.LAB, 10127);
+        StudyGroup CS2_LEC1_10127 = new StudyGroup("LT11", 830, 930, 4, "ALL", LessonType.LECTURE, 10127);
+        StudyGroup CS2_LEC2_10127 = new StudyGroup("LT11", 1430, 1530, 2, "ALL", LessonType.LECTURE, 10127);
+        StudyGroup FSP3_TUT_10127 = new StudyGroup("TR+9", 1330, 1430, 3, "ALL", LessonType.TUTORIAL, 10127);
+        StudyGroup FSP3_LAB_10127 = new StudyGroup("SPL", 1430, 1630, 1, "EVEN", LessonType.LAB, 10127);
         SG_10127.add(CS2_LEC1_10127);
         SG_10127.add(CS2_LEC2_10127);
         SG_10127.add(FSP3_TUT_10127);
@@ -356,23 +356,23 @@ public class FileController implements Serializable {
         AD2101.setIndexList(AD2101_Index);
 
         ArrayList<StudyGroup> SG_00146 = new ArrayList<StudyGroup>();
-        StudyGroup SEM1_00146 = new StudyGroup("ONLINE", 830, 1130, 1, "Even and Odd", LessonType.SEMINAR, 146);
+        StudyGroup SEM1_00146 = new StudyGroup("ONLINE", 830, 1130, 1, "ALL", LessonType.LECTURE, 146);
         SG_00146.add(SEM1_00146);
         Index_00146.setStudyGroup(SG_00146);
         ArrayList<StudyGroup> SG_00147 = new ArrayList<StudyGroup>();
-        StudyGroup SEM2_00147 = new StudyGroup("ONLINE", 1330, 1630, 4, "Even and Odd", LessonType.SEMINAR, 147);
+        StudyGroup SEM2_00147 = new StudyGroup("ONLINE", 1330, 1630, 4, "ALL", LessonType.LECTURE, 147);
         SG_00147.add(SEM2_00147);
         Index_00147.setStudyGroup(SG_00147);
         ArrayList<StudyGroup> SG_00148 = new ArrayList<StudyGroup>();
-        StudyGroup SEM3_00148 = new StudyGroup("ONLINE", 830, 1130, 2, "Even and Odd", LessonType.SEMINAR, 148);
+        StudyGroup SEM3_00148 = new StudyGroup("ONLINE", 830, 1130, 2, "ALL", LessonType.LECTURE, 148);
         SG_00148.add(SEM3_00148);
         Index_00148.setStudyGroup(SG_00148);
         ArrayList<StudyGroup> SG_00149 = new ArrayList<StudyGroup>();
-        StudyGroup SEM4_00149 = new StudyGroup("ONLINE", 1330, 1630, 3, "Even and Odd", LessonType.SEMINAR, 149);
+        StudyGroup SEM4_00149 = new StudyGroup("ONLINE", 1330, 1630, 3, "ALL", LessonType.LECTURE, 149);
         SG_00149.add(SEM4_00149);
         Index_00149.setStudyGroup(SG_00149);
         ArrayList<StudyGroup> SG_00150 = new ArrayList<StudyGroup>();
-        StudyGroup SEM5_00150 = new StudyGroup("ONLINE", 1430, 1730, 4, "Even and Odd", LessonType.SEMINAR, 150);
+        StudyGroup SEM5_00150 = new StudyGroup("ONLINE", 1430, 1730, 4, "ALL", LessonType.LECTURE, 150);
         SG_00150.add(SEM5_00150);
         Index_00150.setStudyGroup(SG_00150);
 
@@ -390,23 +390,23 @@ public class FileController implements Serializable {
         BC2407.setIndexList(BC2407_Index);
 
         ArrayList<StudyGroup> SG_00676 = new ArrayList<StudyGroup>();
-        StudyGroup SEM1_00676 = new StudyGroup("S3-SR4", 930, 1230, 1, "Even and Odd", LessonType.SEMINAR, 676);
+        StudyGroup SEM1_00676 = new StudyGroup("S3-SR4", 930, 1230, 1, "ALL", LessonType.LECTURE, 676);
         SG_00676.add(SEM1_00676);
         Index_00676.setStudyGroup(SG_00676);
         ArrayList<StudyGroup> SG_00677 = new ArrayList<StudyGroup>();
-        StudyGroup SEM2_00677 = new StudyGroup("S4-SR9", 930, 1230, 3, "Even and Odd", LessonType.SEMINAR, 677);
+        StudyGroup SEM2_00677 = new StudyGroup("S4-SR9", 930, 1230, 3, "ALL", LessonType.LECTURE, 677);
         SG_00677.add(SEM2_00677);
         Index_00677.setStudyGroup(SG_00677);
         ArrayList<StudyGroup> SG_00678 = new ArrayList<StudyGroup>();
-        StudyGroup SEM3_00678 = new StudyGroup("S4-SR11", 1430, 1730, 3, "Even and Odd", LessonType.SEMINAR, 678);
+        StudyGroup SEM3_00678 = new StudyGroup("S4-SR11", 1430, 1730, 3, "ALL", LessonType.LECTURE, 678);
         SG_00678.add(SEM3_00678);
         Index_00678.setStudyGroup(SG_00678);
         ArrayList<StudyGroup> SG_00679 = new ArrayList<StudyGroup>();
-        StudyGroup SEM4_00679 = new StudyGroup("S3-SR2", 1830, 2130, 1, "Even and Odd", LessonType.SEMINAR, 679);
+        StudyGroup SEM4_00679 = new StudyGroup("S3-SR2", 1830, 2130, 1, "ALL", LessonType.LECTURE, 679);
         SG_00679.add(SEM4_00679);
         Index_00679.setStudyGroup(SG_00679);
         ArrayList<StudyGroup> SG_00680 = new ArrayList<StudyGroup>();
-        StudyGroup SEM5_00680 = new StudyGroup("S3-SR3", 1430, 1730, 4, "Even and Odd", LessonType.SEMINAR, 680);
+        StudyGroup SEM5_00680 = new StudyGroup("S3-SR3", 1430, 1730, 4, "ALL", LessonType.LECTURE, 680);
         SG_00680.add(SEM5_00680);
         Index_00680.setStudyGroup(SG_00680);
 
