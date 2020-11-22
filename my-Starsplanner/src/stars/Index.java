@@ -7,7 +7,7 @@ public class Index implements Serializable {
     private int vacancies;
     private int totalSlots;
     private String groupNum;
-    private Queue<Student> waitList = new ArrayDeque<Student>();
+    private Queue<Student> waitList;
     private ArrayList<RegisteredCourse> regList;
     private ArrayList<StudyGroup> studyGroup;
     FileController fc = new FileController();
@@ -21,6 +21,7 @@ public class Index implements Serializable {
         this.groupNum=groupNum;
         this.vacancies=totalSlots;
         this.totalSlots=totalSlots;
+        this.waitList=new ArrayDeque<>();
         this.studyGroup=new ArrayList<StudyGroup>();
         this.regList=new ArrayList<RegisteredCourse>();
     }
@@ -111,7 +112,7 @@ public class Index implements Serializable {
     {
         this.regList.add(regCourse);
     }
-
+    public void removeFromRegList(RegisteredCourse regCourse){ this.regList.remove(regCourse);}
     public void addStudyGroup(String venue, int startTime, int endTime, int dayOfWeek, String weekType,LessonType lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, indexNum);
         this.studyGroup.add(sg);

@@ -10,11 +10,11 @@ public class Student extends User implements Serializable{
     private String   nationality;
     private int    year;
     private int    numberOfAUs;
-    private ArrayList<RegisteredCourse> regCourses = new ArrayList<RegisteredCourse>();
+    private ArrayList<RegisteredCourse> regCourses ;
     private String school;
-    private HashMap<String, String> notificationType=new HashMap<String, String>();
+    private HashMap<String, String> notificationType;
     private ArrayList<Course> pastCourses;// new
-    private ArrayList<Review> myReviews = new ArrayList<Review>();//new
+    private ArrayList<Review> myReviews ;//new
     public static final  int MAX_AUs = 22;
     FileController fc = new FileController();
     public Student()
@@ -34,7 +34,8 @@ public class Student extends User implements Serializable{
         this.regCourses = regCourses;
         this.school = school;
         notificationType.put(choice, recipient);
-
+        this.myReviews= new ArrayList<Review>();
+        this.pastCourses=new ArrayList<Course>();
     }
     public Student(String name, String matricNumber, String gender, String nationality, int year, String school,String choice,String recipient, String email, String password,String typeOfUser, String userName)
 
@@ -47,7 +48,9 @@ public class Student extends User implements Serializable{
         this.year = year;
         this.school = school;
         this.numberOfAUs=0;
-        notificationType.put(choice,recipient);
+        this.regCourses=new ArrayList<RegisteredCourse>();
+        this.notificationType=new HashMap<String, String>();
+        this.notificationType.put(choice,recipient);
     }
     public String getName() {
         return name;
