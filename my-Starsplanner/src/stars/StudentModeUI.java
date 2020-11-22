@@ -14,6 +14,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
             Scanner sc = new Scanner(System.in);
             StudentModeController smc = new StudentModeController();
             FileController fc=new FileController();
+            DisplayDataController dd = new DisplayDataController();
             do {
                 System.out.println("");
                 System.out.println("");
@@ -38,23 +39,23 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 Index i;
                 switch (choice) {
                     case 1:
-                        do {
-                            System.out.println("Enter the course code for the course you wish to add");
-                            String cCode = sc.nextLine().trim();
-                            c=fc.getCourseByCode(cCode);
-                            if(c==null)
-                                System.out.println("This course code does not exist");
-                        }while(c!=null);
-                       do {
-                           System.out.println("Enter the index number for the course you wish to add");
-                           int indexNum=sc.nextInt();
-                           i= fc.getIndexByID(indexNum);
-                           if(i==null)
-                               System.out.println("This index number does not exist");
-                       }while(i!=null);
 
 
-                        smc.addCourse(student,student.getRegCourses(),c,i);
+                        School school1 = dd.schSelection();
+                        if (school1 != null) {
+                            Course course = dd.courseSelection(school1);
+                            if(course != null) {
+                                Index index = dd.indexSelection(course);
+                                if(index != null){
+
+                                    smc.addCourse(student,student.getRegCourses(),course,index);
+                                }
+
+                            }
+
+                        }
+
+
                         break;
                     case 2:
                         do {

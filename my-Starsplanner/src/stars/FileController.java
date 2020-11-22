@@ -6,10 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.lang.String;
 public class FileController implements Serializable {
-    private static final String adminFileLoc= "my-Starsplanner/source/Admin.dat";
-    private static final String studentFileLoc = "my-Starsplanner/source/Student.dat";
-    private static final String schoolFileLoc = "my-Starsplanner/source/School.dat";
-    private static final String courseFileLoc= "my-Starsplanner/source/Course.dat";
+    private static final String adminFileLoc= "./source/Admin.dat";
+    private static final String studentFileLoc = "./source/Student.dat";
+    private static final String schoolFileLoc = "./source/School.dat";
+    private static final String courseFileLoc="./source/Course.dat";
+    //my-Starsplanner/source
+    //my-Starsplanner/source
+    ///Users/saiteja_11/IdeaProjects/my-Starsplanner_v1/my-Starsplanner/source
 
     private static ArrayList<Admin> adminList = new ArrayList<Admin>();
     private static ArrayList<Student> studentList = new ArrayList<Student>();
