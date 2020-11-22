@@ -1,25 +1,56 @@
 package stars;
+import java.text.ParseException;
 import java.util.*;
 import java.io.Console;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+import java.text.ParseException;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
     DisplayDataController dd= new DisplayDataController();
-    public void editStudentAccessPeriod(String school, Date startDate, Date endDate) {
+    SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
+    public void editStudentAccessPeriod() {
         //TODO
-        if (school != null) {
-            School updateSchool = fc.getSchoolByName(school);
-            if (updateSchool != null) {
-                updateSchool.setRegistrationStartPeriod(startDate);
-                updateSchool.setRegistrationEndPeriod(endDate);
-                fc.saveSchoolList();
-                System.out.println("Access Period has been updated.");
-            } else {
-                System.out.println("School does not exist");
-            }
+        School updateSchool;
+        Date convertedStartDate=null,convertedEndDate=null;
+        do{
+            System.out.println("Enter the School Name");
+            String school=sc.nextLine().trim();
+            updateSchool = fc.getSchoolByName(school);
+            if(updateSchool==null)
+                System.out.println("Error. This school does not exist.");
+        }while(updateSchool==null);
+        try {
+            System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+            String startDate=sc.next();
+            convertedStartDate = format.parse(startDate);
+            //System.out.println(convertedStartDate);
+            //System.out.println(format.format(convertedStartDate));
+            System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+            String endDate=sc.next();
+            convertedEndDate = format.parse(endDate);
+            //System.out.println(convertedEndDate);
+            //System.out.println(format.format(convertedEndDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("Invalid registration period format");
+        }
+        catch(NullPointerException e)
+        {
+            e.printStackTrace();
+        }
 
-        } else {
-            System.out.println("School value cannot be null");
+        if(convertedStartDate.compareTo(convertedEndDate)<0) {
+            updateSchool.setRegistrationStartPeriod(convertedStartDate);
+            updateSchool.setRegistrationEndPeriod(convertedEndDate);
+            fc.saveSchoolList();
+            System.out.println("Access Period has been updated.");
+        }
+        else
+        {
+            System.out.println("Registration end period must be after registration start period");
         }
 
     }
@@ -150,40 +181,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
     //method for admin to add a student
 
 
-    /**
-     * function to remove a student from STARS
-     *
-     *
-     */
-    public void removeStudent()
-    {
-        System.out.println("Enter the username of the student you wish to remove");
-        String removeName=sc.nextLine().trim();
-        Student student=fc.getStudentByUsername(removeName);
 
-        if(student==null)
-        {
-            System.out.println("Such a student does not exist.");
-            return;
-        }
-        else
-        {   School sch = fc.getSchoolByName(student.getSchool());
-            System.out.println(sch.getName());
-            sch.getStudents();
-            for(int i=0;i<sch.getStudents().size();i++)
-            {
-                System.out.println(sch.getStudents().get(i).getName());
-            }
-
-            System.out.println(sch.getStudents());
-            //fc.getStudentList().remove(student);
-            //fc.saveSchoolList();
-            //fc.saveStudentList();
-            System.out.println("Student successfully removed.");
-            return;
-        }
-
-    }
 //    private void validateInt() {
 //        while (!sc.hasNextInt()) {
 //            String input = sc.next();
