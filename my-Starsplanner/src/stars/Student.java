@@ -178,17 +178,5 @@ public class Student extends User implements Serializable{
         }
 
     }
-    /*public void newCourseList(Course course, Index index) {
-        ArrayList<RegisteredCourse> registeredCourses = new ArrayList<>();
-
-        for (RegisteredCourse regCourse : this.regCourses) {
-            Index idx = fc.getIndexByID(regCourse.getRegIndex());
-            Course theCourse = fc.getCourseByCode(idx.getCourse());
-            if (!theCourse.equals(course)) {
-                registeredCourses.add(regCourse);
-            }
-        }
-        this.regCourses = registeredCourses;
-    }*/
 
 }

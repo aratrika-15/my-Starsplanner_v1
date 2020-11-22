@@ -626,7 +626,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         for(int j = 0; j < regList.size(); j++) {
                             RegisteredCourse regCourse = regList.get(j);
                             String status = regCourse.getRegStatus();
-                            if (status == "registered") {
+                            if (status.equals("Registered")) {
                                 Student student = fc.getStudentByUsername(regCourse.getStudent()); //added Student attribute in RegisteredCouse with getter and setter
                                 String name = student.getName();
                                 String gender = student.getGender();
@@ -673,7 +673,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         for(int j = 0; j < regList.size(); j++) {
                             RegisteredCourse regCourse = regList.get(j);
                             String status = regCourse.getRegStatus(); //change spelling in sequence diagram
-                            if (status == "registered") {
+                            if (status.equals("Registered")) {
                                 Student student = fc.getStudentByUsername(regCourse.getStudent()); //added Student attribute in RegisteredCouse with getter and setter
                                 String name = student.getName();
                                 String gender = student.getGender();

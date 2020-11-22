@@ -68,6 +68,17 @@ public class StudentModeController {
                 //Set new number of AUs
                 student.setNumberOfAUs(student.getNumberOfAUs()+course.getTotalAUs());
                 index.setVacancies(index.getVacancies()-1);
+                RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), "Registered", student.getUserName());
+                student.getRegCourses().add(rc);
+                if(index.getRegisteredCourses() != null){
+                    index.getRegisteredCourses().add(rc);
+                }
+                else{
+                    ArrayList<RegisteredCourse> regList = new ArrayList<RegisteredCourse>();
+                    regList.add(rc);
+                    index.setRegisteredCourses(regList);
+                }
+
             }
 
             //Create new Registered Course class
@@ -518,39 +529,40 @@ public class StudentModeController {
                 if (studyGroup.getDayOfWeek() == studyGroup2.getDayOfWeek()) {
                     if (studyGroup.getStartTime() < studyGroup2.getEndTime()
                             && studyGroup.getEndTime() > studyGroup2.getStartTime()) {
+                        if (studyGroup.getWeekType().equals("ALL") || studyGroup2.getWeekType().equals("ALL") || studyGroup.getWeekType().equals(studyGroup2.getWeekType())) {
+                            time_1 = String.valueOf(studyGroup.getStartTime());
+                            time_2 = String.valueOf(studyGroup.getEndTime());
+                            time_3 = String.valueOf(studyGroup2.getStartTime());
+                            time_4 = String.valueOf(studyGroup2.getEndTime());
 
-                        time_1 = String.valueOf(studyGroup.getStartTime());
-                        time_2 = String.valueOf(studyGroup.getEndTime());
-                        time_3 = String.valueOf(studyGroup2.getStartTime());
-                        time_4 = String.valueOf(studyGroup2.getEndTime());
+                            while (time_1.length() < 4) {
+                                time_1 = "0" + time_1;
+                            }
 
-                        while (time_1.length() < 4) {
-                            time_1 = "0" + time_1;
+                            while (time_2.length() < 4) {
+                                time_2 = "0" + time_2;
+                            }
+
+                            while (time_3.length() < 4) {
+                                time_3 = "0" + time_3;
+                            }
+
+                            while (time_4.length() < 4) {
+                                time_4 = "0" + time_4;
+                            }
+
+                            Index idx= fc.getIndexByID(studyGroup2.getIndex());
+                            Course theCourse = fc.getCourseByCode(idx.getCourse());
+                            System.out.printf("The index you are trying to add %d (%s) clashes with index %d (%s)\n",
+                                    index.getIndexNum(), index.getCourse(), idx.getIndexNum(), theCourse.getCourseCode());
+
+                            System.out.println(day.get(studyGroup.getDayOfWeek()));
+
+                            System.out.printf("Index %d time: %s - %s\n", index.getIndexNum(), time_1, time_2);
+                            System.out.printf("Index %d time: %s - %s\n\n", idx.getIndexNum(),time_3, time_4);
+
+                            clash = true;
                         }
-
-                        while (time_2.length() < 4) {
-                            time_2 = "0" + time_2;
-                        }
-
-                        while (time_3.length() < 4) {
-                            time_3 = "0" + time_3;
-                        }
-
-                        while (time_4.length() < 4) {
-                            time_4 = "0" + time_4;
-                        }
-
-                        Index idx= fc.getIndexByID(studyGroup2.getIndex());
-                        Course theCourse = fc.getCourseByCode(idx.getCourse());
-                        System.out.printf("The index you are trying to add %d (%s) clashes with index %d (%s)\n",
-                                index.getIndexNum(), index.getCourse(), idx.getIndexNum(), theCourse.getCourseCode());
-
-                        System.out.println(day.get(studyGroup.getDayOfWeek()));
-
-                        System.out.printf("Index %d time: %s - %s\n", index.getIndexNum(), time_1, time_2);
-                        System.out.printf("Index %d time: %s - %s\n\n", idx.getIndexNum(),time_3, time_4);
-
-                        clash = true;
                     }
                 }
             }
