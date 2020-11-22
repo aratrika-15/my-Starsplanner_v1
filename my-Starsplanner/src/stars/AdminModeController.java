@@ -147,43 +147,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
         fc.printStudentList();
     }
 
-    //method for admin to add a student
 
 
-    /**
-     * function to remove a student from STARS
-     *
-     *
-     */
-    public void removeStudent()
-    {
-        System.out.println("Enter the username of the student you wish to remove");
-        String removeName=sc.nextLine().trim();
-        Student student=fc.getStudentByUsername(removeName);
 
-        if(student==null)
-        {
-            System.out.println("Such a student does not exist.");
-            return;
-        }
-        else
-        {   School sch = fc.getSchoolByName(student.getSchool());
-            System.out.println(sch.getName());
-            sch.getStudents();
-            for(int i=0;i<sch.getStudents().size();i++)
-            {
-                System.out.println(sch.getStudents().get(i).getName());
-            }
-
-            System.out.println(sch.getStudents());
-            //fc.getStudentList().remove(student);
-            //fc.saveSchoolList();
-            //fc.saveStudentList();
-            System.out.println("Student successfully removed.");
-            return;
-        }
-
-    }
 //    private void validateInt() {
 //        while (!sc.hasNextInt()) {
 //            String input = sc.next();
