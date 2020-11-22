@@ -228,10 +228,11 @@ public class AdminModeController implements DisplayErrorMsgUI{
         int endTime = -1;
         System.out.println("Enter the following lesson details for index " + i.getIndexNum() + ":");
         System.out.println(lessonType + " venue:");
-        venue = sc.next();
+        sc.nextLine();
+        venue = sc.nextLine();
         System.out.println(lessonType + " start time:");
         startTime = validateInt(800,2000);
-        System.out.println(lessonType + " lab end time:");
+        System.out.println(lessonType + " end time:");
         boolean flag = true;
         do {
             if (sc.hasNextInt()) {
@@ -247,11 +248,20 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 System.out.println("Invalid selection.Enter a valid input.");
             }
         } while(flag);
-        System.out.println("Day of the week the " + lessonType + "  will take place:");//how to add for multiple days?
-        dayOfWeek = validateInt(1,7);
-        System.out.println("Week type of " + lessonType);
+        System.out.println("Day of the week the " + lessonType + "  will take place: (1.Mon, 2.Tues, 3.Wed, 4.Thurs, 5.Fri, 6.Sat");//how to add for multiple days?
+        dayOfWeek = validateInt(1,6);
+        System.out.println("Week type of " + lessonType + "(ODD, EVEN, ALL)");
         weekType = sc.next();
-        i.addStudyGroup(venue, startTime, endTime, dayOfWeek, weekType, lessonType);
+        String wTypes[] = {"ODD","EVEN","ALL"};
+        while (!Arrays.stream(wTypes).anyMatch(weekType::equals)) {
+            System.out.println("Invalid Input!");
+            System.out.println("Week Type(ODD, EVEN, ALL) :");
+            weekType = sc.next();
+        }
+        WeekType weekdayType = WeekType.valueOf(weekType);
+
+        i.addStudyGroup(venue, startTime, endTime, dayOfWeek, weekdayType.name(), lessonType);
+        System.out.println("Study group successfully added");
     }
 
     private void addIndex(Course c) {
@@ -290,7 +300,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         if (s != null) {
             System.out.println("Enter the following details of the course you would like to add:");
             System.out.println("name:");
-            String name = sc.next();
+            String name = sc.nextLine();
             System.out.println("Course Type (LEC, LEC_TUT, LEC_TUT_LAB) :");
             String cType = sc.next();
             String cTypes[] = {"LEC", "LEC_TUT", "LEC_TUT_LAB"};
@@ -328,8 +338,21 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
         }
     }
+    public boolean checkCourseHasStudents(Course c)
+    {
+        ArrayList<Index> indices=c.getIndex();
+        if(indices==null)
+            return false;
+        for(int i=0;i<indices.size();i++)
+        {
+            Index index=indices.get(i);
+            ArrayList< RegisteredCourse> regCourse=index.getRegisteredCourses();
+            if(regCourse!=null)
+                return true;
 
-    //	@SuppressWarnings("unused")
+        }
+            return false;
+    }
     public void updateCourse() {
 //        System.out.println("Enter the Course Code of the course you would like to update: ");
 //        String courseCode = sc.next();
@@ -352,6 +375,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     System.out.println("2. Edit course Type");
                     System.out.println("3. Edit total AUs");
                     System.out.println("4. Add index");
+                    System.out.println("5. Edit course Code");
+                    System.out.println("6. Edit school");
                     System.out.println("----------choose one of the options above");
                     choice = validateInt(1,4);
                     switch (choice) {
@@ -362,67 +387,109 @@ public class AdminModeController implements DisplayErrorMsgUI{
                             System.out.println("Course Name successfully changed");
                             break;
                         case 2:
-                            CourseType past_type = c.getCourseType();
-                            System.out.println("Enter the new course Type (LEC, LEC_TUT, LEC_TUT_LAB):");
-                            String cType = sc.next();
-                            String cTypes[] = {"LEC", "LEC_TUT", "LEC_TUT_LAB"};
-                            while (!Arrays.stream(cTypes).anyMatch(cType::equals)) {
-                                System.out.println("Invalid Input!");
-                                System.out.println("Course Type (LEC, LEC_TUT, LEC_TUT_LAB) :");
-                                cType = sc.next();
-                            }
-                            CourseType course_type = CourseType.valueOf(cType);
-
-                            c.setCourseType(course_type);
-                            System.out.println("Course type successfully changed");///need to loop through all the indexes to add/remove the study groups respctively??
-
-                            if (c.getCourseType().equals(CourseType.LEC)) {
-                                for (Index i : c.getIndex()) {
-                                    i.deleteStudyGroup(LessonType.TUTORIAL);
-                                    i.deleteStudyGroup(LessonType.LAB);
+                            if(checkCourseHasStudents(c)==false) {
+                                CourseType past_type = c.getCourseType();
+                                System.out.println("Enter the new course Type (LEC, LEC_TUT, LEC_TUT_LAB):");
+                                String cType = sc.next();
+                                String cTypes[] = {"LEC", "LEC_TUT", "LEC_TUT_LAB"};
+                                while (!Arrays.stream(cTypes).anyMatch(cType::equals)) {
+                                    System.out.println("Invalid Input!");
+                                    System.out.println("Course Type (LEC, LEC_TUT, LEC_TUT_LAB) :");
+                                    cType = sc.next();
                                 }
-                            }
-                            if (c.getCourseType().equals(CourseType.LEC_TUT)) {
-                                for (Index i : c.getIndex()) {
-                                    i.deleteStudyGroup(LessonType.LAB);
+                                CourseType course_type = CourseType.valueOf(cType);
+
+                                c.setCourseType(course_type);
+                                System.out.println("Course type successfully changed");///need to loop through all the indexes to add/remove the study groups respctively??
+
+                                if (c.getCourseType().equals(CourseType.LEC)) {
+                                    for (Index i : c.getIndex()) {
+                                        i.deleteStudyGroup(LessonType.TUTORIAL);
+                                        i.deleteStudyGroup(LessonType.LAB);
+                                    }
                                 }
-                            }
-                            if (past_type.equals(CourseType.LEC)) {
                                 if (c.getCourseType().equals(CourseType.LEC_TUT)) {
                                     for (Index i : c.getIndex()) {
-                                        addStudyGroup(i, LessonType.TUTORIAL);
+                                        i.deleteStudyGroup(LessonType.LAB);
                                     }
-                                } else if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
-                                    for (Index i : c.getIndex()) {
-                                        addStudyGroup(i, LessonType.TUTORIAL);
-                                        addStudyGroup(i, LessonType.LAB);
+                                }
+                                if (past_type.equals(CourseType.LEC)) {
+                                    if (c.getCourseType().equals(CourseType.LEC_TUT)) {
+                                        for (Index i : c.getIndex()) {
+                                            addStudyGroup(i, LessonType.TUTORIAL);
+                                        }
+                                    } else if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
+                                        for (Index i : c.getIndex()) {
+                                            addStudyGroup(i, LessonType.TUTORIAL);
+                                            addStudyGroup(i, LessonType.LAB);
+                                        }
+                                    }
+                                }
+                                if (past_type.equals(CourseType.LEC_TUT)) {
+                                    if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
+                                        for (Index i : c.getIndex()) {
+                                            addStudyGroup(i, LessonType.LAB);
+                                        }
                                     }
                                 }
                             }
-                            if (past_type.equals(CourseType.LEC_TUT)) {
-                                if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
-                                    for (Index i : c.getIndex()) {
-                                        addStudyGroup(i, LessonType.LAB);
-                                    }
-                                }
+                            else
+                            {
+                                System.out.println("Cannot update course Type after students have been registered");
                             }
                             break;
 
                         case 3:
-                            System.out.println("Enter new total number of AUs:");
-                            int aus = validateInt(1,4);
-                            c.setTotalAUs(aus);
-                            System.out.println("Number of AUs successfully changed");
+                            if(checkCourseHasStudents(c)==false) {
+                                System.out.println("Enter new total number of AUs:");
+                                int aus = validateInt(1, 4);
+                                c.setTotalAUs(aus);
+                                System.out.println("Number of AUs successfully changed");
+                            }
+                            else
+                            {
+                                System.out.println("Cannot update total AUs of the course after students have been registered");
+                            }
                             break;
                         case 4:
                             addIndex(c);
+                            break;
+                        case 5:
+                            System.out.println("Enter the new course code");
+                            String n = sc.next();
+                            while (validateCourseCodeFormat(n) == null) {
+                                System.out.println(n + " is not a valid input. Enter again:");
+                                n = sc.next();
+                            }
+                            String courseCode = validateCourseCodeFormat(n);
+                            c.setCourseCode(courseCode);
+                            System.out.println("Course code successfully changed");
+                            break;
+                        case 6:
+                            School newSchool;
+                            System.out.println("Choose the new school you want");
+                            do {
+                               newSchool=dd.schSelection();
+                               if(newSchool!=null)
+                               {
+                                   if(newSchool.getName()==c.getSchool())
+                                   {
+                                       System.out.println("The old school and the new school are the same");
+                                   }
+                               }
+                            }while(newSchool.getName()==c.getSchool());
+                            c.setSchool(newSchool.getName());
+                            School updatedSchool=fc.getSchoolByName(newSchool.getName());
+                            updatedSchool.getCourses().add(c);
+                            School oldSchool=fc.getSchoolByName(c.getSchool());
+                            oldSchool.getCourses().remove(c);
                             break;
                         default:
                             System.out.println("invalid input");
                     }
                 case 2:
 //                    System.out.println("Enter the index ID you would like to update:");
-//                    validateInt();
+//                    vc.validateInt();
 //                    int index_id = sc.nextInt();
 //                    Index i = null;
 //                    for (Index ind : c.getIndex()) {
@@ -436,6 +503,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         System.out.println("1. Edit group number");
                         System.out.println("2. Add/remove vacancies");
                         System.out.println("3. delete Index");
+                        System.out.println("4. Edit index number");
                         //TO ADD: edit lecture/tutorial/lab details/
                         System.out.println("----------choose one of the options above");
                         choice = sc.nextInt();
@@ -459,7 +527,23 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 System.out.println("Vacancies successfully changed");
                                 break;
                             case 3:
-                                c.deleteIndex(i);
+                                if(checkCourseHasStudents(c)==false)
+                                {c.deleteIndex(i);}
+                                else
+                                    System.out.println("Cannot delete index since students are registered");
+                                break;
+                            case 4:
+                                System.out.println("Enter the new index number");
+                                int indexNum = validateInt(0, 99999);
+                                for(int x=0;x<c.getIndex().size();x++)
+                                {
+                                    if(indexNum==c.getIndex().get(x).getIndexNum())
+                                    {
+                                        System.out.println("This index number already exists");
+                                        break;
+                                    }
+                                }
+                                i.setIndexNum(indexNum);
                                 break;
                             default:
                                 System.out.println("invalid input");
@@ -484,34 +568,26 @@ public class AdminModeController implements DisplayErrorMsgUI{
 //        String courseCode = sc.next();
 //        // convert string index to Index class
 //        Course c = fc.getCourseByCode(courseCode);
-        School s = dd.schSelection();
-        while (s == null){
-            System.out.println("School does not exist");
-            s = dd.schSelection();
-        }
-        Course c = dd.courseSelection(s);
 
-        if (c != null) {
-//            School s = c.getSchool();
-            s.deleteCourse(c);
-        } else {
-            System.out.println("Course doesnt exist!");
-        }
+            School s = dd.schSelection();
+            while (s == null) {
+                System.out.println("School does not exist");
+                s = dd.schSelection();
+            }
+            Course c = dd.courseSelection(s);
+            if (c != null) {
+              if(checkCourseHasStudents(c)==false)
+                s.deleteCourse(c);
+              else
+                  System.out.println("Cannot remove course since students are already registered");
+            } else {
+                System.out.println("Course doesnt exist!");
+            }
+
+
     }
 
-    /*public void checkAvailableSlot() {
 
-        System.out.println("Enter the Index you want to check for: ");
-        int indexID = sc.nextInt();
-        Index i = fc.getIndexByID(indexID);
-        if (i != null) {
-            int vacancy = i.getVacancies();
-            System.out.println("There are " + vacancy + " vacancies avalailable for " + i.getIndexNum());
-        } else {
-            System.out.println("Index not found!");
-        }
-
-    }*/
     public void checkAvailableSlot() {
         //TODO
         DisplayDataController dd = new DisplayDataController();

@@ -21,7 +21,7 @@ public class Index implements Serializable {
         this.groupNum=groupNum;
         this.vacancies=totalSlots;
         this.totalSlots=totalSlots;
-
+        this.studyGroup=new ArrayList<StudyGroup>();
     }
     public void setIndexNum(int indexNum)
     {
