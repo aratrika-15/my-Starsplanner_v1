@@ -10,5 +10,6 @@ public class Test {
         fc.RetrieveSchools();
 
         LoginUI.main(null);
+
     }
 }

@@ -139,7 +139,7 @@ public class DisplayDataController {
                 }
             }
             else {
-                System.out.println("Sorry!,No Course Registered found for this Student");
+                System.out.println("Sorry! No Course Registered found for this Student");
                 flag = false;
                 break;
             }

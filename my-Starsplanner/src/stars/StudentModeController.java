@@ -20,7 +20,7 @@ public class StudentModeController {
             //Check if applied before (either accepted/waitlisted)
         //System.out.println(student.getRegCourses());
                 if(student.getRegCourses().isEmpty()==false) {
-                    for(RegisteredCourse registeredCourse : student.getRegCourses()) {
+                    for(RegisteredCourse registeredCourse : registeredCourses) {
                         Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
                         //System.out.println(idx.getIndexNum());
                         if(idx.getCourse().equals(course.getCourseCode())) {
@@ -81,12 +81,6 @@ public class StudentModeController {
 
             }
 
-            //Create new Registered Course class
-            RegisteredCourse registeredCourse = new RegisteredCourse(index.getIndexNum(), status, student.getUserName());
-
-            //Add course to student's list of registered courses
-            student.addRegCourses(registeredCourse);
-
             //Set Registered
             System.out.printf("You have been registered for index %d\n", index.getIndexNum());
             System.out.printf("The current status for the course is %s\n", status);
@@ -101,7 +95,7 @@ public class StudentModeController {
                     isRegistered = true;
             }
             if (!isRegistered) {
-                System.out.printf("You are not currently registered for index %d, course %s", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
+                System.out.printf("You are not currently registered for index %d, course %s\n", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
                 return;
             } else {
                 student.setNumberOfAUs(student.getNumberOfAUs()-course.getTotalAUs());
@@ -138,7 +132,7 @@ public class StudentModeController {
                         "   " + course.getCourseCode() + "       " + course.getName()+ "         " + regCourses.get(i).getRegIndex());
             }
         } else {
-            System.out.println("Sorry!,No Course Registered found for this Student");
+            System.out.println("Sorry! No Course Registered found for this Student");
         }
         return;
     }
@@ -160,18 +154,18 @@ public class StudentModeController {
         }
     }
     public void changeIndexNumber(Student student, int current, int newIndex){
-        FileController FileController = new FileController();
-        Index currentIn = FileController.getIndexByID(current);
-        Index newIn = FileController.getIndexByID(newIndex);
+        FileController fc = new FileController();
+        Index currentIn = fc.getIndexByID(current);
+        Index newIn = fc.getIndexByID(newIndex);
 
         if (!currentIn.getCourse().equals(newIn.getCourse())) {
             System.out.println("Current index and new index does not belong to the same course.");
+            return;
         }
 
-        ArrayList<RegisteredCourse> registeredCourses = student.getRegCourses();
         Course indexCourse = fc.getCourseByCode(currentIn.getCourse());
         dropCourse(student, indexCourse, currentIn);
-        addCourse(student, registeredCourses, indexCourse, newIn);
+        addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
     public void swapIndexnumber(Student student1, Student student2, int Ix1, int Ix2) {
         //TODO
@@ -184,23 +178,50 @@ public class StudentModeController {
         }
 
         Course Course1 = fc.getCourseByCode(Index1.getCourse());
-        if (!student1.getRegCourses().contains(Course1)) {
-            System.out.printf("One of the student is not currently registered for index %d, course %s", Index1.getIndexNum(), Index1.getCourse());
-            return;
+        for(int i = 0; i < student1.getRegCourses().size(); i++) {
+            Index ind1 = fc.getIndexByID(student1.getRegCourses().get(i).getRegIndex());
+            Course cou1 = fc.getCourseByCode(ind1.getCourse());
+            if(!cou1.getCourseCode().equals(Course1.getCourseCode())){
+                System.out.printf("Student %s is not currently registered for index %d, course %s", student1.getName(), Index1.getIndexNum(), Index1.getCourse());
+                return;
+            }
         }
 
         Course Course2 = fc.getCourseByCode(Index2.getCourse());
-        if (!student2.getRegCourses().contains(Course2)) {
-            System.out.printf("One of the student is not currently registered for index %d, course %s", Index1.getIndexNum(), Index1.getCourse());
-            return;
+        for(int i = 0; i < student2.getRegCourses().size(); i++) {
+            Index ind2 = fc.getIndexByID(student1.getRegCourses().get(i).getRegIndex());
+            Course cou2 = fc.getCourseByCode(ind2.getCourse());
+            if(!cou2.getCourseCode().equals(Course1.getCourseCode())){
+                System.out.printf("Student %s is not currently registered for index %d, course %s", student2.getName(), Index2.getIndexNum(), Index2.getCourse());
+                return;
+            }
         }
 
         //Check if clash with current timetable for both students
         ArrayList<StudyGroup> s1 = student1.getStudyGroups();
+        for(int i=0; i<s1.size(); i++) {
+            System.out.println(s1.get(i).getIndex());
+        }
+        System.out.println("");
+        for(int i=0; i<s1.size(); i++) {
+            if (s1.get(i).getIndex() == Index1.getIndexNum()) {
+                s1.remove(i);
+                i--;
+                System.out.println(i);
+            }
+        }
+        System.out.println(s1.size());
+
         if (checkClash(Index2, s1)) {
             return;
         }
+
         ArrayList<StudyGroup> s2 = student2.getStudyGroups();
+        for(int i=0; i<s2.size(); i++) {
+            if (s2.get(i).getIndex() == Index2.getIndexNum()) {
+                s2.remove(i);
+            }
+        }
         if (checkClash(Index1, s2)) {
             return;
         }
@@ -209,12 +230,14 @@ public class StudentModeController {
         for (int i = 0; i<regCourses1.size(); i++) {
             Index idx1 = fc.getIndexByID(regCourses1.get(i).getRegIndex());
             Course theCourse1 = fc.getCourseByCode(idx1.getCourse());
-            if (theCourse1.equals(Course1)) {
+            if (theCourse1.getCourseCode().equals(Course1.getCourseCode())) {
                 RegisteredCourse oldRegisteredCourse1 = regCourses1.get(i);
                 student1.removeRegCourses(oldRegisteredCourse1);
+                idx1.getRegisteredCourses().remove(oldRegisteredCourse1);
                 String status1 = "Registered";
                 RegisteredCourse newRegisteredCourse1 = new RegisteredCourse(Index2.getIndexNum(), status1, student1.getUserName());
                 student1.addRegCourses(newRegisteredCourse1);
+                Index2.getRegisteredCourses().add(newRegisteredCourse1);
             }
         }
 
@@ -225,9 +248,11 @@ public class StudentModeController {
             if (theCourse2.equals(Course2)) {
                 RegisteredCourse oldRegisteredCourse2 = regCourses2.get(i);
                 student2.removeRegCourses(oldRegisteredCourse2);
+                idx2.getRegisteredCourses().remove(oldRegisteredCourse2);
                 String status2 = "Registered";
                 RegisteredCourse newRegisteredCourse2 = new RegisteredCourse(Index1.getIndexNum(), status2, student2.getUserName());
                 student2.addRegCourses(newRegisteredCourse2);
+                Index1.getRegisteredCourses().add(newRegisteredCourse2);
             }
         }
 
