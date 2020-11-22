@@ -373,7 +373,6 @@ public class StudentModeController {
     public void deleteReview(Student student) {
 
         Review rev = reviewSelection(student);
-        System.out.println(rev.getReview());
         if (rev != null){
             student.deleteReview(rev);
             String cCode = rev.getCourse();
@@ -428,7 +427,7 @@ public class StudentModeController {
                     System.out.println("There are no reviews for the course.");
                 } else {
                     for(int i = 0; i< reviewList.size();i++) {
-                        System.out.println("Review "+i+1+": ");
+                        System.out.println("Review "+(i+1)+": ");
                         System.out.println(reviewList.get(i).getReview());
                         System.out.println("Recommended: "+ reviewList.get(i).isRecommended());
                         System.out.println("");

@@ -139,7 +139,7 @@ public class Student extends User implements Serializable{
     public void deleteReview(Review review) {
         for (int i = 0 ; i < this.myReviews.size(); i ++){
 
-            if(this.myReviews.get(i).equals(review)){
+            if(this.myReviews.get(i).getReviewID().equals(review.getReviewID())){
                 this.myReviews.remove(i);
                 break;
             }
