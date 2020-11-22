@@ -287,8 +287,8 @@ public final class Grawlox {
 		final char[] inputChars = input.toCharArray();
 		for (final SwearWordData dataEntry : data) {
 			// Replace the swearword by the substitute
-			final int begin = dataEntry.getBeginIndex();
-			final int length = dataEntry.getSwearWord().length();
+			final int begin = dataEntry.getBeginIndex() + 1;
+			final int length = dataEntry.getSwearWord().length() -1;
 
 			for (int i = begin; i < begin + length; i++) {
 				inputChars[i] = substitute;
