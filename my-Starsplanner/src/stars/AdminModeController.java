@@ -1,16 +1,20 @@
 package stars;
+import java.text.Format;
 import java.text.ParseException;
 import java.util.*;
 import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.text.DateFormat;
 import java.text.ParseException;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
     DisplayDataController dd= new DisplayDataController();
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
+
+
     public void editStudentAccessPeriod() {
         //TODO
         School updateSchool;
@@ -25,6 +29,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         try {
             System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
             String startDate=sc.next();
+
             convertedStartDate = format.parse(startDate);
             System.out.println(convertedStartDate);
             System.out.println(format.format(convertedStartDate));
@@ -348,7 +353,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         {
             Index index=indices.get(i);
             ArrayList< RegisteredCourse> regCourse=index.getRegisteredCourses();
-            if(regCourse!=null)
+            if(regCourse!=null&&regCourse.isEmpty()==false)
                 return true;
 
         }
@@ -488,6 +493,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         default:
                             System.out.println("invalid input");
                     }
+                    break;
                 case 2:
 //                    System.out.println("Enter the index ID you would like to update:");
 //                    vc.validateInt();
