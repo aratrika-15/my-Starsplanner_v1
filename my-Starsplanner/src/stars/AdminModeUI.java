@@ -19,6 +19,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
             Scanner sc = new Scanner(System.in);
             AdminModeController amc = new AdminModeController();
             SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
+            FileController fc=new FileController();
             do {
                 System.out.println("");
                 System.out.println("");
@@ -74,6 +75,10 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         }
                         break;
                     case 9:
+                        fc.saveSchoolList();
+                        fc.saveStudentList();
+                        fc.saveAdminList();
+                        fc.saveCourseList();
                         System.out.println("Program terminating Ö.");
                         break;
                     default:
