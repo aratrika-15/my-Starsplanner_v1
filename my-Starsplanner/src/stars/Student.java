@@ -10,7 +10,7 @@ public class Student extends User implements Serializable{
     private String   nationality;
     private int    year;
     private int    numberOfAUs;
-    private ArrayList<RegisteredCourse> regCourses;
+    private ArrayList<RegisteredCourse> regCourses = new ArrayList<RegisteredCourse>();
     private String school;
     private HashMap<String, String> notificationType=new HashMap<String, String>();
     private ArrayList<Course> pastCourses;// new
@@ -160,13 +160,19 @@ public class Student extends User implements Serializable{
 
         ArrayList<StudyGroup> studyGroups = new ArrayList<>();
 
-        for (RegisteredCourse regCourse : this.regCourses) {
-            Index idx = fc.getIndexByID(regCourse.getRegIndex());
-            for (StudyGroup studyGroup : idx.getStudyGroup()) {
-                studyGroups.add(studyGroup);
-            };
+        if (this.getRegCourses() != null ) {
+            for (RegisteredCourse regCourse : this.regCourses) {
+                Index idx = fc.getIndexByID(regCourse.getRegIndex());
+                for (StudyGroup studyGroup : idx.getStudyGroup()) {
+                    studyGroups.add(studyGroup);
+                };
+            }
+            return studyGroups;
         }
-        return studyGroups;
+        else {
+            return null;
+        }
+
     }
 
 }
