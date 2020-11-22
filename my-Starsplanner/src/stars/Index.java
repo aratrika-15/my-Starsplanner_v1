@@ -7,7 +7,7 @@ public class Index implements Serializable {
     private int vacancies;
     private int totalSlots;
     private String groupNum;
-    private Queue<Student> waitList;
+    private Queue<Student> waitList = new ArrayDeque<Student>();
     private ArrayList<RegisteredCourse> regList;
     private ArrayList<StudyGroup> studyGroup;
     FileController fc = new FileController();
@@ -41,9 +41,8 @@ public class Index implements Serializable {
     }
     public void setVacancies(int vacancies)
     {
+        //FileController fc = new FileController();
         int diff = vacancies-this.vacancies;
-        Course course = fc.getCourseByCode(this.course);
-        course.editVacancies(diff);//changing the course vacancies accordingly
         this.vacancies=vacancies;
     }
     public int getVacancies()

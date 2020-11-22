@@ -282,8 +282,8 @@ public class FileController implements Serializable {
         schoolList.add(SCSE);
 
         ArrayList<Course> SCSE_courses = new ArrayList<Course>();
-        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20, 3);
-        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20, 3);
+        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 3, 3);
+        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 3, 3);
         //Course CZ2005 = new Course("OPERATING SYSTEMS", "CZ2005", SCSE, "LEC_TUT_LAB", 70, 3);
         SCSE_courses.add(CZ2001);
         SCSE_courses.add(CZ2002);
@@ -323,8 +323,8 @@ public class FileController implements Serializable {
         Index_10124.setStudyGroup(SG_10125);
 
         ArrayList<Index> CZ2002_Index = new ArrayList<Index>();
-        Index Index_10126 = new Index(10126, "SSP1", 10, "CZ2001");
-        Index Index_10127 = new Index(10127, "SSP2", 10, "CZ2001");
+        Index Index_10126 = new Index(10126, "SSP1", 10, "CZ2002");
+        Index Index_10127 = new Index(10127, "SSP2", 10, "CZ2002");
         CZ2002_Index.add(Index_10126);
         CZ2002_Index.add(Index_10127);
         CZ2002.setIndexList(CZ2002_Index);
@@ -357,8 +357,8 @@ public class FileController implements Serializable {
         schoolList.add(NBS);
 
         ArrayList<Course> NBS_courses = new ArrayList<Course>();
-        Course AD2101 = new Course("MANAGEMENT ACCOUNTING", "CZ2001", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 50, 3);
-        Course BC2407 = new Course("ANALYTICS II: ADVANCED PREDICTIVE TECHNIQUES", "CZ2002", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 50, 3);
+        Course AD2101 = new Course("MANAGEMENT ACCOUNTING", "CZ2001", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 4, 3);
+        Course BC2407 = new Course("ANALYTICS II: ADVANCED PREDICTIVE TECHNIQUES", "CZ2002", "NANYANG_BUSINESS_SCHOOL", CourseType.SEM, 4, 3);
         NBS_courses.add(AD2101);
         NBS_courses.add(BC2407);
         NBS.setCourses(NBS_courses);

@@ -91,8 +91,19 @@ public class StudentModeController {
                 //setTimetableSchedule();
 
                 index.setVacancies(index.getVacancies()+1);
+                updateVacancies(course.getCourseCode(), 1);
 
                 index.allocateVacancies(course, index);
+                ArrayList<RegisteredCourse> stuRegList = student.getRegCourses();
+
+                if(!stuRegList.isEmpty()) {
+                    for(int i = 0;i < stuRegList.size(); i++) {
+                        if(stuRegList.get(i).getRegIndex() == index.getIndexNum()) {
+                            student.getRegCourses().remove(i);
+                        }
+                    }
+                }
+
                 System.out.println("The course has been dropped for you.");
             }
         }
@@ -474,6 +485,7 @@ private String filterReview(String input){
         String time_1, time_2, time_3, time_4;
         boolean clash = false;
         ArrayList<String> day = new ArrayList<>();
+        day.add(0, "test");
         day.add(1,"Monday");
         day.add(2,"Tuesday");
         day.add(3,"Wednesday");
@@ -487,11 +499,11 @@ private String filterReview(String input){
             for (StudyGroup studyGroup2 : studyGroups) {
                 if (studyGroup.getDayOfWeek() == studyGroup2.getDayOfWeek()) {
                     if (studyGroup.getStartTime() <= studyGroup2.getEndTime()
-                            && studyGroup.getEndTime() <= studyGroup2.getStartTime()) {
+                            && studyGroup.getEndTime() >= studyGroup2.getStartTime()) {
 
                         time_1 = String.valueOf(studyGroup.getStartTime());
                         time_2 = String.valueOf(studyGroup.getEndTime());
-                        time_3 = String.valueOf(studyGroup2.getEndTime());
+                        time_3 = String.valueOf(studyGroup2.getStartTime());
                         time_4 = String.valueOf(studyGroup2.getEndTime());
 
                         while (time_1.length() < 4) {
@@ -503,22 +515,22 @@ private String filterReview(String input){
                         }
 
                         while (time_3.length() < 4) {
-                            time_1 = "0" + time_1;
+                            time_3 = "0" + time_3;
                         }
 
                         while (time_4.length() < 4) {
-                            time_2 = "0" + time_2;
+                            time_4 = "0" + time_4;
                         }
 
                         Index idx= fc.getIndexByID(studyGroup2.getIndex());
                         Course theCourse = fc.getCourseByCode(idx.getCourse());
                         System.out.printf("The index you are trying to add %d (%s) clashes with index %d (%s)\n",
-                                index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getName(), idx.getIndexNum(), theCourse.getName());
+                                index.getIndexNum(), theCourse.getName(), idx.getIndexNum(), theCourse.getName());
 
-                        System.out.printf("%d\n", day.get(studyGroup.getDayOfWeek()));
+                        System.out.println(day.get(studyGroup.getDayOfWeek()));
 
-                        System.out.printf("Index %d time: %d - %d\n", time_1, time_2);
-                        System.out.printf("Index %d time: %d - %d\n\n", time_3, time_4);
+                        System.out.printf("Index %d time: %s - %s\n", index.getIndexNum(), time_1, time_2);
+                        System.out.printf("Index %d time: %s - %s\n\n", idx.getIndexNum(),time_3, time_4);
 
                         clash = true;
                     }
@@ -530,6 +542,10 @@ private String filterReview(String input){
         } else {
             return false;
         }
+    }
+    private void updateVacancies(String cCode, int n){
+        Course theCourse = fc.getCourseByCode(cCode);
+        theCourse.editVacancies(n);
     }
 
 }
