@@ -8,7 +8,7 @@ public class StudentModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
     ValidateIntController vc = new ValidateIntController();
-
+    DisplayDataController dd = new DisplayDataController();
 
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
             //TODO
@@ -195,8 +195,7 @@ public class StudentModeController {
         }
     }
     public void changeIndexNumber(Student student){
-        FileController fc = new FileController();
-        DisplayDataController dd = new DisplayDataController();
+
         RegisteredCourse rc = dd.selectRegisteredCourses(student);
         School sch = fc.getSchoolByName(student.getSchool());
         Index currentIn = fc.getIndexByID(rc.getRegIndex());
@@ -207,8 +206,15 @@ public class StudentModeController {
             System.out.println("Current index and new index does not belong to the same course.");
             return;
         }
-
-
+        if(currentIn.getIndexNum()== newIn.getIndexNum())
+        {
+            System.out.println("You are already registered for this index");
+            return;
+        }
+        if(newIn.getVacancies()==0){
+            System.out.println("The system did not change the index number since the new index has no vacancies");
+            return;
+        }
         dropCourse(student, indexCourse, currentIn, rc);
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
