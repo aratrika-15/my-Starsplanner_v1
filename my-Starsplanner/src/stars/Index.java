@@ -115,12 +115,21 @@ public class Index implements Serializable {
     }
 
     public void deleteStudyGroup(LessonType l) {
-        for (StudyGroup sg : this.studyGroup) {
-            if (sg.getLessonType().equals(l)) {
-                this.studyGroup.remove(sg);
-            }
+//        for (StudyGroup sg : this.studyGroup) {
+//            if (sg.getLessonType().equals(l)) {
+//                this.studyGroup.remove(sg);
+//            }
+//        }
+        Iterator<StudyGroup> iter = this.studyGroup.iterator();
+
+        while (iter.hasNext()) {
+            StudyGroup sg = iter.next();
+
+            if (sg.getLessonType().equals(l))
+                iter.remove();
         }
     }
+
 
 
     public void allocateVacancies(Course course, Index index) {

@@ -529,6 +529,22 @@ public class FileController implements Serializable {
         }
 
     }
+    public void printCourseList() {
+        System.out.println("==========List of Courses==========\n");
+        System.out.println("School\t\t\t\t\t\t\t\t\t\t\t  Course Code    Course Name");
+        System.out.println("----------------------------------------------------------------------------------------");
+        for (int i=0;i<schoolList.size();i++) {
+            for (Course c : schoolList.get(i).getCourses()) {
+                if (c.getCourseCode() != null) {
+                    System.out.printf("%-50s",schoolList.get(i).getName());
+                    System.out.printf("%-15s",c.getCourseCode());
+                    System.out.printf("%-50s\n",c.getName());
+                }
+            }
+        }
+
+
+    }
     public Date formatDate(String s)
     {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");

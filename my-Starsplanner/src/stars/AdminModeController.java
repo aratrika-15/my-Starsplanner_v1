@@ -20,6 +20,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         //TODO
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
+        format.setLenient(false);
 //        do{
 //            System.out.println("Enter the School Name");
 //            String school=sc.nextLine().trim();
@@ -28,7 +29,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
 //                System.out.println("Error. This school does not exist.");
 //        }while(updateSchool==null);
         updateSchool = dd.schSelection();
-        try {
+        /*try {
+            format.setLenient(false);
             System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
             String startDate=sc.next();
 
@@ -41,13 +43,42 @@ public class AdminModeController implements DisplayErrorMsgUI{
             System.out.println(convertedEndDate);
             System.out.println(format.format(convertedEndDate));
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Invalid registration period format");
         }
         catch(NullPointerException e)
         {
-            e.printStackTrace();
-        }
+            //e.printStackTrace();
+            System.out.println("Invalid registration period format");
+        }*/
+
+        do{
+            try{
+                System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+                String startDate=sc.next();
+
+                convertedStartDate = format.parse(startDate);
+                System.out.println(convertedStartDate);
+                System.out.println(format.format(convertedStartDate));
+            } catch (ParseException e) {
+                //e.printStackTrace();
+                System.out.println("Invalid registration period format");
+            }
+        } while (convertedStartDate == null);
+
+        do{
+            try{
+                System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+                String endDate=sc.next();
+
+                convertedEndDate = format.parse(endDate);
+                System.out.println(convertedEndDate);
+                System.out.println(format.format(convertedEndDate));
+            } catch (ParseException e) {
+                //e.printStackTrace();
+                System.out.println("Invalid registration period format");
+            }
+        } while (convertedEndDate == null);
 
         if(convertedStartDate.compareTo(convertedEndDate)<0) {
             updateSchool.setRegistrationStartPeriod(convertedStartDate);
@@ -422,6 +453,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
 
         }
+        fc.printCourseList();
     }
     public boolean checkCourseHasStudents(Course c)
     {
@@ -662,8 +694,10 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
             Course c = dd.courseSelection(s);
             if (c != null) {
-              if(checkCourseHasStudents(c)==false)
-                s.deleteCourse(c);
+              if(checkCourseHasStudents(c)==false){
+                  s.deleteCourse(c);
+                  fc.printCourseList();
+              }
               else
                   System.out.println("Cannot remove course since students are already registered");
             } else {

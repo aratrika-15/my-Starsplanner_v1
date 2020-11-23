@@ -564,13 +564,14 @@ public class StudentModeController {
             System.out.println("Select the course to view Reviews for:");
             System.out.println("");
             for(int i = 0; i < schCourses.size(); i++) {
-                System.out.println("------------------------"+i+"------------------------");
+                System.out.println("------------------------"+(i+1)+"------------------------");
                 Course c = schCourses.get(i);
                 System.out.println(c.getCourseCode() + "       "+ c.getName());
                 System.out.println("Course Type: "+c.getCourseType());
                 System.out.println("Number of AUs: "+ c.getTotalAUs());
                 System.out.println("Vacancy: "+ c.getVacancy());
                 System.out.println("Number of Reviews: "+c.getTotalReviews());
+                System.out.printf("Percentage Recommended: %.2f%%\n",c.getPercRecommended()*100);
             }
             courseSelection = sc.nextInt();
 
