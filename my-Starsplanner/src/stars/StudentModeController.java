@@ -140,22 +140,26 @@ public class StudentModeController {
                     registeredCourses.add(regCourse);
                 }
             }
+            if(registeredCourses.size()==0){
+                System.out.println("There are no courses registered for this  Student");
+            } else {
+                System.out.println("List of Registered Courses");
+                System.out.println("   CourseID   CourseName   Index   ");
+                System.out.println("===================================");
+                for (int i = 0; i < registeredCourses.size(); i++) {
+                    Index idx = fc.getIndexByID(registeredCourses.get(i).getRegIndex());
+                    Course course = fc.getCourseByCode(idx.getCourse());
 
-            System.out.println("List of Registered Courses");
-            System.out.println("   CourseID   CourseName   Index   ");
-            System.out.println("===================================");
-            for (int i = 0; i < registeredCourses.size(); i++) {
-                Index idx = fc.getIndexByID(registeredCourses.get(i).getRegIndex());
-                Course course = fc.getCourseByCode(idx.getCourse());
+                    System.out.println(
+                            "   " + course.getCourseCode() + "       " + course.getName()+ "         " + registeredCourses.get(i).getRegIndex());
+                }
 
-                System.out.println(
-                        "   " + course.getCourseCode() + "       " + course.getName()+ "         " + registeredCourses.get(i).getRegIndex());
+
+                getTimetable(student.getStudyGroups());
             }
 
-
-            getTimetable(student.getStudyGroups());
             if(waitlistedCourses.size()==0){
-                System.out.println("There are Courses Waitlisted for this  Student");
+                System.out.println("There are no courses waitlisted for this student");
             }
             else{
 
