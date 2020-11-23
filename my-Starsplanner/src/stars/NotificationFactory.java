@@ -18,6 +18,7 @@ public class NotificationFactory {
         Notifications notification = null;
 
         try {
+            className = "stars."+ className;
 
             Class<?> notif = ClassLoader.getSystemClassLoader().loadClass(className);
 

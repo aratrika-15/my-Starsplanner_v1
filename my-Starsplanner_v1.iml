@@ -5,12 +5,12 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/my-Starsplanner/src" isTestSource="false" />
     </content>
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/javax.mail.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/javamail/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,22 +19,10 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/CZ2002 OODP/Project/javamail/javax.mail.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/jaf-1.1.1/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://C:/NTU/Y2S1/2002 oop/javamail" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://C:/NTU/Y2S1/2002 oop/javamail" />
-        </SOURCES>
-        <jarDirectory url="file://C:/NTU/Y2S1/2002 oop/javamail" recursive="false" />
       </library>
     </orderEntry>
   </component>

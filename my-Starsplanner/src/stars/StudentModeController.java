@@ -103,7 +103,7 @@ public class StudentModeController {
             } else {
                 student.setNumberOfAUs(student.getNumberOfAUs()-course.getTotalAUs());
                 //setTimetableSchedule();
-
+                System.out.println("The course has been dropped for you.");
                 index.setVacancies(index.getVacancies()+1);
                 updateVacancies(course.getCourseCode(), 1);
 
@@ -122,7 +122,7 @@ public class StudentModeController {
                     }
                 }
 
-                System.out.println("The course has been dropped for you.");
+
             }
         }
 
