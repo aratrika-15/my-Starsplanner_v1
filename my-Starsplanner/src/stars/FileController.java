@@ -336,7 +336,7 @@ public class FileController implements Serializable {
         Index_10127.setStudyGroup(SG_10127);
 
         ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
-        Index Index_10128 = new Index(10128, "SSP5", 0, "CZ2005");
+        Index Index_10128 = new Index(10128, "SSP5", 2, "CZ2005");
         CZ2005_Index.add(Index_10128);
         CZ2005.setIndexList(CZ2005_Index);
         ArrayList<StudyGroup> SG_10128 = new ArrayList<StudyGroup>();

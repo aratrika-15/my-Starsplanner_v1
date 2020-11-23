@@ -145,14 +145,13 @@ public class StudentModeController {
                 System.out.println("There are no courses registered for this  Student");
             } else {
                 System.out.println("List of Registered Courses");
-                System.out.println("   CourseID   CourseName   Index   ");
-                System.out.println("===================================");
+                System.out.println("CourseID    CourseName \t\t\t\t\t\t\t\t      Index   ");
+                System.out.println("==========================================================================");
                 for (int i = 0; i < registeredCourses.size(); i++) {
                     Index idx = fc.getIndexByID(registeredCourses.get(i).getRegIndex());
                     Course course = fc.getCourseByCode(idx.getCourse());
+                    System.out.printf("%-11s %-45s %s\n", course.getCourseCode(), course.getName(), registeredCourses.get(i).getRegIndex());
 
-                    System.out.println(
-                            "   " + course.getCourseCode() + "       " + course.getName()+ "         " + registeredCourses.get(i).getRegIndex());
                 }
 
 
@@ -165,14 +164,13 @@ public class StudentModeController {
             else{
 
             System.out.println("List of Waitlisted Courses");
-            System.out.println("   CourseID   CourseName   Index   ");
-            System.out.println("===================================");
+                System.out.println("CourseID    CourseName \t\t\t\t\t\t\t\t      Index   ");
+                System.out.println("==========================================================================");
             for (int i = 0; i < waitlistedCourses.size(); i++) {
                 Index idx = fc.getIndexByID(waitlistedCourses.get(i).getRegIndex());
                 Course course = fc.getCourseByCode(idx.getCourse());
 
-                System.out.println(
-                        "   " + course.getCourseCode() + "       " + course.getName() + "         " + waitlistedCourses.get(i).getRegIndex());
+                System.out.printf("%-11s %-45s %s\n", course.getCourseCode(), course.getName(), waitlistedCourses.get(i).getRegIndex());
             }}
         } else {
             System.out.println("Sorry! No Course Registered found for this Student");
