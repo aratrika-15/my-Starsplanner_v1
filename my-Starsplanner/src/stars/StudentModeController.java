@@ -89,7 +89,7 @@ public class StudentModeController {
             System.out.printf("The current status for the course is %s\n", status);
             return;
         }
-        public void dropCourse(Student student, Course course, Index index) {
+        public void dropCourse(Student student, Course course, Index index, RegisteredCourse rc) {
             //TODO
             boolean isRegistered=false;
             for(int i=0;i<student.getRegCourses().size();i++) {
@@ -108,16 +108,10 @@ public class StudentModeController {
                 updateVacancies(course.getCourseCode(), 1);
 
                 index.allocateVacancies(course, index);
-                ArrayList<RegisteredCourse> stuRegList = student.getRegCourses();
-                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
-                if(!stuRegList.isEmpty()) {
-                    for(int i = 0;i < stuRegList.size(); i++) {
-                        if(stuRegList.get(i).getRegIndex() == index.getIndexNum()) {
-                            student.removeRegCourses(stuRegList.get(i));
+                student.removeRegCourses(rc);
 
-                        }
-                    }
-                }
+                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
+
                 if(!indRegList.isEmpty()) {
                     for(int i = 0;i < indRegList.size(); i++) {
                         if(indRegList.get(i).getStudent().equals(student.getUserName())) {
@@ -166,18 +160,22 @@ public class StudentModeController {
             }
         }
     }
-    public void changeIndexNumber(Student student, int current, int newIndex){
+    public void changeIndexNumber(Student student){
         FileController fc = new FileController();
-        Index currentIn = fc.getIndexByID(current);
-        Index newIn = fc.getIndexByID(newIndex);
+        DisplayDataController dd = new DisplayDataController();
+        RegisteredCourse rc = dd.selectRegisteredCourses(student);
+        School sch = fc.getSchoolByName(student.getSchool());
+        Index currentIn = fc.getIndexByID(rc.getRegIndex());
+        Course indexCourse = fc.getCourseByCode(currentIn.getCourse());
+        Index newIn = dd.indexSelection(indexCourse);
 
         if (!currentIn.getCourse().equals(newIn.getCourse())) {
             System.out.println("Current index and new index does not belong to the same course.");
             return;
         }
 
-        Course indexCourse = fc.getCourseByCode(currentIn.getCourse());
-        dropCourse(student, indexCourse, currentIn);
+
+        dropCourse(student, indexCourse, currentIn, rc);
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
     public void swapIndexnumber(Student student1, Student student2, int Ix1, int Ix2) {

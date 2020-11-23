@@ -22,12 +22,12 @@ private static String typeOfUser;
         System.out.print("Enter your username: ");
         enteredUsername= sc.next();
         if (console != null) {
-            System.out.print("Please enter your password ");
+            System.out.print("Please enter your password: ");
             char[] passString = console.readPassword();
             enteredPassword = new String(passString);
 
         } else {
-            System.out.print("Please enter your password :");
+            System.out.print("Please enter your password: ");
             enteredPassword = sc.next().trim();
         }
         System.out.print("Enter type of User (Student/Admin): ");

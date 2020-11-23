@@ -105,7 +105,9 @@ public class Index implements Serializable {
     {
         this.regList.add(regCourse);
     }
-    public void removeFromRegList(RegisteredCourse regCourse){ this.regList.remove(regCourse);}
+    public void removeFromRegList(RegisteredCourse regCourse){
+        this.regList.remove(regCourse);
+    }
     public void addStudyGroup(String venue, int startTime, int endTime, int dayOfWeek, String weekType,LessonType lessonType) {
         StudyGroup sg = new StudyGroup(venue,startTime,endTime,dayOfWeek,weekType,lessonType, indexNum);
         this.studyGroup.add(sg);

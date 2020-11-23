@@ -62,7 +62,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         if (rc != null) {
                             Index idx = fc.getIndexByID(rc.getRegIndex());
                             Course cDrop = fc.getCourseByCode(idx.getCourse());
-                            smc.dropCourse(student, cDrop, idx);
+                            smc.dropCourse(student, cDrop, idx, rc);
                         }
                         break;
                     case 3:
@@ -72,11 +72,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.checkVacanciesAvailable();
                         break;
                     case 5:
-                        System.out.println("Enter your current index: ");
-                        int current = sc.nextInt();
-                        System.out.println("Enter the new index: ");
-                        int newIndex = sc.nextInt();
-                        smc.changeIndexNumber(student, current, newIndex);
+                        smc.changeIndexNumber(student);
                         break;
                     case 6:
                         System.out.println("Enter your current index: ");
