@@ -109,7 +109,7 @@ public class StudentModeController {
 
                 index.allocateVacancies(course, index);
                 ArrayList<RegisteredCourse> stuRegList = student.getRegCourses();
-                ArrayList<RegisteredCourse> indRegList=index.getRegList();
+                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
                 if(!stuRegList.isEmpty()) {
                     for(int i = 0;i < stuRegList.size(); i++) {
                         if(stuRegList.get(i).getRegIndex() == index.getIndexNum()) {
@@ -120,8 +120,9 @@ public class StudentModeController {
                 }
                 if(!indRegList.isEmpty()) {
                     for(int i = 0;i < indRegList.size(); i++) {
-                        if(indRegList.get(i).getStudent()==student.getUserName()) {
+                        if(indRegList.get(i).getStudent().equals(student.getUserName())) {
                             index.removeFromRegList(indRegList.get(i));
+                            //System.out.println("Student has been removed from index.");
 
                         }
                     }
@@ -185,9 +186,19 @@ public class StudentModeController {
         Index Index1 = FileController.getIndexByID(Ix1);
         Index Index2 = FileController.getIndexByID(Ix2);
 
+        ArrayList<StudyGroup> s1 = student1.getStudyGroups();
+        for(int i =0; i <s1.size(); i++) {
+            System.out.println(s1.get(i).getIndex());
+        }
+        ArrayList<StudyGroup> s2 = student2.getStudyGroups();
+        for(int i =0; i <s2.size(); i++) {
+            System.out.println(s2.get(i).getIndex());
+        }
+
         if (!Index2.getCourse().equals(Index2.getCourse())) {
             System.out.println("Both indexes does not belong to the same course.");
         }
+        System.out.println("Both indexes belong to the same course.");
 
         Course Course1 = fc.getCourseByCode(Index1.getCourse());
         for(int i = 0; i < student1.getRegCourses().size(); i++) {
@@ -210,33 +221,40 @@ public class StudentModeController {
         }
 
         //Check if clash with current timetable for both students
-        ArrayList<StudyGroup> s1 = student1.getStudyGroups();
-        for(int i=0; i<s1.size(); i++) {
-            System.out.println(s1.get(i).getIndex());
+        //ArrayList<StudyGroup> s1 = student1.getStudyGroups();
+        ArrayList<StudyGroup> s1_2 = s1;
+        for(int i=0; i<s1_2.size(); i++) {
+            System.out.println(s1_2.get(i).getIndex());
         }
         System.out.println("");
-        for(int i=0; i<s1.size(); i++) {
-            if (s1.get(i).getIndex() == Index1.getIndexNum()) {
-                s1.remove(i);
+        for(int i=0; i<s1_2.size(); i++) {
+            if (s1_2.get(i).getIndex() == Index1.getIndexNum()) {
+                s1_2.remove(i);
                 i--;
                 System.out.println(i);
             }
         }
-        System.out.println(s1.size());
+        System.out.println(s1_2.size());
 
-        if (checkClash(Index2, s1)) {
+        if (checkClash(Index2, s1_2)) {
             return;
         }
+        System.out.println("Student1 has no clash with index2.");
 
-        ArrayList<StudyGroup> s2 = student2.getStudyGroups();
-        for(int i=0; i<s2.size(); i++) {
-            if (s2.get(i).getIndex() == Index2.getIndexNum()) {
-                s2.remove(i);
+        ArrayList<StudyGroup> s2_2 = s2;
+        for(int i=0; i<s2_2.size(); i++) {
+            if (s2_2.get(i).getIndex() == Index2.getIndexNum()) {
+                s2_2.remove(i);
+                i--;
+                System.out.println(i);
             }
         }
-        if (checkClash(Index1, s2)) {
+        System.out.println(s2_2.size());
+
+        if (checkClash(Index1, s2_2)) {
             return;
         }
+        System.out.println("Student2 has no clash with index1.");
 
         ArrayList<RegisteredCourse> regCourses1 = student1.getRegCourses();
         for (int i = 0; i<regCourses1.size(); i++) {

@@ -101,13 +101,6 @@ public class Index implements Serializable {
         this.waitList = waitList;
     }
 
-    public ArrayList<RegisteredCourse> getRegList() {
-        return regList;
-    }
-
-    public void setRegList(ArrayList<RegisteredCourse> regList) {
-        this.regList = regList;
-    }
     public void addToRegList(RegisteredCourse regCourse)
     {
         this.regList.add(regCourse);
