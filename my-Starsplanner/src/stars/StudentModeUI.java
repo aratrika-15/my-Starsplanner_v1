@@ -30,7 +30,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.println("8: Add Review");//new
                 System.out.println("9: Edit Review");//new
                 System.out.println("10: Delete Review");//new
-                System.out.println("11: View Reviews");//new
+                System.out.println("11: View Courses and Reviews");//new
                 System.out.println("12: Quit");//new
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();

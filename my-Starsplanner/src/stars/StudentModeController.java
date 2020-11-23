@@ -315,14 +315,17 @@ public class StudentModeController {
 //
         ArrayList<Course> courses = (ArrayList<Course>)student.getPastCourses().clone();
         ArrayList<Review> reviews = student.getMyReviews();
-        for (Review r : reviews) {
-            for (int a = 0; a< courses.size(); a++){
+        if (reviews != null) {
+            for (Review r : reviews) {
+                for (int a = 0; a < courses.size(); a++) {
 
-                if (courses.get(a).getCourseCode().equals(r.getCourse())){
-                    courses.remove(a);
+                    if (courses.get(a).getCourseCode().equals(r.getCourse())) {
+                        courses.remove(a);
+                    }
                 }
             }
         }
+
 //        System.out.println(courses.toString());
         if (courses == null || courses.size() == 0){
             System.out.println("You have no past Courses");
@@ -378,8 +381,9 @@ public class StudentModeController {
             boolean rec = getRec();
 
             Review rev = new Review(r, rec, student.getUserName(), c.getCourseCode());
-            System.out.println("Review has been succesfully added.");
-            System.out.println("");
+            System.out.println("The following Review has been succesfully added.");
+            System.out.println("Review: "+ r);
+            System.out.println("Recommended: "+ rec);
         }
 
     }
@@ -399,11 +403,17 @@ public class StudentModeController {
                             System.out.println("Enter your edited review below:");
                             String r = filterReview();
                             rev.setReview(r);
+                            System.out.println("Your Review has been successfully edited with the following details:");
+                            System.out.println("Review: "+rev.getReview());
+                            System.out.println("Recommended: "+rev.isRecommended());
                             break;
                         case 2:
                             flag = false;
                             boolean rec = getRec();
                             rev.setRecommended(rec);
+                            System.out.println("Your Review has been successfully edited with the following details:");
+                            System.out.println("Review: "+rev.getReview());
+                            System.out.println("Recommended: "+rev.isRecommended());
                             break;
 
                         default:
@@ -462,9 +472,17 @@ public class StudentModeController {
         } while(flag);
         do {
             // Get user's selection of courses
-            System.out.println("Select the course:");
+            System.out.println("Select the course to view Reviews for:");
+            System.out.println("");
             for(int i = 0; i < schCourses.size(); i++) {
-                System.out.println(i+1 + ". " + schCourses.get(i).getName());
+                System.out.println("------------------------"+i+"------------------------");
+                Course c = schCourses.get(i);
+                System.out.println(c.getCourseCode() + "       "+ c.getName());
+                System.out.println("Course Type: "+c.getCourseType());
+                System.out.println("Number of AUs: "+ c.getTotalAUs());
+                System.out.println("Vacancy: "+ c.getVacancy());
+                System.out.println("Number of Reviews: "+c.getTotalReviews());
+//                System.out.println(i+1 + ". " + schCourses.get(i).getName());
             }
             courseSelection = sc.nextInt();
 

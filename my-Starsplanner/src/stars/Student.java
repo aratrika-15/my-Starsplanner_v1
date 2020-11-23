@@ -51,6 +51,8 @@ public class Student extends User implements Serializable{
         this.regCourses=new ArrayList<RegisteredCourse>();
         this.notificationType=new HashMap<String, String>();
         this.notificationType.put(choice,recipient);
+        this.myReviews= new ArrayList<Review>();
+        this.pastCourses=new ArrayList<Course>();
     }
     public String getName() {
         return name;
