@@ -64,10 +64,18 @@ private static String typeOfUser;
     private static void displayWelcomeMessage()
     {
         System.out.println("");
+        System.out.println("Welcome!");
+        System.out.println("#############################################################");
+        System.out.println("|\t\t___  ___      _____ _____ ___  ______  _____ \t\t|");
+        System.out.println("|\t\t|  \\/  |     /  ___|_   _/ _ \\ | ___ \\/  ___|\t\t|");
+        System.out.println("|\t\t| .  . |_   _\\ `--.  | |/ /_\\ \\| |_/ /\\ `--. \t\t|");
+        System.out.println("|\t\t| |\\/| | | | |`--. \\ | ||  _  ||    /  `--. \\\t\t|");
+        System.out.println("|\t\t| |  | | |_| /\\__/ / | || | | || |\\ \\ /\\__/ /\t\t|");
+        System.out.println("|\t\t\\_|  |_/\\__, \\____/  \\_/\\_| |_/\\_| \\_|\\____/ \t\t|");
+        System.out.println("|\t\t         __/ |                               \t\t|");
+        System.out.println("|\t\t        |___/                                \t\t|");
         System.out.println("");
-        System.out.println("Welcome to STARS");
-        System.out.println("");
-        System.out.println("Login required");
+        System.out.println("Login to begin interaction");
         System.out.println("*******************");
     }
 
