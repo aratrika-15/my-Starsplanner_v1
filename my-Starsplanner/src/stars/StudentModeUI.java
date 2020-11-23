@@ -64,6 +64,10 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                             System.out.println("Enter the username of the student you want to swap index with: ");
                             String unStudent2 = sc.next();
                             student2 = fc.getStudentByUsername(unStudent2);
+                            if(student2==null)
+                            {
+                                System.out.println("Student with this username does not exist");
+                            }
                         } while (student2 == null);
 
                         System.out.println("Enter the index you want to swap with: ");
