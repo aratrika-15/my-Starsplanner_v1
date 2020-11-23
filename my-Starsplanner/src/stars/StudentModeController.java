@@ -128,15 +128,42 @@ public class StudentModeController {
 
     public void printRegisteredCourses(Student student) {
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
+        ArrayList<RegisteredCourse> waitlistedCourses = new ArrayList<>();
+        ArrayList<RegisteredCourse> registeredCourses = new ArrayList<>();
+
         if (!regCourses.isEmpty()) {
+
+            for (RegisteredCourse regCourse: regCourses) {
+                if (regCourse.getRegStatus().equals("Waitlisted")) {
+                    waitlistedCourses.add(regCourse);
+                } else {
+                    registeredCourses.add(regCourse);
+                }
+            }
+
+            System.out.println("List of Registered Courses");
             System.out.println("   CourseID   CourseName   Index   ");
             System.out.println("===================================");
-            for (int i = 0; i < regCourses.size(); i++) {
-                Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
+            for (int i = 0; i < registeredCourses.size(); i++) {
+                Index idx = fc.getIndexByID(registeredCourses.get(i).getRegIndex());
                 Course course = fc.getCourseByCode(idx.getCourse());
 
                 System.out.println(
-                        "   " + course.getCourseCode() + "       " + course.getName()+ "         " + regCourses.get(i).getRegIndex());
+                        "   " + course.getCourseCode() + "       " + course.getName()+ "         " + registeredCourses.get(i).getRegIndex());
+            }
+
+
+            getTimetable(student.getStudyGroups());
+
+            System.out.println("List of Waitlisted Courses");
+            System.out.println("   CourseID   CourseName   Index   ");
+            System.out.println("===================================");
+            for (int i = 0; i < waitlistedCourses.size(); i++) {
+                Index idx = fc.getIndexByID(waitlistedCourses.get(i).getRegIndex());
+                Course course = fc.getCourseByCode(idx.getCourse());
+
+                System.out.println(
+                        "   " + course.getCourseCode() + "       " + course.getName() + "         " + waitlistedCourses.get(i).getRegIndex());
             }
         } else {
             System.out.println("Sorry! No Course Registered found for this Student");
@@ -584,10 +611,14 @@ public class StudentModeController {
         week.put(5, "Friday");
         week.put(6, "Saturday");
         week.put(7, "Sunday");
+        System.out.println("\n\n==============Timetable============\n");
+        System.out.println("Course  Index  Lesson Type  Start Time - End Time  Venue    Week Type");
 
         for (Map.Entry<Integer, String> day : week.entrySet()) {
 
-            System.out.printf("%d\n",day.getValue());
+//            System.out.printf("%s\n",day.getValue());
+            System.out.println("------------------------"+day.getValue()+"------------------------");
+
 
             for(StudyGroup studyGroup : studyGroups) {
                 if (studyGroup.getDayOfWeek() == day.getKey()) {
@@ -602,20 +633,18 @@ public class StudentModeController {
                     while (time_2.length() < 4) {
                         time_2 = "0" + time_2;
                     }
-
-                    System.out.printf("%s - %s: ", time_1, time_2);
                     Index idx = fc.getIndexByID(studyGroup.getIndex());
                     Course theCourse = fc.getCourseByCode(idx.getCourse());
-                    System.out.printf("%s (%d)", theCourse.getCourseCode(), idx.getIndexNum());
 
-                    //prints week type if not weekly (i.e. biweekly)
-                    if (studyGroup.getWeekType() != "Weekly") {
-                        System.out.printf("\t %s", studyGroup.getWeekType());
-                    }
-                    System.out.println("");
+                    System.out.printf("%-8s",theCourse.getCourseCode());
+                    System.out.printf("%-7d",idx.getIndexNum());
+                    System.out.printf("%-20s", studyGroup.getLessonType());
+                    System.out.printf("%-4s - %-8s ", time_1, time_2);
+                    System.out.printf("%-10s", studyGroup.getVenue());
+                    System.out.printf("%-11s\n", studyGroup.getWeekType());
                 }
             }
-
+            System.out.println("");
         }
 
     }

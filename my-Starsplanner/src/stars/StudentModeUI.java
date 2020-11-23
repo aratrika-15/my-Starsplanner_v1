@@ -22,7 +22,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.println("--------------------------------------------------------");
                 System.out.println("1: Add a Course");
                 System.out.println("2: Drop a Course");
-                System.out.println("3: Print Registered Courses");
+                System.out.println("3: Print Registered Courses and Timetable");
                 System.out.println("4: Check Vacancies");
                 System.out.println("5: Change Index Number");
                 System.out.println("6: Swap Index Number");
