@@ -348,14 +348,14 @@ public class FileController implements Serializable {
         SG_10128.add(FSP3_LAB_10128);
         Index_10128.setStudyGroup(SG_10128);
 
-//        ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
-//        Index Index_10128 = new Index(10128, "SSP5", 2, "CZ2005");
-//        CZ2005_Index.add(Index_10128);
-//        CZ2005.setIndexList(CZ2005_Index);
-//        ArrayList<StudyGroup> SG_10128 = new ArrayList<StudyGroup>();
-//        StudyGroup CS2_LEC1_10128 = new StudyGroup("LT10", 830, 930, 6, "ALL", LessonType.LECTURE, 10128);
-//        SG_10128.add(CS2_LEC1_10128);
-//        Index_10128.setStudyGroup(SG_10128);
+        ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
+        Index Index_10133 = new Index(10133, "SSP5", 2, "CZ2005");
+        CZ2005_Index.add(Index_10133);
+        CZ2005.setIndexList(CZ2005_Index);
+        ArrayList<StudyGroup> SG_10133 = new ArrayList<StudyGroup>();
+        StudyGroup CS2_LEC1_10133 = new StudyGroup("LT10", 830, 930, 6, "ALL", LessonType.LECTURE, 10133);
+        SG_10133.add(CS2_LEC1_10133);
+        Index_10133.setStudyGroup(SG_10133);
 
 
 
@@ -525,8 +525,8 @@ public class FileController implements Serializable {
     public void printStudentList()
     {   System.out.println("");
         System.out.println("List of students");
-        System.out.println("\t Student Name\t\t\t   Matriculation Number\t   Gender \t  Nationality \t\t   School\t\t\t\t\t\t\t\t\t\t\t  Year of Study\t\t");
-        System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________");
+        System.out.println(" Student Name\t\t   Matriculation Number\t      Gender \t  Nationality \t\t   School\t\t\t      Year of Study\t\t");
+        System.out.println("_________________________________________________________________________________________________________________");
         for(int i=0;i<studentList.size();i++)
         {
             Student student=studentList.get(i);
@@ -545,7 +545,7 @@ public class FileController implements Serializable {
     }
     public void printCourseList() {
         System.out.println("==========List of Courses==========\n");
-        System.out.println("School\t\t\t\t\t\t\t\t\t\t\t  Course Code    Course Name");
+        System.out.println("School\t\t\t\t\t  Course Code\t    Course Name");
         System.out.println("----------------------------------------------------------------------------------------");
         for (int i=0;i<schoolList.size();i++) {
             for (Course c : schoolList.get(i).getCourses()) {

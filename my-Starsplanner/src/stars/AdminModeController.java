@@ -94,6 +94,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     //method for admin to add a student
     public void addStudent() {
+        sc.nextLine();
         Student student = new Student();
         student.setTypeOfUser("Student");
         String username, email, matricNo, gender, nationality, name, schoolName;
@@ -130,45 +131,45 @@ public class AdminModeController implements DisplayErrorMsgUI{
         Console console = System.console();
         do {
             if (console != null) {
-                System.out.print("Please enter the student's password ");
+                System.out.print("Please enter the student's password: ");
                 char[] passString = console.readPassword();
                 pass1 = new String(passString);
-                System.out.print("Please confirm the password ");
+                System.out.print("Please confirm the password: ");
                 passString = console.readPassword();
                 pass2 = new String(passString);
 
                 if (pass1.equals(pass2))
                     passMatch = true;
                 else
-                    System.out.println("Error. The 2 passwords are not same. ");
+                    System.out.println("Error. The 2 passwords are not same.");
             } else {
-                System.out.print("Please enter the student's password ");
+                System.out.print("Please enter the student's password: ");
                 pass1 = sc.nextLine().trim();
-                System.out.print("Please confirm the password ");
+                System.out.print("Please confirm the password: ");
                 pass2 = sc.nextLine().trim();
                 if (pass1.equals(pass2))
                     passMatch = true;
                 else
-                    System.out.println("Error. The 2 passwords are not same. ");
+                    System.out.println("Error. The 2 passwords are not same.");
             }
         } while (passMatch != true);
 
 
-        System.out.println("Enter the student's name ");
+        System.out.println("Enter the student's name: ");
         name = sc.nextLine().trim();
-        System.out.println("Enter the student's matriculation number");
+        System.out.println("Enter the student's matriculation number: ");
         matricNo = sc.nextLine().trim();
-        System.out.println("Enter the student's nationality");
+        System.out.println("Enter the student's nationality: ");
         nationality = sc.nextLine().trim();
-        System.out.println("Enter the student's year");
+        System.out.println("Enter the student's year: ");
         year = vc.validateInt(1,6);
         do {
-            System.out.println("Enter the student's gender");
-            gender = sc.nextLine().trim().toLowerCase();
-            if (!gender .equals("female") && !gender .equals("male")) {
-                System.out.println("Gender must be male or female");
+            System.out.println("Enter the student's gender: ");
+            gender = sc.nextLine().trim();
+            if (!gender.equals("Female") && !gender.equals("Male")) {
+                System.out.println("Gender must be Male or Female");
             }
-        } while (!gender .equals("female") && !gender .equals("male"));
+        } while (!gender.equals("Female") && !gender.equals("Male"));
 
 //        do {
 //            System.out.println("Enter the student's school name ");
@@ -180,7 +181,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
 //        } while (school == null);
         school = dd.schSelection();
         do {
-            System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W");
+            System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W: ");
             ch = sc.nextLine().charAt(0);
             switch (ch) {
                 case 'E':
@@ -188,19 +189,19 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     choice = "SendEmail";
                     break;
                 case 'T':
-                    System.out.println("Enter the student's telegram number");
+                    System.out.println("Enter the student's telegram number: ");
                     recipient = sc.nextLine().trim();
                     choice = "SendTele";
                     break;
                 case 'W':
-                    System.out.println("Enter the student's whatsapp number");
+                    System.out.println("Enter the student's whatsapp number: ");
                     recipient = sc.nextLine().trim();
                     choice = "SendWhatsapp";
                     break;
                 default:
                     System.out.println("Incorrect input. Try again.");
-                    System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W");
-                    ch = sc.nextLine().charAt(0);
+                    //System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W: ");
+                    //ch = sc.nextLine().charAt(0);
             }
         } while (ch != 'T' && ch != 'W' && ch != 'E');
         //hashing of the password is done
@@ -661,7 +662,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 for(int i = 0; i < indexList.size(); i++) {
                     Index index = indexList.get(i);
                     ArrayList<RegisteredCourse> regList = index.getRegisteredCourses();
-                    if(regList != null) {
+                    if(!regList.isEmpty()) {
                         for(int j = 0; j < regList.size(); j++) {
                             RegisteredCourse regCourse = regList.get(j);
                             String status = regCourse.getRegStatus();
@@ -707,7 +708,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 Index index = dd.indexSelection(course);
                 if (index != null) {
                     ArrayList<RegisteredCourse> regList = index.getRegisteredCourses();
-                    if(regList != null) {
+                    if(!regList.isEmpty()) {
                         for(int j = 0; j < regList.size(); j++) {
                             RegisteredCourse regCourse = regList.get(j);
                             String status = regCourse.getRegStatus(); //change spelling in sequence diagram

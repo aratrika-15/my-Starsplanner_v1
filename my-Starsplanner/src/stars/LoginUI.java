@@ -12,7 +12,7 @@ private static String typeOfUser;
 
     public static void main(String[] args) {
         FileController fc = new FileController();
-//        fc.initialise();
+        //fc.initialise();
         fc.RetrieveAdmins();
         fc.RetrieveCourses();
         fc.RetrieveStudents();

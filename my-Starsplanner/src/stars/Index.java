@@ -198,4 +198,11 @@ public class Index implements Serializable {
         setVacancies(vacancy);
     }
 
+    public void displayRegList() {
+        for(int i = 0; i < regList.size(); i++) {
+            System.out.println(regList.get(i).getRegIndex());
+        }
+        System.out.println("finish printing");
+    }
+
 }

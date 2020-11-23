@@ -142,9 +142,14 @@ public class StudentModeController {
                 //Set new number of AUs
                 student.setNumberOfAUs(student.getNumberOfAUs()+course.getTotalAUs());
                 index.setVacancies(index.getVacancies()-1);
+                RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), status , student.getUserName());
+                student.addRegCourses(rc);
+                index.addToRegList(rc);
+                index.displayRegList();
 
-               /* if(index.getRegisteredCourses() != null){
+                /*if(!index.getRegisteredCourses().isEmpty()){
                     index.getRegisteredCourses().add(rc);
+                    index.displayRegList();
                 }
                 else{
                     ArrayList<RegisteredCourse> regList = new ArrayList<RegisteredCourse>();
@@ -153,13 +158,11 @@ public class StudentModeController {
                 }*/
 
             }
-        RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), status , student.getUserName());
-        student.addRegCourses(rc);
-        index.addToRegList(rc);
+
 
             //Set Registered
             System.out.printf("You have been successfully added for index %d\n", index.getIndexNum());
-            System.out.printf("The current status for the course is %s\n", status);
+            System.out.printf("The current status for the course is %s.\n", status);
             return;
         }
         public void dropCourse(Student student, Course course, Index index, RegisteredCourse rc) {
