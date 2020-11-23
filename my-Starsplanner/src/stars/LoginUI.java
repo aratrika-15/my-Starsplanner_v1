@@ -11,7 +11,13 @@ private static String enteredPassword;
 private static String typeOfUser;
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        FileController fc = new FileController();
+        //fc.initialise();
+        fc.RetrieveAdmins();
+        fc.RetrieveCourses();
+        fc.RetrieveStudents();
+        fc.RetrieveSchools();
+
         displayWelcomeMessage();
         Scanner sc = new Scanner(System.in);
         LoginController login = new LoginController();

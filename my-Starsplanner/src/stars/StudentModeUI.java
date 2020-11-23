@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
     public void showMenu(User user) {
-        //TODO
         if (user != null) {
             //first use FileController to get student object reference by username
             //check if the student user !=null
@@ -90,7 +89,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         fc.saveStudentList();
                         fc.saveAdminList();
                         fc.saveCourseList();
-                        System.out.println("Program terminating Ö.");
+                        System.out.println("Program terminating .");
                         break;
                     default:
                         System.out.println("Error!");

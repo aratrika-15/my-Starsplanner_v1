@@ -84,7 +84,6 @@ public class StudentModeController {
 
 
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
-            //TODO
 
             //Check for total AUS after addition of the course
             if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
@@ -159,7 +158,7 @@ public class StudentModeController {
         index.addToRegList(rc);
 
             //Set Registered
-            System.out.printf("You have been registered for index %d\n", index.getIndexNum());
+            System.out.printf("You have been successfully added for index %d\n", index.getIndexNum());
             System.out.printf("The current status for the course is %s\n", status);
             return;
         }

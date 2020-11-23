@@ -1,7 +1,7 @@
 package stars;
 
 import java.util.Properties;
-
+import javax.mail.Message.RecipientType;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;

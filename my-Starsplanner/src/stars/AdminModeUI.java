@@ -1,7 +1,6 @@
 package stars;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.text.ParseException;
@@ -10,7 +9,6 @@ import java.util.*;
 
 public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
     public void showMenu(User user) {
-        //TODO
         if(user !=null)
         {
             //retrieve admin object from file controller
@@ -84,7 +82,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                         fc.saveStudentList();
                         fc.saveAdminList();
                         fc.saveCourseList();
-                        System.out.println("Program terminating Ö.");
+                        System.out.println("Program terminating .");
                         break;
                     default:
                         System.out.println("Error! Please choose a valid option");

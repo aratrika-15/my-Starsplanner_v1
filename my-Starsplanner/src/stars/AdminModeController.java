@@ -1,6 +1,5 @@
 package stars;
 import java.text.Format;
-import java.text.ParseException;
 import java.util.*;
 import java.io.Console;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
 
     public void editStudentAccessPeriod() {
-        //TODO
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
         format.setLenient(false);
@@ -96,8 +94,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     //method for admin to add a student
     public void addStudent() {
-        //TODO
-        // needs the email, password, username, matricNo, gender, nationality, name, year, school
         Student student = new Student();
         student.setTypeOfUser("Student");
         String username, email, matricNo, gender, nationality, name, schoolName;
@@ -635,7 +631,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
 
     public void checkAvailableSlot() {
-        //TODO
         DisplayDataController dd = new DisplayDataController();
         School school = dd.schSelection();
         if (school != null) {
@@ -657,7 +652,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> printStulistByCourse() {
-        //TODO
         ArrayList<String[]> stuList = new ArrayList<String[]>();
         School school = dd.schSelection();
         if (school != null) {
@@ -705,7 +699,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> printStulistByIndex() {
-        //TODO
         ArrayList<String[]> stuList = new ArrayList<String[]>();
         School school = dd.schSelection();
         if(school != null) {
