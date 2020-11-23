@@ -128,7 +128,15 @@ public class DisplayDataController {
     }
 
     public RegisteredCourse selectRegisteredCourses(Student s) {
-        ArrayList<RegisteredCourse> regCourses = s.getRegCourses();
+        ArrayList<RegisteredCourse> allc = s.getRegCourses();
+        ArrayList<RegisteredCourse> regCourses = new ArrayList<>();
+        if (!allc.isEmpty()){
+            for (RegisteredCourse rc : allc){
+                if (rc.getRegStatus().equals("Registered")){
+                    regCourses.add(rc);
+                }
+            }
+        }
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
         int choice;
@@ -137,9 +145,9 @@ public class DisplayDataController {
             if (!regCourses.isEmpty()) {
                 System.out.println("Select the course:");
                 for(int i =0; i< regCourses.size(); i++) {
-                    Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
-                    Course c = fc.getCourseByCode(idx.getCourse());
-                    System.out.println(i+1+ ". " + c.getCourseCode());
+                        Index idx = fc.getIndexByID(regCourses.get(i).getRegIndex());
+                        Course c = fc.getCourseByCode(idx.getCourse());
+                        System.out.println(i + 1 + ". " + c.getCourseCode());
                 }
             }
             else {

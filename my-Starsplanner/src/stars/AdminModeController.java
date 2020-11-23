@@ -639,7 +639,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             if(course != null) {
                 Index index = dd.indexSelection(course);
                 if(index != null){
-                    System.out.println("Number Of Vacancies available " + index.getVacancies() + " outOf " + index.getTotalSlots());
+                    System.out.println("Number Of Vacancies available " + index.getVacancies() + " out of " + index.getTotalSlots());
                 }
                 else{
                     System.out.println("There is no Index with IndexNum "+index+" available");

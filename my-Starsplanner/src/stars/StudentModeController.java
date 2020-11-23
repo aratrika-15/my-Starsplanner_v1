@@ -167,16 +167,16 @@ public class StudentModeController {
         }
         public void dropCourse(Student student, Course course, Index index, RegisteredCourse rc) {
             //TODO
-            boolean isRegistered=false;
-            for(int i=0;i<student.getRegCourses().size();i++) {
-                Index idx = fc.getIndexByID(student.getRegCourses().get(i).getRegIndex());
-                if (idx.equals(index))
-                    isRegistered = true;
-            }
-            if (!isRegistered) {
-                System.out.printf("You are not currently registered for index %d, course %s\n", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
-                return;
-            } else {
+//            boolean isRegistered=false;
+//            for(int i=0;i<student.getRegCourses().size();i++) {
+//                Index idx = fc.getIndexByID(student.getRegCourses().get(i).getRegIndex());
+//                if (idx.equals(index))
+//                    isRegistered = true;
+//            }
+//            if (!isRegistered) {
+//                System.out.printf("You are not currently registered for index %d, course %s\n", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
+//                return;
+//            } else {
                 char ch;
                 do {
                     System.out.println("Are you sure you want to drop course? (Y/N)");
@@ -209,7 +209,7 @@ public class StudentModeController {
 
 
             }
-        }
+//        }
 
     public void printRegisteredCourses(Student student) {
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
@@ -219,6 +219,7 @@ public class StudentModeController {
         if (!regCourses.isEmpty()) {
 
             for (RegisteredCourse regCourse: regCourses) {
+                System.out.println(regCourse.getRegIndex()+regCourse.getRegStatus());
                 if (regCourse.getRegStatus().equals("Waitlist")) {
                     waitlistedCourses.add(regCourse);
                 } else {

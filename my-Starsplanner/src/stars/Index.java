@@ -142,8 +142,9 @@ public class Index implements Serializable {
 
         for (vacancy = index.getVacancies(); vacancy > 0; vacancy--) {
             if (waitList != null){
-                student = waitList.poll();
-                if (student != null) {
+                Student ss = waitList.poll();
+                if (ss != null) {
+                    student = fc.getStudentByUsername(ss.getUserName());
 
                     for(RegisteredCourse registeredCourse : student.getRegCourses()) {
                         Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
@@ -177,10 +178,7 @@ public class Index implements Serializable {
                                 RegisteredCourse regCourse=new RegisteredCourse(index.getIndexNum(),"Registered",student.getUserName());
                                 student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
                                 student.addRegCourses(regCourse);
-                                index.addToRegList(regCourse);
-
-                                // set timetable
-                                //
+//
                             }
                         }
                         //set new timetable schedule
@@ -193,7 +191,7 @@ public class Index implements Serializable {
                 }
             }
         }
-        ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
+//        ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
 
         setVacancies(vacancy);
     }
