@@ -19,13 +19,14 @@ public class AdminModeController implements DisplayErrorMsgUI{
         //TODO
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
-        do{
-            System.out.println("Enter the School Name");
-            String school=sc.nextLine().trim();
-            updateSchool = fc.getSchoolByName(school);
-            if(updateSchool==null)
-                System.out.println("Error. This school does not exist.");
-        }while(updateSchool==null);
+//        do{
+//            System.out.println("Enter the School Name");
+//            String school=sc.nextLine().trim();
+//            updateSchool = fc.getSchoolByName(school);
+//            if(updateSchool==null)
+//                System.out.println("Error. This school does not exist.");
+//        }while(updateSchool==null);
+        updateSchool = dd.schSelection();
         try {
             System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
             String startDate=sc.next();
