@@ -59,14 +59,16 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                         smc.changeIndexNumber(student);
                         break;
                     case 6:
-                        System.out.println("Enter your current index: ");
-                        int Ix1 = sc.nextInt();
-                        System.out.println("Enter the username of the student you want to swap index with: ");
-                        String unStudent2 = sc.next();
-                        Student student2 = fc.getStudentByUsername(unStudent2);
+                        Student student2;
+                        do {
+                            System.out.println("Enter the username of the student you want to swap index with: ");
+                            String unStudent2 = sc.next();
+                            student2 = fc.getStudentByUsername(unStudent2);
+                        } while (student2 == null);
+
                         System.out.println("Enter the index you want to swap with: ");
                         int Ix2 = sc.nextInt();
-                        smc.swapIndexnumber(student, student2, Ix1, Ix2);
+                        smc.swapIndexnumber(student, student2, Ix2);
                         break;
                     case 7:
                         School school= fc.getSchoolByName(student.getSchool());
