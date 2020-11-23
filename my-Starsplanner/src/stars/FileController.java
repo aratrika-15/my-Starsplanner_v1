@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.lang.String;
+
+import static stars.CourseType.LEC_TUT_LAB;
+
 public class FileController implements Serializable {
     private static final String adminFileLoc= "./source/Admin.dat";
     private static final String studentFileLoc = "./source/Student.dat";
@@ -261,14 +264,16 @@ public class FileController implements Serializable {
         schoolList.add(SCSE);
 
         ArrayList<Course> SCSE_courses = new ArrayList<Course>();
-        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20,3, 2);
-        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", CourseType.LEC_TUT_LAB, 20,3, 2);
-        //Course CZ2005 = new Course("OPERATING SYSTEMS", "CZ2005", SCSE, "LEC_TUT_LAB", 70, 3);
+        Course CZ2001 = new Course("ALGORITHMS", "CZ2001", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", LEC_TUT_LAB, 20,3, 2);
+        Course CZ2002 = new Course("OBJECT ORIENTED DESIGN & PROGRAMMING", "CZ2002", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", LEC_TUT_LAB, 20,3, 2);
+        Course CZ2005 = new Course("OPERATING SYSTEMS", "CZ2005", "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", LEC_TUT_LAB,2,3, 1);
         SCSE_courses.add(CZ2001);
         SCSE_courses.add(CZ2002);
+        SCSE_courses.add(CZ2005);
         SCSE.setCourses(SCSE_courses);
         courseList.add(CZ2001);
         courseList.add(CZ2002);
+        courseList.add(CZ2005);
 
         ArrayList<Index> CZ2001_Index = new ArrayList<Index>();
         //setIndex(int indexNum, String groupNum, int vacancies)
@@ -329,6 +334,18 @@ public class FileController implements Serializable {
         SG_10127.add(FSP3_TUT_10127);
         SG_10127.add(FSP3_LAB_10127);
         Index_10127.setStudyGroup(SG_10127);
+
+        ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
+        Index Index_10128 = new Index(10128, "SSP5", 2, "CZ2005");
+        CZ2005_Index.add(Index_10128);
+        CZ2005.setIndexList(CZ2005_Index);
+        ArrayList<StudyGroup> SG_10128 = new ArrayList<StudyGroup>();
+        StudyGroup CS2_LEC1_10128 = new StudyGroup("LT10", 830, 930, 6, "ALL", LessonType.LECTURE, 10128);
+        SG_10128.add(CS2_LEC1_10128);
+        Index_10128.setStudyGroup(SG_10128);
+
+
+
 
         School NBS = new School("NANYANG_BUSINESS_SCHOOL", registrationStartPeriod_NBS, registrationEndPeriod_NBS);
         schoolList.add(NBS);

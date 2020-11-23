@@ -49,7 +49,7 @@ public class SendEmail implements Notifications{
                     InternetAddress.parse(recipient)); // to be added an email addr
             message.setSubject("Successful Registration for " + courseCode);
             message.setText("Dear "+ name + ","
-                    + "\n\n You have successfully registered for " + indexNum + " for " + courseCode);
+                    + "\n\nYou have been successfully registered for " + indexNum + " for " + courseCode + ".");
 
             Transport.send(message);
 

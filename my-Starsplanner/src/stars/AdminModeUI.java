@@ -60,6 +60,8 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                     case 7:
                         ArrayList<String[]> stuListByIndex = amc.printStulistByIndex();
                         if (!stuListByIndex.isEmpty()){
+                            System.out.println("   Name   Gender   Nationality   ");
+                            System.out.println("===================================");
                             displayStuList(stuListByIndex);
                         }
                         else {
@@ -69,6 +71,8 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                     case 8:
                         ArrayList<String[]> stuListByCourse = amc.printStulistByCourse();
                         if (!stuListByCourse.isEmpty()) {
+                            System.out.println("   Name   Gender   Nationality   ");
+                            System.out.println("===================================");
                             displayStuList(stuListByCourse);
                         }
                         else{
