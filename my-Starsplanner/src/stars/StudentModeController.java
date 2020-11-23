@@ -11,6 +11,22 @@ public class StudentModeController {
     ValidateIntController vc = new ValidateIntController();
 
     public void inputAddCourse(Student student){
+
+        School school1 = dd.schSelection();
+        if (school1 != null) {
+            Course course = dd.courseSelection(school1);
+            if(course != null) {
+                Index index = indexInput(course);
+                if(index != null){
+                    addCourse(student,student.getRegCourses(),course,index);
+                }
+            }
+        }
+    }
+
+    private Index indexInput(Course course) {
+        String time_1, time_2;
+
         Map<Integer, String> week = new HashMap<>();
         week.put(1, "Monday");
         week.put(2, "Tuesday");
@@ -19,35 +35,51 @@ public class StudentModeController {
         week.put(5, "Friday");
         week.put(6, "Saturday");
         week.put(7, "Sunday");
-        School school1 = dd.schSelection();
-        if (school1 != null) {
-            Course course = dd.courseSelection(school1);
-            if(course != null) {
-//                                Index index = dd.indexSelection(course);
-                ArrayList<Index> indexes = course.getIndex();
+
+        ArrayList<Index> indexes = course.getIndex();
+
 //                if (indexes != null || indexes.size() != 0){
-                System.out.println("Select one of the indexes to add:");
-                for (int i = 1; i<= indexes.size(); i++){
-                    System.out.println((i+1)+ ": "+indexes.get(i).getIndexNum());
-                    System.out.println("Lesson Type  Day       Start Time - End Time   Venue    Week Type");
-                    System.out.println("-------------------------------------------------------");
-                    for (StudyGroup sg : indexes.get(i).getStudyGroup()){
-                        System.out.printf("%s",sg.getLessonType());
-                        System.out.printf("%s",week.get(sg.getDayOfWeek()));
-                    }
+        System.out.println("Select one of the indexes to add:");
+        for (int i = 0; i< indexes.size(); i++){
 
+            ArrayList<StudyGroup> studyGroups = new ArrayList<>();
+            for (StudyGroup studyGroup : indexes.get(i).getStudyGroup()) {
+                studyGroups.add(studyGroup);
+            }
+
+            Collections.sort(studyGroups, Comparator
+                    .comparing(StudyGroup::getDayOfWeek)
+                    .thenComparing(StudyGroup::getStartTime));
+
+            System.out.println((i+1)+ ": "+indexes.get(i).getIndexNum());
+            System.out.println("Lesson Type  Day       Start Time - End Time   Venue    Week Type");
+            System.out.println("-------------------------------------------------------");
+            for (StudyGroup sg : studyGroups){
+                System.out.printf("%-13s",sg.getLessonType());
+                System.out.printf("%-16s",week.get(sg.getDayOfWeek()));
+
+                time_1 = String.valueOf(sg.getStartTime());
+                time_2 = String.valueOf(sg.getEndTime());
+
+                while (time_1.length() < 4) {
+                    time_1 = "0" + time_1;
                 }
-                int i = vc.validateInt(1,indexes.size());
-                Index index = indexes.get(i);
 
-                if(index != null){
-                    addCourse(student,student.getRegCourses(),course,index);
+                while (time_2.length() < 4) {
+                    time_2 = "0" + time_2;
                 }
+                System.out.printf("%s - %-11s", time_1, time_2);
 
+                System.out.printf("%-9s", sg.getVenue());
+                System.out.printf("%s\n", sg.getWeekType());
             }
 
         }
+        int i = vc.validateInt(1,indexes.size());
+
+        return indexes.get(i-1);
     }
+
 
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
             //TODO
@@ -248,7 +280,7 @@ public class StudentModeController {
         School sch = fc.getSchoolByName(student.getSchool());
         Index currentIn = fc.getIndexByID(rc.getRegIndex());
         Course indexCourse = fc.getCourseByCode(currentIn.getCourse());
-        Index newIn = dd.indexSelection(indexCourse);
+        Index newIn = indexInput(indexCourse);
 
         if (!currentIn.getCourse().equals(newIn.getCourse())) {
             System.out.println("Current index and new index does not belong to the same course.");
