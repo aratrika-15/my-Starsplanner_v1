@@ -1,4 +1,6 @@
 package stars;
+import jdk.jfr.Registered;
+
 import java.util.*;
 import java.io.Serializable;
 public class Index implements Serializable {
@@ -145,14 +147,38 @@ public class Index implements Serializable {
 
                     for(RegisteredCourse registeredCourse : student.getRegCourses()) {
                         Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
-                        if(idx.getCourse().equals(course)) {
+                        if(idx.getCourse().equals(course.getCourseCode())) {
+
                             if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
                                 student.removeRegCourses(registeredCourse);
-                                index.regList.remove(registeredCourse);
+                                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
+                                if(!indRegList.isEmpty()) {
+                                    for(int i = 0;i < indRegList.size(); i++) {
+                                        if(indRegList.get(i).getStudent().equals(student.getUserName())) {
+                                            index.removeFromRegList(indRegList.get(i));
+                                            //System.out.println("Student has been removed from index.");
+
+                                        }
+                                    }
+                                }
                                 vacancy++;
                             } else {
+                                student.removeRegCourses(registeredCourse);
+                                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
+                                if(!indRegList.isEmpty()) {
+                                    for(int i = 0;i < indRegList.size(); i++) {
+                                        if(indRegList.get(i).getStudent().equals(student.getUserName())) {
+                                            index.removeFromRegList(indRegList.get(i));
+                                            //System.out.println("Student has been removed from index.");
+
+                                        }
+                                    }
+                                }
+                                RegisteredCourse regCourse=new RegisteredCourse(index.getIndexNum(),"Registered",student.getUserName());
                                 student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
-                                registeredCourse.setRegStatus("Registered");
+                                student.addRegCourses(regCourse);
+                                index.addToRegList(regCourse);
+
                                 // set timetable
                                 //
                             }
@@ -167,6 +193,7 @@ public class Index implements Serializable {
                 }
             }
         }
+        ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
 
         setVacancies(vacancy);
     }
