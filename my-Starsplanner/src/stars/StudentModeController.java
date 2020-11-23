@@ -70,9 +70,7 @@ public class StudentModeController {
                 //Set new number of AUs
                 student.setNumberOfAUs(student.getNumberOfAUs()+course.getTotalAUs());
                 index.setVacancies(index.getVacancies()-1);
-                RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), "Registered", student.getUserName());
-                student.addRegCourses(rc);
-                index.addToRegList(rc);
+
                /* if(index.getRegisteredCourses() != null){
                     index.getRegisteredCourses().add(rc);
                 }
@@ -83,6 +81,9 @@ public class StudentModeController {
                 }*/
 
             }
+        RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), status , student.getUserName());
+        student.addRegCourses(rc);
+        index.addToRegList(rc);
 
             //Set Registered
             System.out.printf("You have been registered for index %d\n", index.getIndexNum());
@@ -134,7 +135,7 @@ public class StudentModeController {
         if (!regCourses.isEmpty()) {
 
             for (RegisteredCourse regCourse: regCourses) {
-                if (regCourse.getRegStatus().equals("Waitlisted")) {
+                if (regCourse.getRegStatus().equals("Waitlist")) {
                     waitlistedCourses.add(regCourse);
                 } else {
                     registeredCourses.add(regCourse);
