@@ -65,7 +65,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                             displayStuList(stuListByIndex);
                         }
                         else {
-                            System.out.println("No student has been added.");
+                            displayErrorMsg("No student has been added.");
                         }
                         break;
                     case 8:
@@ -76,7 +76,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
                             displayStuList(stuListByCourse);
                         }
                         else{
-                            System.out.println("No student has been added.");
+                            displayErrorMsg("No student has been added.");
                         }
                         break;
                     case 9:
