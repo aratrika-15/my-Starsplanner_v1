@@ -378,8 +378,9 @@ public class StudentModeController {
     }
 
     /**
-     * Filters the review
-     * @return
+     * Gets a review input from the Student and filters the input by replacing the swearwords with *
+     * filter() function is used from the Grawlox package to filter the input
+     * @return the filtered review
      */
     private String filterReview(){
         sc.nextLine();
@@ -396,6 +397,11 @@ public class StudentModeController {
         }
 
     }
+
+    /**
+     * Allows student to add a review to one of their past courses and displays the added review once successful
+     * @param student The student currently logged in
+     */
     public void addReview(Student student){
         //print all the courses(previously taken courses) and get course choice to add review to
         Course c = reviewCourseSelection(student);
@@ -411,6 +417,12 @@ public class StudentModeController {
         }
 
     }
+
+    /**
+     * Allows student to edit one of the reviews they have previously written
+     * Student can either edit the review or the recommendation
+     * @param student The student currently logged in
+     */
     public void editReview(Student student) {
         Review rev = reviewSelection(student);
         if (rev != null){
@@ -452,6 +464,11 @@ public class StudentModeController {
         }
 
     }
+
+    /**
+     * Allows student to delete one of the reviews they have previously written
+     * @param student The student currently logged in
+     */
     public void deleteReview(Student student) {
 
         Review rev = reviewSelection(student);
@@ -465,8 +482,9 @@ public class StudentModeController {
 
     }
     /**
-     * Allows user to sort courses by number of reviews or percentage recommended and make selection.
-     * The, display the reviews.
+     * Allows user to sort courses by number of reviews or percentage recommended.
+     * Course information is displayed based on the selction and the student can select one of the courses to view reviews for
+     * Then, display the reviews.
      */
     public void displayReviews() {
         int select; int courseSelection;
@@ -506,7 +524,6 @@ public class StudentModeController {
                 System.out.println("Number of AUs: "+ c.getTotalAUs());
                 System.out.println("Vacancy: "+ c.getVacancy());
                 System.out.println("Number of Reviews: "+c.getTotalReviews());
-//                System.out.println(i+1 + ". " + schCourses.get(i).getName());
             }
             courseSelection = sc.nextInt();
 
@@ -530,9 +547,11 @@ public class StudentModeController {
             }
         } while(flag);
     }
-    /*
-       Prints the timetable for a student.
-        */
+
+    /**
+     * Prints the timetable for a student.
+     * @param studyGroups ArrayList of studyGroups of the student
+     */
     public void getTimetable(ArrayList<StudyGroup> studyGroups) {
 
         String time_1, time_2;
@@ -584,8 +603,12 @@ public class StudentModeController {
         }
 
     }
-    /*
-    Check for clashes in timetable: Compares whether there exists an overlapping range and prints all clashes. Returns true if there is clash
+
+    /**
+     * Check for clashes in timetable: Compares whether there exists an overlapping range and prints all clashes.
+     * @param index The new index to check clash for
+     * @param studyGroups ArrayList of registered studyGroups of the student
+     * @return true if there is clash, false otherwise
      */
     private boolean checkClash(Index index, ArrayList<StudyGroup> studyGroups) {
 
