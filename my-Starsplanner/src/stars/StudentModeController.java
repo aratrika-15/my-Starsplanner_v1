@@ -276,6 +276,13 @@ public class StudentModeController {
         System.out.println("The registration access period is::  "+regStartDate+" to "+regEndDate);
 
     }
+
+    /**
+     * Displays the list of Reviews that a Student has written and allows the student to select from the list.
+     * Used when selecting reviews to edit or delete
+     * @param student The current student user who is logged in
+     * @return The Review selected by the student user
+     */
     private Review reviewSelection(Student student) {
         int reviewSelection;
         boolean flag = true;
@@ -309,6 +316,13 @@ public class StudentModeController {
         return null;
     }
 
+    /**
+     * Displays and allows student to select from a list of Courses that the student is eligible to write Reviews for.
+     * These include courses that the student has previously taken (pastCourses) and has not yet written a review for.
+     * Triggered when student needs to select a course to add review for
+     * @param student The current student user who is logged in
+     * @return The Course selected by the student user to add review for
+     */
     private Course reviewCourseSelection(Student student) {
         int courseSelection;
         boolean flag = true;
@@ -350,6 +364,11 @@ public class StudentModeController {
         } ;
         return null;
     }
+
+    /**
+     * Gets a valid recommendation from the student for a course.
+     * @return return true if input is 1, false otherwise
+     */
     private boolean getRec() {
         System.out.println("Would you recommend the course? (1/0)");
         int i = vc.validateInt(0,1);
@@ -357,6 +376,11 @@ public class StudentModeController {
         else {return true;}
 
     }
+
+    /**
+     * Filters the review
+     * @return
+     */
     private String filterReview(){
         sc.nextLine();
         String input="";
