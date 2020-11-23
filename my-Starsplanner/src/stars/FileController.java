@@ -308,9 +308,11 @@ public class FileController implements Serializable {
 
         ArrayList<Index> CZ2002_Index = new ArrayList<Index>();
         Index Index_10126 = new Index(10126, "SSP3", 10, "CZ2002");
-        Index Index_10127 = new Index(10127, "SSP4", 10, "CZ2002");
+        Index Index_10127 = new Index(10127, "SSP4", 2, "CZ2002");
+        Index Index_10128 = new Index(10128, "SSP4", 10, "CZ2002");
         CZ2002_Index.add(Index_10126);
         CZ2002_Index.add(Index_10127);
+        CZ2002_Index.add(Index_10128);
         CZ2002.setIndexList(CZ2002_Index);
 
         ArrayList<StudyGroup> SG_10126 = new ArrayList<StudyGroup>();
@@ -335,14 +337,25 @@ public class FileController implements Serializable {
         SG_10127.add(FSP3_LAB_10127);
         Index_10127.setStudyGroup(SG_10127);
 
-        ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
-        Index Index_10128 = new Index(10128, "SSP5", 2, "CZ2005");
-        CZ2005_Index.add(Index_10128);
-        CZ2005.setIndexList(CZ2005_Index);
         ArrayList<StudyGroup> SG_10128 = new ArrayList<StudyGroup>();
-        StudyGroup CS2_LEC1_10128 = new StudyGroup("LT10", 830, 930, 6, "ALL", LessonType.LECTURE, 10128);
+        StudyGroup CS2_LEC1_10128 = new StudyGroup("LT11", 830, 930, 4, "ALL", LessonType.LECTURE, 10128);
+        StudyGroup CS2_LEC2_10128 = new StudyGroup("LT11", 1430, 1530, 2, "ALL", LessonType.LECTURE, 10128);
+        StudyGroup FSP3_TUT_10128 = new StudyGroup("TR+9", 1330, 1430, 3, "ALL", LessonType.TUTORIAL, 10128);
+        StudyGroup FSP3_LAB_10128 = new StudyGroup("SPL", 1430, 1630, 1, "EVEN", LessonType.LAB, 10128);
         SG_10128.add(CS2_LEC1_10128);
+        SG_10128.add(CS2_LEC2_10128);
+        SG_10128.add(FSP3_TUT_10128);
+        SG_10128.add(FSP3_LAB_10128);
         Index_10128.setStudyGroup(SG_10128);
+
+//        ArrayList<Index> CZ2005_Index = new ArrayList<Index>();
+//        Index Index_10128 = new Index(10128, "SSP5", 2, "CZ2005");
+//        CZ2005_Index.add(Index_10128);
+//        CZ2005.setIndexList(CZ2005_Index);
+//        ArrayList<StudyGroup> SG_10128 = new ArrayList<StudyGroup>();
+//        StudyGroup CS2_LEC1_10128 = new StudyGroup("LT10", 830, 930, 6, "ALL", LessonType.LECTURE, 10128);
+//        SG_10128.add(CS2_LEC1_10128);
+//        Index_10128.setStudyGroup(SG_10128);
 
 
 
@@ -444,6 +457,7 @@ public class FileController implements Serializable {
         Student std14 = new Student("Mary Poppins", "2469", "Female", "Singapore", 4, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "mary@gmail.com", "mary@ntu.edu.sg", "password374", "Student", "Mary_Poppins");
         Student std15 = new Student("Lim Jin Long", "2470", "Male", "Singapore", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "limj@gmail.com", "limj@ntu.edu.sg", "password375", "Student", "Lim_Jin_Long");
 
+        std5.setNumberOfAUs(17);
         ArrayList<Course> pastC = new ArrayList<Course>();
         pastC.add(CZ2001);
         pastC.add(CZ2002);
