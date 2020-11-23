@@ -107,7 +107,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         char ch;
         Student presentStudent;
         do {
-            System.out.println("Please enter the student's username");
+            System.out.print("Please enter the student's username: ");
             username = sc.nextLine().trim();
             presentStudent = fc.getStudentByUsername(username);
             if (presentStudent != null) {
@@ -116,7 +116,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         } while (presentStudent != null);
 
         do {
-            System.out.println("Please enter the student's email");
+            System.out.print("Please enter the student's email: ");
             email = sc.nextLine().trim();
             User user = student;
             validEmail = user.validateEmail(email);

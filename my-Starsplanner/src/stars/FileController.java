@@ -9,10 +9,10 @@ import java.lang.String;
 import static stars.CourseType.LEC_TUT_LAB;
 
 public class FileController implements Serializable {
-    private static final String adminFileLoc= "source/Admin.dat";
-    private static final String studentFileLoc = "source/Student.dat";
-    private static final String schoolFileLoc = "source/School.dat";
-    private static final String courseFileLoc= "source/Course.dat";
+    private static final String adminFileLoc= "./source/Admin.dat";
+    private static final String studentFileLoc = "./source/Student.dat";
+    private static final String schoolFileLoc = "./source/School.dat";
+    private static final String courseFileLoc= "./source/Course.dat";
 
     private static ArrayList<Admin> adminList = new ArrayList<Admin>();
     private static ArrayList<Student> studentList = new ArrayList<Student>();
