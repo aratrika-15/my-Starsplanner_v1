@@ -11,6 +11,7 @@ import java.text.ParseException;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
+    ValidateIntController vc = new ValidateIntController();
     DisplayDataController dd= new DisplayDataController();
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
 
@@ -131,7 +132,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         System.out.println("Enter the student's nationality");
         nationality = sc.nextLine().trim();
         System.out.println("Enter the student's year");
-        year = sc.nextInt();
+        year = vc.validateInt(1,6);
         do {
             System.out.println("Enter the student's gender");
             gender = sc.nextLine().trim().toLowerCase();
@@ -140,14 +141,15 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
         } while (!gender .equals("female") && !gender .equals("male"));
 
-        do {
-            System.out.println("Enter the student's school name ");
-            schoolName = sc.nextLine().trim().toUpperCase();
-            school = fc.getSchoolByName(schoolName);
-            if (school == null) {
-                System.out.println("Error. This school does not exist.");
-            }
-        } while (school == null);
+//        do {
+//            System.out.println("Enter the student's school name ");
+//            schoolName = sc.nextLine().trim().toUpperCase();
+//            school = fc.getSchoolByName(schoolName);
+//            if (school == null) {
+//                System.out.println("Error. This school does not exist.");
+//            }
+//        } while (school == null);
+        school = dd.schSelection();
         do {
             System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W");
             ch = sc.nextLine().charAt(0);
@@ -194,21 +196,21 @@ public class AdminModeController implements DisplayErrorMsgUI{
 //            System.out.println(input + " is not a valid input. Enter again:");
 //        }
 //    }
-    private int validateInt(int min, int max) {
-        do {
-            if (sc.hasNextInt()) {
-                int choice = sc.nextInt();
-                if (choice>=min && choice <=max) {
-                    return choice;
-                } else {
-                    System.out.println("Invalid selection. Enter a valid input.");
-                }
-            }else {
-                String input = sc.next();
-                System.out.println("Invalid selection.Enter a valid input.");
-            }
-        } while(true);
-    }
+//    private int validateInt(int min, int max) {
+//        do {
+//            if (sc.hasNextInt()) {
+//                int choice = sc.nextInt();
+//                if (choice>=min && choice <=max) {
+//                    return choice;
+//                } else {
+//                    System.out.println("Invalid selection. Enter a valid input.");
+//                }
+//            }else {
+//                String input = sc.next();
+//                System.out.println("Invalid selection.Enter a valid input.");
+//            }
+//        } while(true);
+//    }
     private String validateCourseCodeFormat(String cCode) {
         if (cCode.length() == 6) {
             try {
@@ -237,7 +239,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         sc.nextLine();
         venue = sc.nextLine();
         System.out.println(lessonType + " start time:");
-        startTime = validateInt(800,2000);
+        startTime = vc.validateInt(800,2000);
         System.out.println(lessonType + " end time:");
         boolean flag = true;
         do {
@@ -255,7 +257,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
         } while(flag);
         System.out.println("Day of the week the " + lessonType + "  will take place: (1.Mon, 2.Tues, 3.Wed, 4.Thurs, 5.Fri, 6.Sat");//how to add for multiple days?
-        dayOfWeek = validateInt(1,6);
+        dayOfWeek = vc.validateInt(1,6);
         System.out.println("Week type of " + lessonType + "(ODD, EVEN, ALL)");
         weekType = sc.next();
         String wTypes[] = {"ODD","EVEN","ALL"};
@@ -273,11 +275,11 @@ public class AdminModeController implements DisplayErrorMsgUI{
     private void addIndex(Course c) {
         System.out.println("Enter the following details of the Index you would like to add:");
         System.out.println("Index Number:");
-        int indexNum = validateInt(0, 99999);
+        int indexNum = vc.validateInt(0, 99999);
         System.out.println("Group Number:");
         String groupNum = sc.next();
         System.out.println("Vacancies:");
-        int vacancy = validateInt(1,500);
+        int vacancy = vc.validateInt(1,500);
         Index index = c.setIndex(indexNum, groupNum, vacancy);
         if (c.getCourseType().equals(CourseType.LEC_TUT_LAB)) {
             addStudyGroup(index, LessonType.LAB);
@@ -319,7 +321,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             CourseType courseType = CourseType.valueOf(cType);
 
             System.out.println("Number of lectures per week:");
-            int nLectures = validateInt(1,3);
+            int nLectures = vc.validateInt(1,3);
 
 
             System.out.println("Course Code:");
@@ -332,13 +334,13 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
 
             System.out.println("total AUs:");
-            int totalAUs = validateInt(1,4);
+            int totalAUs = vc.validateInt(1,4);
 
             Course c = s.addCourse(name, courseCode, courseType, totalAUs, nLectures);
 
 
             System.out.println("Enter the number of indexes for Course " + c.getCourseCode());
-            int nIndexes = validateInt(1,30);
+            int nIndexes = vc.validateInt(1,30);
             for (int i = 0; i < nIndexes; i++) {
                 addIndex(c);
             }
@@ -375,7 +377,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             System.out.println("1. Edit course information");
             System.out.println("2. Edit index information");
             System.out.println("----------choose one of the options above");
-            int choice = validateInt(1,2);
+            int choice = vc.validateInt(1,2);
             switch (choice) {
                 case 1:
                     System.out.println("1. Edit course Name");
@@ -385,7 +387,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     System.out.println("5. Edit course Code");
                     System.out.println("6. Edit school");
                     System.out.println("----------choose one of the options above");
-                    choice = validateInt(1,4);
+                    choice = vc.validateInt(1,4);
                     switch (choice) {
                         case 1:
                             System.out.println("Enter the new course name:");
@@ -449,7 +451,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         case 3:
                             if(checkCourseHasStudents(c)==false) {
                                 System.out.println("Enter new total number of AUs:");
-                                int aus = validateInt(1, 4);
+                                int aus = vc.validateInt(1, 4);
                                 c.setTotalAUs(aus);
                                 System.out.println("Number of AUs successfully changed");
                             }
@@ -524,7 +526,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 break;
                             case 2:
                                 System.out.println("Enter the new vacancies");
-                                int vacancies = validateInt(1,500);
+                                int vacancies = vc.validateInt(1,500);
                                 int new_vacancies = i.getVacancies() + vacancies;
                                 if (new_vacancies >= 0) {
                                     i.setVacancies(i.getVacancies() + vacancies);
@@ -542,7 +544,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 break;
                             case 4:
                                 System.out.println("Enter the new index number");
-                                int indexNum = validateInt(0, 99999);
+                                int indexNum = vc.validateInt(0, 99999);
                                 for(int x=0;x<c.getIndex().size();x++)
                                 {
                                     if(indexNum==c.getIndex().get(x).getIndexNum())
