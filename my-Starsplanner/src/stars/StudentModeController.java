@@ -7,8 +7,47 @@ import java.io.*;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
     FileController fc=new FileController();
-    ValidateIntController vc = new ValidateIntController();
     DisplayDataController dd = new DisplayDataController();
+    ValidateIntController vc = new ValidateIntController();
+
+    public void inputAddCourse(Student student){
+        Map<Integer, String> week = new HashMap<>();
+        week.put(1, "Monday");
+        week.put(2, "Tuesday");
+        week.put(3, "Wednesday");
+        week.put(4, "Thursday");
+        week.put(5, "Friday");
+        week.put(6, "Saturday");
+        week.put(7, "Sunday");
+        School school1 = dd.schSelection();
+        if (school1 != null) {
+            Course course = dd.courseSelection(school1);
+            if(course != null) {
+//                                Index index = dd.indexSelection(course);
+                ArrayList<Index> indexes = course.getIndex();
+//                if (indexes != null || indexes.size() != 0){
+                System.out.println("Select one of the indexes to add:");
+                for (int i = 1; i<= indexes.size(); i++){
+                    System.out.println((i+1)+ ": "+indexes.get(i).getIndexNum());
+                    System.out.println("Lesson Type  Day       Start Time - End Time   Venue    Week Type");
+                    System.out.println("-------------------------------------------------------");
+                    for (StudyGroup sg : indexes.get(i).getStudyGroup()){
+                        System.out.printf("%s",sg.getLessonType());
+                        System.out.printf("%s",week.get(sg.getDayOfWeek()));
+                    }
+
+                }
+                int i = vc.validateInt(1,indexes.size());
+                Index index = indexes.get(i);
+
+                if(index != null){
+                    addCourse(student,student.getRegCourses(),course,index);
+                }
+
+            }
+
+        }
+    }
 
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
             //TODO

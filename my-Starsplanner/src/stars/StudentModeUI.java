@@ -1,6 +1,7 @@
 package stars;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
@@ -39,23 +40,7 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 Index i;
                 switch (choice) {
                     case 1:
-
-
-                        School school1 = dd.schSelection();
-                        if (school1 != null) {
-                            Course course = dd.courseSelection(school1);
-                            if(course != null) {
-                                Index index = dd.indexSelection(course);
-                                if(index != null){
-
-                                    smc.addCourse(student,student.getRegCourses(),course,index);
-                                }
-
-                            }
-
-                        }
-
-
+                        smc.inputAddCourse(student);
                         break;
                     case 2:
                         RegisteredCourse rc = dd.selectRegisteredCourses(student);
