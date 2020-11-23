@@ -51,6 +51,8 @@ public class StudentModeController {
                     .comparing(StudyGroup::getDayOfWeek)
                     .thenComparing(StudyGroup::getStartTime));
 
+            System.out.println("");
+
             System.out.println((i+1)+ ": "+indexes.get(i).getIndexNum());
             System.out.println("Lesson Type  Day       Start Time - End Time   Venue    Week Type");
             System.out.println("-------------------------------------------------------");
