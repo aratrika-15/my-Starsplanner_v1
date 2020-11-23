@@ -171,10 +171,11 @@ public class Student extends User implements Serializable{
                 //System.out.println(regCourse.getRegIndex());
                 Index idx = fc.getIndexByID(regCourse.getRegIndex());
 
-                for (StudyGroup studyGroup : idx.getStudyGroup()) {
-
-                    studyGroups.add(studyGroup);
-                };
+                if (regCourse.getRegStatus() != "Waitlist") {
+                    for (StudyGroup studyGroup : idx.getStudyGroup()) {
+                        studyGroups.add(studyGroup);
+                    }
+                }
             }
             return studyGroups;
         }
