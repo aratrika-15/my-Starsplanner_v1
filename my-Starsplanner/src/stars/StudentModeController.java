@@ -102,6 +102,15 @@ public class StudentModeController {
                 System.out.printf("You are not currently registered for index %d, course %s\n", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
                 return;
             } else {
+                char ch;
+                do {
+                    System.out.println("Are you sure you want to drop course? (Y/N)");
+                    ch=sc.nextLine().charAt(0);
+                    if(ch=='N')
+                        return;
+                    if(ch!='Y'&&ch!='N')
+                        System.out.println("Invalid input. Try again");
+                }while(ch!='Y');
                 student.setNumberOfAUs(student.getNumberOfAUs()-course.getTotalAUs());
                 //setTimetableSchedule();
                 System.out.println("The course has been dropped for you.");
