@@ -154,6 +154,10 @@ public class StudentModeController {
 
 
             getTimetable(student.getStudyGroups());
+            if(waitlistedCourses.size()==0){
+                System.out.println("There are Courses Waitlisted for this  Student");
+            }
+            else{
 
             System.out.println("List of Waitlisted Courses");
             System.out.println("   CourseID   CourseName   Index   ");
@@ -164,7 +168,7 @@ public class StudentModeController {
 
                 System.out.println(
                         "   " + course.getCourseCode() + "       " + course.getName() + "         " + waitlistedCourses.get(i).getRegIndex());
-            }
+            }}
         } else {
             System.out.println("Sorry! No Course Registered found for this Student");
         }

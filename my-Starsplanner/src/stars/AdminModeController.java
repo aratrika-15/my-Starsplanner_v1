@@ -16,7 +16,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
     SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
 
 
-    public void editStudentAccessPeriod() {
+    /*public void editStudentAccessPeriod() {
         //TODO
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
@@ -48,6 +48,82 @@ public class AdminModeController implements DisplayErrorMsgUI{
         {
             e.printStackTrace();
         }
+
+        if(convertedStartDate.compareTo(convertedEndDate)<0) {
+            updateSchool.setRegistrationStartPeriod(convertedStartDate);
+            updateSchool.setRegistrationEndPeriod(convertedEndDate);
+            fc.saveSchoolList();
+            System.out.println("Access Period has been updated.");
+        }
+        else
+        {
+            System.out.println("Registration end period must be after registration start period");
+        }
+
+    }*/
+    public void editStudentAccessPeriod() {
+        //TODO
+        School updateSchool;
+        Date convertedStartDate=null,convertedEndDate=null;
+        format.setLenient(false);
+//        do{
+//            System.out.println("Enter the School Name");
+//            String school=sc.nextLine().trim();
+//            updateSchool = fc.getSchoolByName(school);
+//            if(updateSchool==null)
+//                System.out.println("Error. This school does not exist.");
+//        }while(updateSchool==null);
+        updateSchool = dd.schSelection();
+        /*try {
+            format.setLenient(false);
+            System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+            String startDate=sc.next();
+
+            convertedStartDate = format.parse(startDate);
+            System.out.println(convertedStartDate);
+            System.out.println(format.format(convertedStartDate));
+            System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+            String endDate=sc.next();
+            convertedEndDate = format.parse(endDate);
+            System.out.println(convertedEndDate);
+            System.out.println(format.format(convertedEndDate));
+        } catch (ParseException e) {
+            //e.printStackTrace();
+            System.out.println("Invalid registration period format");
+        }
+        catch(NullPointerException e)
+        {
+            //e.printStackTrace();
+            System.out.println("Invalid registration period format");
+        }*/
+
+        do{
+            try{
+                System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
+                String startDate=sc.next();
+
+                convertedStartDate = format.parse(startDate);
+                System.out.println(convertedStartDate);
+                System.out.println(format.format(convertedStartDate));
+            } catch (ParseException e) {
+                //e.printStackTrace();
+                System.out.println("Invalid registration period format");
+            }
+        } while (convertedStartDate == null);
+
+        do{
+            try{
+                System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
+                String endDate=sc.next();
+
+                convertedEndDate = format.parse(endDate);
+                System.out.println(convertedEndDate);
+                System.out.println(format.format(convertedEndDate));
+            } catch (ParseException e) {
+                //e.printStackTrace();
+                System.out.println("Invalid registration period format");
+            }
+        } while (convertedEndDate == null);
 
         if(convertedStartDate.compareTo(convertedEndDate)<0) {
             updateSchool.setRegistrationStartPeriod(convertedStartDate);
