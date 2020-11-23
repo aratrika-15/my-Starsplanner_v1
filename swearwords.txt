@@ -3,15 +3,6 @@
 # Comments can be made by starting a line with #
 # Grawlox will convert all words to lower case and remove special characters and leetspeak.
 # Therefore it is unnecessary to add words like 'foo', 'Foo', 'f0o' etc. multiple times.
-foo
-bar
-2 girls 1 cup
-50 yard cunt punt
-5h1t
-5hit
-A2M
-a55
-a55hole
 abbo
 abortion
 abuse
@@ -32,7 +23,6 @@ anal sex
 anilingus
 anus
 ape shit
-ar5e
 areola
 areole
 aroused
@@ -68,7 +58,6 @@ ass goblin
 ass hat
 ass-hat
 ass head
-assho1e
 asshole
 assholes
 assholz
@@ -108,8 +97,6 @@ athletes foot
 autoerotic
 azz
 azzhole
-b17ch
-b1tch
 babe
 babeland
 babes
@@ -145,7 +132,6 @@ bawdy
 bazongas
 bazooms
 BBW
-b!+ch
 BDSM
 beaner
 beaners
@@ -165,7 +151,6 @@ bellend
 beotch
 bestial
 bestiality
-bi7ch
 biatch
 bi+ch
 bicurious
@@ -253,7 +238,6 @@ bowel
 bowels
 bra
 brassiere
-brea5t
 breast
 breast job
 breast lover
@@ -262,7 +246,6 @@ breasts
 brothel
 brotherfucker
 brown-cap
-b!tch
 buceta
 bugger
 buggered
@@ -345,7 +328,6 @@ chraa
 cigarette
 cigs
 circle jerk
-cl1t
 clamdigger
 clamdiver
 climax
@@ -442,7 +424,6 @@ corksucker
 cornhole
 corp whore
 cox
-cra5h
 crabs
 crack
 cracker
@@ -681,19 +662,16 @@ execution
 executioner
 extacy
 extasy
-f4nny
 facefucker
 facialize
 fack
 faeces
 faen
 fag
-fag1t
 fagbag
 faget
 fagfucker
 fagg
-fagg1t
 fagged
 fagging
 faggit
@@ -1128,8 +1106,6 @@ kunnilingus
 kunt
 kunts
 kuntz
-l3i+ch
-l3itch
 labia
 lactate
 laid
@@ -1200,10 +1176,8 @@ masstrbait
 masstrbate
 mastabate
 mastabater
-masterb8
 masterbaiter
 masterbat
-masterbat3
 masterbate
 master-bate
 masterbates
@@ -1279,9 +1253,6 @@ muthafuckker
 mutherfucker
 mutherfucking
 muthrfucking
-n1gga
-n1gger
-n1gr
 naked
 nambla
 narcotic
@@ -1309,8 +1280,6 @@ nig
 nigaboo
 niger
 nigg
-nigg3r
-nigg4h
 nigga
 niggah
 niggaracci
@@ -1417,12 +1386,10 @@ peepshow
 peepshpw
 pegging
 peinus
-pen1s
 penas
 pendy
 penetrate
 penetration
-peni5
 penial
 penile
 penis
@@ -1455,7 +1422,6 @@ phukking
 phuks
 phungky
 phuq
-pi55
 picaninny
 piccaninny
 picka
@@ -1511,11 +1477,7 @@ porno
 pornography
 pornos
 porn princess
-pot
 potty
-pr1c
-pr1ck
-pr1k
 premenstrual syndrome
 pre teen hard core
 pric
@@ -1527,8 +1489,6 @@ primetime
 pron
 prostitute
 prude
-pu55i
-pu55y
 pube
 pubes
 pubic
@@ -1661,13 +1621,6 @@ sexy
 sexy mama
 sexy moma
 sexy-slim
-sh!+
-sh1t
-s-h-1-t
-sh1ter
-sh1ts
-sh1tter
-sh1tz
 shag
 shagger
 shaggin
@@ -1737,7 +1690,6 @@ shiz
 shiznit
 shortfuck
 shota
-sh!t
 shum
 shut the fuck up
 shyt
@@ -1874,9 +1826,6 @@ swastika
 sweet bitch
 swinger
 syphilis
-t1t
-t1tt1e5
-t1tties
 taboo
 tampon
 tang
@@ -1913,7 +1862,6 @@ titlover
 tits
 titt
 tittie
-tittie5
 tittiefucker
 titties
 titty
@@ -1946,7 +1894,6 @@ tubgirl
 tuckahoe
 tunnel of love
 turnon
-tw4t
 twat
 twathead
 twatlips
@@ -1971,15 +1918,10 @@ urine
 urophilia
 usama
 uterus
-v14gra
-v1gra
-va1jina
 vag
-vag1na
 vagiina
 vagina
 vaginal
-vaj1na
 vajayjay
 vajina
 vajj

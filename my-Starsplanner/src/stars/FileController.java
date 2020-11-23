@@ -14,10 +14,10 @@ public class FileController implements Serializable {
     private static final String schoolFileLoc = "./source/School.dat";
     private static final String courseFileLoc= "./source/Course.dat";
 
-    private static ArrayList<Admin> adminList = new ArrayList<Admin>();
-    private static ArrayList<Student> studentList = new ArrayList<Student>();
-    private static ArrayList<School> schoolList = new ArrayList<School>();
-    private static ArrayList<Course> courseList=new ArrayList<Course>();
+    private static ArrayList<Admin> adminList = new ArrayList<>();
+    private static ArrayList<Student> studentList = new ArrayList<>();
+    private static ArrayList<School> schoolList = new ArrayList<>();
+    private static ArrayList<Course> courseList=new ArrayList<>();
     private static User currentUser;
 
     public ArrayList<Admin> getAdminList() {
