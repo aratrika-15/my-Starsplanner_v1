@@ -457,13 +457,13 @@ public class FileController implements Serializable {
         Student std14 = new Student("Mary Poppins", "2469", "Female", "Singapore", 4, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "mary@gmail.com", "mary@ntu.edu.sg", "password374", "Student", "Mary_Poppins");
         Student std15 = new Student("Lim Jin Long", "2470", "Male", "Singapore", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "limj@gmail.com", "limj@ntu.edu.sg", "password375", "Student", "Lim_Jin_Long");
 
-        std5.setNumberOfAUs(17);
+        std5.setNumberOfAUs(14);
         ArrayList<Course> pastC = new ArrayList<Course>();
         pastC.add(CZ2001);
         pastC.add(CZ2002);
 
-        std2.setPastCourses(pastC);
-        std5.setPastCourses(pastC);
+        std11.setPastCourses(pastC);
+        std15.setPastCourses(pastC);
         Review r1 = new Review("My TA was awesome! How do I get him again for future courses??", true, "CZ2002");
         Review r2 = new Review("While it was taught well, gotta say I didnt really enjoy OODP", false, "CZ2002");
         Review r3 = new Review("Learnt so much from this mod. Was able to apply a lot of it during my internship!", true,  "CZ2002");

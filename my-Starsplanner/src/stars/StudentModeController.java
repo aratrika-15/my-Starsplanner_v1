@@ -299,111 +299,126 @@ public class StudentModeController {
         dropCourse(student, indexCourse, currentIn, rc);
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
-    public void swapIndexnumber(Student student1, Student student2, int Ix2) {
+    public void swapIndexnumber(Student student1) {
         //TODO
-        FileController FileController = new FileController();
+
         //Index Index2 = FileController.getIndexByID(Ix2);
 
         RegisteredCourse rc = dd.selectRegisteredCourses(student1);
-        Index index1 = fc.getIndexByID(rc.getRegIndex());
-        Course c = fc.getCourseByCode(index1.getCourse());
-        ArrayList<RegisteredCourse> regList2 = student2.getRegCourses();
-
-        for(int i = 0; i<regList2.size(); i++) {
-            RegisteredCourse regC = regList2.get(i);
-            Index index2 = fc.getIndexByID(regC.getRegIndex());
-            Course secondC = fc.getCourseByCode(index2.getCourse());
-            if(secondC.getCourseCode().equals(c.getCourseCode())) {
-                if (index2.getIndexNum() == Ix2) {
-
-                    ArrayList<StudyGroup> s1 = student1.getStudyGroups();
-                    ArrayList<StudyGroup> s2 = student2.getStudyGroups();
-
-                    //Check if clash with current timetable for both students
-                    //ArrayList<StudyGroup> s1 = student1.getStudyGroups();
-                    ArrayList<StudyGroup> s1_2 = s1;
-
-                    for(int k=0; k<s1_2.size(); k++) {
-                        if (s1_2.get(k).getIndex() == index1.getIndexNum()) {
-                            s1_2.remove(k);
-                            k--;
-                        }
-                    }
-
-                    if (checkClash(index2, s1_2)) {
-                        return;
-                    }
-                    System.out.printf("You have no clashes with %d.\n",index2.getIndexNum());
-
-                    ArrayList<StudyGroup> s2_2 = s2;
-                    for(int j=0; j<s2_2.size(); j++) {
-                        if (s2_2.get(j).getIndex() == index2.getIndexNum()) {
-                            s2_2.remove(j);
-                            j--;
-                        }
-                    }
-
-                    if (checkClash(index1, s2_2)) {
-                        return;
-                    }
-                    System.out.printf("%s has no clash with %d.\n",student2.getName(),index1.getIndexNum());
-
-
-                    ArrayList<RegisteredCourse> regCourses1 = student1.getRegCourses();
-                    for (int l = 0; l<regCourses1.size(); l++) {
-                        Index idx1 = fc.getIndexByID(regCourses1.get(l).getRegIndex());
-                        Course theCourse1 = fc.getCourseByCode(idx1.getCourse());
-                        if (theCourse1.getCourseCode().equals(c.getCourseCode())) {
-                            RegisteredCourse oldRegisteredCourse1 = regCourses1.get(l);
-                            student1.removeRegCourses(oldRegisteredCourse1);
-                            //idx1.getRegisteredCourses().remove(oldRegisteredCourse1);
-
-                            for(int n = 0;n < idx1.getRegisteredCourses().size(); n++) {
-                                if(idx1.getRegisteredCourses().get(n).getStudent().equals(student1.getUserName())) {
-                                    idx1.removeFromRegList(idx1.getRegisteredCourses().get(n));
-                                    //System.out.println("Student has been removed from index.");
-
-                                }
-                            }
-
-                            String status1 = "Registered";
-                            RegisteredCourse newRegisteredCourse1 = new RegisteredCourse(index2.getIndexNum(), status1, student1.getUserName());
-                            student1.addRegCourses(newRegisteredCourse1);
-                            index2.getRegisteredCourses().add(newRegisteredCourse1);
-                        }
-                    }
-
-                    ArrayList<RegisteredCourse> regCourses2 = student2.getRegCourses();
-                    for (int m = 0; m<regCourses2.size(); m++) {
-                        Index idx2 = fc.getIndexByID(regCourses2.get(m).getRegIndex());
-                        Course theCourse2 = fc.getCourseByCode(idx2.getCourse());
-                        if (theCourse2.equals(secondC)) {
-                            RegisteredCourse oldRegisteredCourse2 = regCourses2.get(m);
-                            student2.removeRegCourses(oldRegisteredCourse2);
-                            //idx2.getRegisteredCourses().remove(oldRegisteredCourse2);
-
-                            for(int o = 0;o < idx2.getRegisteredCourses().size(); o++) {
-                                if(idx2.getRegisteredCourses().get(o).getStudent().equals(student2.getUserName())) {
-                                    idx2.removeFromRegList(idx2.getRegisteredCourses().get(o));
-                                    //System.out.println("Student has been removed from index.");
-
-                                }
-                            }
-
-                            String status2 = "Registered";
-                            RegisteredCourse newRegisteredCourse2 = new RegisteredCourse(index1.getIndexNum(), status2, student2.getUserName());
-                            student2.addRegCourses(newRegisteredCourse2);
-                            index1.getRegisteredCourses().add(newRegisteredCourse2);
-
-                        }
-                    }
-
-                    System.out.printf("Swap of index %d with  index %d completed.\n", index1.getIndexNum(), Ix2);
-                    return;
+        if (rc != null) {
+            Student student2;
+            do {
+                System.out.println("Enter the username of the student you want to swap index with: ");
+                String unStudent2 = sc.next();
+                student2 = fc.getStudentByUsername(unStudent2);
+                if(student2==null)
+                {
+                    System.out.println("Student with this username does not exist");
                 }
-            }
-        }
-        System.out.printf("The student does not have the entered index you are trying to swap");
+            } while (student2 == null);
+            Index index1 = fc.getIndexByID(rc.getRegIndex());
+            Course c = fc.getCourseByCode(index1.getCourse());
+            ArrayList<RegisteredCourse> regList2 = student2.getRegCourses();
+            if (regList2.size() == 0){System.out.println("The student does not have the course you are trying to swap for");}
+            else {
+                for (int i = 0; i < regList2.size(); i++) {
+                    RegisteredCourse regC = regList2.get(i);
+                    Index index2 = fc.getIndexByID(regC.getRegIndex());
+                    Course secondC = fc.getCourseByCode(index2.getCourse());
+                    if (secondC.getCourseCode().equals(c.getCourseCode())) {
+                        System.out.println("Enter the index you want to swap with: ");
+                        int Ix2 = sc.nextInt();
+                        if (index2.getIndexNum() == Ix2) {
+
+                            ArrayList<StudyGroup> s1 = student1.getStudyGroups();
+                            ArrayList<StudyGroup> s2 = student2.getStudyGroups();
+
+                            //Check if clash with current timetable for both students
+                            //ArrayList<StudyGroup> s1 = student1.getStudyGroups();
+                            ArrayList<StudyGroup> s1_2 = s1;
+
+                            for (int k = 0; k < s1_2.size(); k++) {
+                                if (s1_2.get(k).getIndex() == index1.getIndexNum()) {
+                                    s1_2.remove(k);
+                                    k--;
+                                }
+                            }
+
+                            if (checkClash(index2, s1_2)) {
+                                return;
+                            }
+                            System.out.printf("You have no clashes with %d.\n", index2.getIndexNum());
+
+                            ArrayList<StudyGroup> s2_2 = s2;
+                            for (int j = 0; j < s2_2.size(); j++) {
+                                if (s2_2.get(j).getIndex() == index2.getIndexNum()) {
+                                    s2_2.remove(j);
+                                    j--;
+                                }
+                            }
+
+                            if (checkClash(index1, s2_2)) {
+                                return;
+                            }
+                            System.out.printf("%s has no clash with %d.\n", student2.getName(), index1.getIndexNum());
+
+
+                            ArrayList<RegisteredCourse> regCourses1 = student1.getRegCourses();
+                            for (int l = 0; l < regCourses1.size(); l++) {
+                                Index idx1 = fc.getIndexByID(regCourses1.get(l).getRegIndex());
+                                Course theCourse1 = fc.getCourseByCode(idx1.getCourse());
+                                if (theCourse1.getCourseCode().equals(c.getCourseCode())) {
+                                    RegisteredCourse oldRegisteredCourse1 = regCourses1.get(l);
+                                    student1.removeRegCourses(oldRegisteredCourse1);
+                                    //idx1.getRegisteredCourses().remove(oldRegisteredCourse1);
+
+                                    for (int n = 0; n < idx1.getRegisteredCourses().size(); n++) {
+                                        if (idx1.getRegisteredCourses().get(n).getStudent().equals(student1.getUserName())) {
+                                            idx1.removeFromRegList(idx1.getRegisteredCourses().get(n));
+                                            //System.out.println("Student has been removed from index.");
+
+                                        }
+                                    }
+
+                                    String status1 = "Registered";
+                                    RegisteredCourse newRegisteredCourse1 = new RegisteredCourse(index2.getIndexNum(), status1, student1.getUserName());
+                                    student1.addRegCourses(newRegisteredCourse1);
+                                    index2.getRegisteredCourses().add(newRegisteredCourse1);
+                                }
+                            }
+
+                            ArrayList<RegisteredCourse> regCourses2 = student2.getRegCourses();
+                            for (int m = 0; m < regCourses2.size(); m++) {
+                                Index idx2 = fc.getIndexByID(regCourses2.get(m).getRegIndex());
+                                Course theCourse2 = fc.getCourseByCode(idx2.getCourse());
+                                if (theCourse2.equals(secondC)) {
+                                    RegisteredCourse oldRegisteredCourse2 = regCourses2.get(m);
+                                    student2.removeRegCourses(oldRegisteredCourse2);
+                                    //idx2.getRegisteredCourses().remove(oldRegisteredCourse2);
+
+                                    for (int o = 0; o < idx2.getRegisteredCourses().size(); o++) {
+                                        if (idx2.getRegisteredCourses().get(o).getStudent().equals(student2.getUserName())) {
+                                            idx2.removeFromRegList(idx2.getRegisteredCourses().get(o));
+                                            //System.out.println("Student has been removed from index.");
+
+                                        }
+                                    }
+
+                                    String status2 = "Registered";
+                                    RegisteredCourse newRegisteredCourse2 = new RegisteredCourse(index1.getIndexNum(), status2, student2.getUserName());
+                                    student2.addRegCourses(newRegisteredCourse2);
+                                    index1.getRegisteredCourses().add(newRegisteredCourse2);
+
+                                }
+                            }
+
+                            System.out.printf("Swap of index %d with  index %d completed.\n", index1.getIndexNum(), Ix2);
+                            return;
+                        }
+                    }
+                }
+                System.out.printf("The student does not have inputted index you are trying to swap");
+            }}
         //Index index2 = dd.indexSelection(c);
         return;
 
