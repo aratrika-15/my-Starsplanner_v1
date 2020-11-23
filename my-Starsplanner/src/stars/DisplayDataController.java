@@ -1,12 +1,13 @@
 package stars;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DisplayDataController {
     Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
-
+    ValidateIntController vc=new ValidateIntController();
     public DisplayDataController() {}
 
     /**
@@ -21,22 +22,25 @@ public class DisplayDataController {
 
         do {
             // Get user's selection of school
-            System.out.println("Select the school:");
-            for(int i = 0; i < schList.size(); i++) {
-                System.out.println(i+1 + ". " + schList.get(i).getName());
-            }
 
-            schSelection = sc.nextInt();
+                System.out.println("Select the school:");
+                for (int i = 0; i < schList.size(); i++) {
+                    System.out.println(i + 1 + ". " + schList.get(i).getName());
+                }
 
-            if (schSelection > 0 && schSelection < schList.size()+1) {
-                School school = schList.get(schSelection-1);
-                flag = false;
-                return school;
-            }
-            else {
-                System.out.println("Invalid selection.");
-            }
+                schSelection=vc.validateInt(1,schList.size());
+
+                if (schSelection > 0 && schSelection < schList.size() + 1) {
+                    School school = schList.get(schSelection - 1);
+                    flag = false;
+                    return school;
+                } else {
+                    System.out.println("Invalid selection.");
+                }
+
+
         } while(flag);
+
 
         return null;
     }
@@ -80,7 +84,7 @@ public class DisplayDataController {
             for(int i = 0; i < schCourses.size(); i++) {
                 System.out.println(i+1 + ". " + schCourses.get(i).getName());
             }
-            courseSelection = sc.nextInt();
+            courseSelection = vc.validateInt(1,schCourses.size());
 
             if (courseSelection > 0 && courseSelection < schCourses.size() + 1) {
                 Course course = schCourses.get(courseSelection - 1);
@@ -109,7 +113,7 @@ public class DisplayDataController {
             for(int i = 0; i < indexList.size(); i++){
                 System.out.println(i+1 + ". " + indexList.get(i).getIndexNum());
             }
-            indexSelection = sc.nextInt();
+            indexSelection = vc.validateInt(1,indexList.size());
 
             if(indexSelection> 0 && indexSelection < indexList.size()+1){
                 Index index = indexList.get(indexSelection - 1);
@@ -144,7 +148,7 @@ public class DisplayDataController {
                 break;
             }
 
-            choice = sc.nextInt();
+            choice = vc.validateInt(1, regCourses.size());
 
             if(choice> 0 && choice < regCourses.size()+1){
                 RegisteredCourse rc = regCourses.get(choice - 1);
