@@ -365,6 +365,7 @@ public class StudentModeController {
                     Index index2 = fc.getIndexByID(regC.getRegIndex());
                     Course secondC = fc.getCourseByCode(index2.getCourse());
                     if (secondC.getCourseCode().equals(c.getCourseCode())) {
+                        if(regC.getRegStatus().equals("Waitlist")){System.out.println("The student is not registered in this index."); return;}
                         System.out.println("Enter the index you want to swap with: ");
                         int Ix2 = sc.nextInt();
                         if (index2.getIndexNum() == Ix2) {
