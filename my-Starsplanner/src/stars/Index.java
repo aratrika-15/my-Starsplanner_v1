@@ -167,6 +167,7 @@ public class Index implements Serializable {
                                 RegisteredCourse regCourse=new RegisteredCourse(index.getIndexNum(),"Registered",student.getUserName());
                                 student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
                                 student.addRegCourses(regCourse);
+                                index.addToRegList(regCourse);
 //
                             }
                         }
