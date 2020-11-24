@@ -217,7 +217,7 @@ public class StudentModeController {
             else{
 
             System.out.println("List of Waitlisted Courses");
-                System.out.println("CourseID    CourseName \t\t\t\t\t\t\t\t      Index   ");
+                System.out.println("CourseID    CourseName \t\t\t\t\t\t\t      Index   ");
                 System.out.println("==========================================================================");
             for (int i = 0; i < waitlistedCourses.size(); i++) {
                 Index idx = fc.getIndexByID(waitlistedCourses.get(i).getRegIndex());

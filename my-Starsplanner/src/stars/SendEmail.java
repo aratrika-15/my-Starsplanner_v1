@@ -15,7 +15,7 @@ public class SendEmail implements Notifications{
      *
      * default constructor
      */
-    public SendEmail() {}
+    //public SendEmail() {}
 
     /**
      * Send email notification to student to notify him/her of having gotten a position in a particular index for a course.

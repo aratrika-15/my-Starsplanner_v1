@@ -8,9 +8,7 @@ public class School implements Serializable{
     private Date registrationEndPeriod;
     private ArrayList<Student> students;
     private ArrayList<Course> courses;
-    public School()
-    {
-    }
+    public School(){}
     public School(String name, Date registrationStartPeriod, Date registrationEndPeriod) {
         this.name = name;
         this.registrationStartPeriod = registrationStartPeriod;

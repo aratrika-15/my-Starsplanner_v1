@@ -5,7 +5,7 @@ public class SendWhatsapp implements Notifications{
      *
      * default constructor
      */
-    public SendWhatsapp() {}
+    //public SendWhatsapp() {}
     /**
      * Send Whatsapp notification to student to notify him/her of having gotten a position in a particular index for a course.
      * @param recipient
