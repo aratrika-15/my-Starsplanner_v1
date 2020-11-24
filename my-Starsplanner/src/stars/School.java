@@ -4,8 +4,8 @@ import java.util.*;
 import java.io.Serializable;
 public class School implements Serializable{
     private String name;
-    private Date registrationStartPeriod = new Date();
-    private Date registrationEndPeriod = new Date();
+    private Date registrationStartPeriod;
+    private Date registrationEndPeriod;
     private ArrayList<Student> students;
     private ArrayList<Course> courses;
     public School()
@@ -17,13 +17,6 @@ public class School implements Serializable{
         this.registrationEndPeriod = registrationEndPeriod;
         this.courses=null;
         this.students=null;
-    }
-    public School(String name, Date registrationStartPeriod, Date registrationEndPeriod, ArrayList<Student> students, ArrayList<Course> courses) {
-        this.name = name;
-        this.registrationStartPeriod = registrationStartPeriod;
-        this.registrationEndPeriod = registrationEndPeriod;
-        this.courses=courses;
-        this.students=students;
     }
 
     public String getName() {
