@@ -866,7 +866,14 @@ public class StudentModeController {
                         //set new timetable schedule
                     }
                     NotificationController nc = new NotificationController();
-                    nc.notify(student, index);
+                    HashMap<String, String> choice = student.getNotificationType();
+                    String keyMethod = choice.keySet().stream().findFirst().get();
+                    String recipient = choice.get(keyMethod);
+                    String name = student.getName();
+                    int indexNum = index.getIndexNum();
+                    String courseCode = fc.getCourseByCode(index.getCourse()).getCourseCode();
+
+                    nc.notify(recipient, name, indexNum, courseCode, keyMethod);
                 } else {
                     index.setVacancies(vacancy);
                     break;
