@@ -1,10 +1,10 @@
 package stars;
 public class LoginController {
 
-    private User user;
-    FileController fc=new FileController();
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
     {
+        User user;
+        FileController fc=new FileController();
         if(userName!=null && enteredPassword!=null&& (typeOfUser.equals("Student") || typeOfUser.equals("Admin")) ) {
             if (typeOfUser.equals("Student")) {
 
@@ -57,7 +57,6 @@ public class LoginController {
                     else
                     {
                         System.out.println("Please enter a valid password");
-                        //System.out.println(user.getPassword());
                     }
                 }
                 else

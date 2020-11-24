@@ -32,8 +32,6 @@ public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
                 System.out.print("-------Please Enter your choice:");
                 choice = sc.nextInt();
                 Student student = (Student)user;
-                Course c;
-                Index i;
                 switch (choice) {
                     case 1:
                         smc.inputAddCourse(student);

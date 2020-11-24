@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DisplayDataController {
-    Scanner sc = new Scanner(System.in);
     FileController fc = new FileController();
     ValidateIntController vc=new ValidateIntController();
     public DisplayDataController() {}

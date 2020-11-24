@@ -7,12 +7,9 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
     public void showMenu(User user) {
         if(user !=null)
         {
-            //retrieve admin object from file controller
-            //if admin object is not null
             int choice;
             Scanner sc = new Scanner(System.in);
             AdminModeController amc = new AdminModeController();
-            SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
             FileController fc=new FileController();
             do {
                 System.out.println("");
