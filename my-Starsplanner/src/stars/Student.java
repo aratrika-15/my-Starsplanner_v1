@@ -160,26 +160,6 @@ public class Student extends User implements Serializable{
     /*
     Get the study groups for all courses for a student. (E.g. lectures, tutorials, etc)
      */
-    public ArrayList<StudyGroup> getStudyGroups() {
 
-        ArrayList<StudyGroup> studyGroups = new ArrayList<>();
-        FileController fc = new FileController();
-        if (this.getRegCourses().isEmpty()==false ) {
-            for (RegisteredCourse regCourse : this.regCourses) {
-                Index idx = fc.getIndexByID(regCourse.getRegIndex());
-
-                if (regCourse.getRegStatus() != "Waitlist") {
-                    for (StudyGroup studyGroup : idx.getStudyGroup()) {
-                        studyGroups.add(studyGroup);
-                    }
-                }
-            }
-            return studyGroups;
-        }
-        else {
-            return null;
-        }
-
-    }
 
 }

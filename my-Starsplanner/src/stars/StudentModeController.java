@@ -104,7 +104,7 @@ public class StudentModeController {
 
 
             //Check if clash with current timetable
-            ArrayList<StudyGroup> s = student.getStudyGroups();
+            ArrayList<StudyGroup> s = getStudyGroups(student);
             if (s!=null) {
                 if (checkClash(index, s)) {
                     return;
@@ -208,7 +208,7 @@ public class StudentModeController {
                 }
 
 
-                getTimetable(student.getStudyGroups());
+                getTimetable(getStudyGroups(student));
             }
 
             if(waitlistedCourses.size()==0){
@@ -301,8 +301,8 @@ public class StudentModeController {
                         int Ix2 = sc.nextInt();
                         if (index2.getIndexNum() == Ix2) {
 
-                            ArrayList<StudyGroup> s1 = student1.getStudyGroups();
-                            ArrayList<StudyGroup> s2 = student2.getStudyGroups();
+                            ArrayList<StudyGroup> s1 = getStudyGroups(student1);
+                            ArrayList<StudyGroup> s2 = getStudyGroups(student2);
                             ArrayList<StudyGroup> s1_2 = s1;
 
                             for (int k = 0; k < s1_2.size(); k++) {
@@ -795,6 +795,27 @@ public class StudentModeController {
         FileController fc=new FileController();
         Course theCourse = fc.getCourseByCode(cCode);
         theCourse.editVacancies(n);
+    }
+    public ArrayList<StudyGroup> getStudyGroups(Student student) {
+
+        ArrayList<StudyGroup> studyGroups = new ArrayList<>();
+        FileController fc = new FileController();
+        if (student.getRegCourses().isEmpty()==false ) {
+            for (RegisteredCourse regCourse : student.getRegCourses() ) {
+                Index idx = fc.getIndexByID(regCourse.getRegIndex());
+
+                if (regCourse.getRegStatus() != "Waitlist") {
+                    for (StudyGroup studyGroup : idx.getStudyGroup()) {
+                        studyGroups.add(studyGroup);
+                    }
+                }
+            }
+            return studyGroups;
+        }
+        else {
+            return null;
+        }
+
     }
 
 }
