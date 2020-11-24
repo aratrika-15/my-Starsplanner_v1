@@ -16,7 +16,6 @@ public class Student extends User implements Serializable{
     private ArrayList<Course> pastCourses;// new
     private ArrayList<Review> myReviews ;//new
     public static final  int MAX_AUs = 22;
-    FileController fc = new FileController();
     public Student()
     {
         super();
@@ -164,7 +163,7 @@ public class Student extends User implements Serializable{
     public ArrayList<StudyGroup> getStudyGroups() {
 
         ArrayList<StudyGroup> studyGroups = new ArrayList<>();
-
+        FileController fc = new FileController();
         if (this.getRegCourses().isEmpty()==false ) {
             for (RegisteredCourse regCourse : this.regCourses) {
                 Index idx = fc.getIndexByID(regCourse.getRegIndex());
