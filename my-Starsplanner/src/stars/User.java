@@ -57,7 +57,6 @@ public class User implements Serializable{
     public boolean matchPassword(String password) {
         //method that will be used for password checking during login
         password=buildPasswordHash(password);
-        //System.out.println(password);
         if (this.password.equals(password))
             return true;
         else

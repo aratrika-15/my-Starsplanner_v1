@@ -37,8 +37,6 @@ public class StudentModeController {
         week.put(7, "Sunday");
 
         ArrayList<Index> indexes = course.getIndex();
-
-//                if (indexes != null || indexes.size() != 0){
         System.out.println("Select one of the indexes to add:");
         for (int i = 0; i< indexes.size(); i++){
 
@@ -92,7 +90,6 @@ public class StudentModeController {
             }
 
             //Check if applied before (either accepted/waitlisted)
-        //System.out.println(student.getRegCourses());
                 if(student.getRegCourses().isEmpty()==false) {
                     for(RegisteredCourse registeredCourse : registeredCourses) {
                         Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
@@ -109,10 +106,6 @@ public class StudentModeController {
             //Check if clash with current timetable
             ArrayList<StudyGroup> s = student.getStudyGroups();
             if (s!=null) {
-               // for(int i=0;i<s.size();i++)
-                //{
-                   // System.out.println(s.get(i).getIndex());
-                //}
                 if (checkClash(index, s)) {
                     return;
                 }
@@ -147,16 +140,6 @@ public class StudentModeController {
                 index.addToRegList(rc);
                 index.displayRegList();
 
-                /*if(!index.getRegisteredCourses().isEmpty()){
-                    index.getRegisteredCourses().add(rc);
-                    index.displayRegList();
-                }
-                else{
-                    ArrayList<RegisteredCourse> regList = new ArrayList<RegisteredCourse>();
-                    regList.add(rc);
-                    index.setRegisteredCourses(regList);
-                }*/
-
             }
 
 
@@ -176,7 +159,6 @@ public class StudentModeController {
                         System.out.println("Invalid input. Try again");
                 }while(ch!='Y');
                 student.setNumberOfAUs(student.getNumberOfAUs()-course.getTotalAUs());
-                //setTimetableSchedule();
                 System.out.println("The course has been dropped for you.");
                 index.setVacancies(index.getVacancies()+1);
                 updateVacancies(course.getCourseCode(), 1);

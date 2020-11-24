@@ -167,8 +167,6 @@ public class Student extends User implements Serializable{
 
         if (this.getRegCourses().isEmpty()==false ) {
             for (RegisteredCourse regCourse : this.regCourses) {
-                //System.out.println("Hello");
-                //System.out.println(regCourse.getRegIndex());
                 Index idx = fc.getIndexByID(regCourse.getRegIndex());
 
                 if (regCourse.getRegStatus() != "Waitlist") {

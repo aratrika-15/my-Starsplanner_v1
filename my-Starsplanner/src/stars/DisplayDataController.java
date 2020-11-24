@@ -1,7 +1,6 @@
 package stars;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DisplayDataController {
@@ -56,27 +55,6 @@ public class DisplayDataController {
         boolean flag = true;
 
         ArrayList<Course> schCourses = sch.getCourses();
-
-        /*do {
-            System.out.println("Select the sorting method");
-            System.out.println("1. Sort by number of reviews");
-            System.out.println("2. Sort by percentage recommended");
-            select = sc.nextInt();
-
-            switch (select) {
-                case 1:
-                    schCourses.sort(new NumReviewsSorter());
-                    flag = false;
-                    break;
-                case 2:
-                    schCourses.sort(new PercRecommendedSorter());
-                    flag= false;
-                    break;
-                default:
-                    System.out.println("Invalid selection.");
-            }
-        } while(flag);*/
-
         flag = true;
         do {
             // Get user's selection of courses

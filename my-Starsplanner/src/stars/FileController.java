@@ -35,9 +35,6 @@ public class FileController implements Serializable {
 
         return courseList;
     }
-    public User getCurrentUser() {
-        return currentUser;
-    }
     //method to save admins to the dat file
 
     public void saveAdminList(){
@@ -214,21 +211,7 @@ public class FileController implements Serializable {
         }
         return null;
     }
-    /*public void populate(){
-        // write to serialized file - update/insert/delete
-        // example - add one more Admin
-        //Admin(String email, String password, String typeOfUser, String userName, String adminID)
-        Admin ad1 = new Admin("rach@ntu.edu.sg", "password123", "Admin", "Rachel_green", "1234");
-        // add to list
-        adminList.add(ad1);
-        // list.remove(p);  // remove if p equals object in the list
-
-        saveAdminList();
-    }*/
     public void initialise(){
-        // write to serialized file - update/insert/delete
-        // example - add one more Admin
-        //Admin(String email, String password, String typeOfUser, String userName, String adminID)
         Admin ad1 = new Admin("rach@ntu.edu.sg", "password123", "Admin", "Li_Xian", "1234");
         Admin ad2 = new Admin("jos@ntu.edu.sg","password124", "Admin", "joshua_brown", "1235");
         Admin ad3 = new Admin("mick@ntu.edu.sg", "password125",  "Admin", "mickey_mouse", "1236");
@@ -247,9 +230,6 @@ public class FileController implements Serializable {
             hashedPW = adminList.get(i).buildPasswordHash(hashedPW);
             adminList.get(i).setPassword(hashedPW);
         }
-
-        // list.remove(p);  // remove if p equals object in the list
-
         saveAdminList();
         String sdate_SCSE = "11/11/2019";
         String edate_SCSE = "11/12/2021";

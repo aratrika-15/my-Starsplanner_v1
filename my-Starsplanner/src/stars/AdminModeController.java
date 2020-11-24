@@ -1,11 +1,9 @@
 package stars;
-import java.text.Format;
 import java.util.*;
 import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import java.text.DateFormat;
 import java.text.ParseException;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
@@ -160,8 +158,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     break;
                 default:
                     System.out.println("Incorrect input. Try again.");
-                    //System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W: ");
-                    //ch = sc.nextLine().charAt(0);
             }
         } while (ch != 'T' && ch != 'W' && ch != 'E');
         //hashing of the password is done

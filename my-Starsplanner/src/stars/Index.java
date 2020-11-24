@@ -1,6 +1,4 @@
 package stars;
-import jdk.jfr.Registered;
-
 import java.util.*;
 import java.io.Serializable;
 public class Index implements Serializable {
@@ -117,11 +115,6 @@ public class Index implements Serializable {
     }
 
     public void deleteStudyGroup(LessonType l) {
-//        for (StudyGroup sg : this.studyGroup) {
-//            if (sg.getLessonType().equals(l)) {
-//                this.studyGroup.remove(sg);
-//            }
-//        }
         Iterator<StudyGroup> iter = this.studyGroup.iterator();
 
         while (iter.hasNext()) {
@@ -157,8 +150,6 @@ public class Index implements Serializable {
                                     for(int i = 0;i < indRegList.size(); i++) {
                                         if(indRegList.get(i).getStudent().equals(student.getUserName())) {
                                             index.removeFromRegList(indRegList.get(i));
-                                            //System.out.println("Student has been removed from index.");
-
                                         }
                                     }
                                 }
@@ -170,8 +161,6 @@ public class Index implements Serializable {
                                     for(int i = 0;i < indRegList.size(); i++) {
                                         if(indRegList.get(i).getStudent().equals(student.getUserName())) {
                                             index.removeFromRegList(indRegList.get(i));
-                                            //System.out.println("Student has been removed from index.");
-
                                         }
                                     }
                                 }
@@ -191,8 +180,6 @@ public class Index implements Serializable {
                 }
             }
         }
-//        ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
-
         setVacancies(vacancy);
     }
 
