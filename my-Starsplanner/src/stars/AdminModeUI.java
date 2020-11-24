@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
+    /**
+     * Prints Admin mode menu of STARS system
+     * @param user Admin user
+     */
     public void showMenu(User user) {
         if(user !=null)
         {
@@ -94,7 +98,7 @@ public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
         }
     /**
      * Print our arraylist of student arrays.
-     * @param stuList
+     * @param stuList array list of students
      */
     private void displayStuList(ArrayList<String[]> stuList){
         for(int i = 0; i < stuList.size(); i++) {

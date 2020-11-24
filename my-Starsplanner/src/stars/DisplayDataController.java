@@ -10,7 +10,7 @@ public class DisplayDataController {
 
     /**
      * Retrieve list of schools from database and print it out for user to see and select.
-     * @return School
+     * @return School School user selected
      */
     public School schSelection() {
         int schSelection;
@@ -46,8 +46,8 @@ public class DisplayDataController {
     /**
      * Retrieve list of courses from selected school and display for user to see and select.
      * Allows user to choose sorting method to sort by either number of reviews or by percentage recommended.
-     * @param sch
-     * @return Course
+     * @param sch School user wants to select course from
+     * @return Course Course user selected
      */
     public Course courseSelection(School sch) {
         int courseSelection; int select;
@@ -77,8 +77,8 @@ public class DisplayDataController {
 
     /**
      * Retrieve list of indexes from selected course and display for user to see and select.
-     * @param course
-     * @return Index
+     * @param course Course user wants to select index from
+     * @return Index Index selected by user
      */
     public Index indexSelection(Course course) {
         int indexSelection;
@@ -104,6 +104,11 @@ public class DisplayDataController {
         return null;
     }
 
+    /**
+     * Student to select a registered course object from their array list of registred course
+     * @param s student who is making the selection
+     * @return registered course object selected
+     */
     public RegisteredCourse selectRegisteredCourses(Student s) {
         ArrayList<RegisteredCourse> allc = s.getRegCourses();
         ArrayList<RegisteredCourse> regCourses = new ArrayList<>();
@@ -147,6 +152,10 @@ public class DisplayDataController {
 
         return null;
     }
+
+    /**
+     * Print course list of all the courses
+     */
     public void printCourseList() {
         ArrayList<School> schoolList = fc.getSchoolList();
         System.out.println("==========List of Courses==========\n");
@@ -164,6 +173,10 @@ public class DisplayDataController {
 
 
     }
+
+    /**
+     * Prints student list of all the students
+     */
     public void printStudentList()
     {   ArrayList<Student> studentList = fc.getStudentList();
         System.out.println("");

@@ -5,14 +5,28 @@ import java.util.*;
 
 public class LoginUI {
 
-
-private static String enteredUsername;
-private static String enteredPassword;
-private static String typeOfUser;
+    /**
+     * Username entered by current user
+     */
+    private static String enteredUsername;
+    /**
+     * Password entered by current user
+     */
+    private static String enteredPassword;
+    /**
+     * User domain entered by current user
+     */
+    private static String typeOfUser;
 
     public static void main(String[] args) {
         FileController fc = new FileController();
+        /**
+         * initialise the database once before first use of STARS system
+         */
         //fc.initialise();
+        /**
+         * Retrieve all .dat files needed to run STARS system
+         */
         fc.RetrieveAdmins();
         fc.RetrieveCourses();
         fc.RetrieveStudents();

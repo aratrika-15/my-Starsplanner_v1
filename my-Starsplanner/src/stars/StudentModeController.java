@@ -5,6 +5,12 @@ import de.zabuza.grawlox.*;
 import java.io.*;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
+
+    /**
+     * Student to select from menu which school, which course and which index the student wants to register for
+     * Student will only be taken to the addcourse method if index is valid
+     * @param student student login
+     */
     public void inputAddCourse(Student student){
         DisplayDataController dd = new DisplayDataController();
 
@@ -21,6 +27,11 @@ public class StudentModeController {
         }
     }
 
+    /**
+     * Print out schedule of index of selected course then ask student to select index
+     * @param course course selected by student
+     * @return index chosen by student
+     */
     private Index indexInput(Course course) {
         ValidateIntController vc = new ValidateIntController();
 
@@ -80,17 +91,28 @@ public class StudentModeController {
     }
 
 
+    /**
+     * Method for student to register for a course
+     * @param student student object of this student login
+     * @param registeredCourses array list of registered course of this student
+     * @param course course object of course to be registered
+     * @param index index object of index to be registered
+     */
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
         FileController fc=new FileController();
 
-        //Check for total AUS after addition of the course
-            if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
+        /**
+         * Check for total AUS of this student if course is registered for
+         */
+        if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
                 System.out.printf("You currently have %d AUs.\nYou are not allowed to exceed the AUs limit of %d.\n", student.getNumberOfAUs(), Student.MAX_AUs );
                 return;
             }
 
-            //Check if applied before (either accepted/waitlisted)
-                if(student.getRegCourses().isEmpty()==false) {
+        /**
+         * Checks if the student is already registered for this course or on wait list of this course
+         */
+        if(student.getRegCourses().isEmpty()==false) {
                     for(RegisteredCourse registeredCourse : registeredCourses) {
                         Index idx =fc.getIndexByID(registeredCourse.getRegIndex());
                         //System.out.println(idx.getIndexNum());
@@ -103,8 +125,10 @@ public class StudentModeController {
                 }
 
 
-            //Check if clash with current timetable
-            ArrayList<StudyGroup> s = getStudyGroups(student);
+        /**
+         * Check if index registered for clashes with current registered courses of this student
+         */
+        ArrayList<StudyGroup> s = getStudyGroups(student);
             if (s!=null) {
                 if (checkClash(index, s)) {
                     return;
@@ -113,8 +137,10 @@ public class StudentModeController {
 
 
             String status;
-            //Get Vacancy
-            if (index.getVacancies() <= 0) {
+        /**
+         * Check the vacancies of this index
+         */
+        if (index.getVacancies() <= 0) {
 
                 System.out.println("There are no more vacancies for this index.");
                 System.out.printf("There are currently %d people in the wait list.", index.getWaitList().size());
@@ -127,12 +153,13 @@ public class StudentModeController {
                     return;
                 }
 
-                //Add student into wait list
-                status = "Waitlist";
+            /**
+             * Adds studnet into waitlist if there is no vacancies
+             */
+            status = "Waitlist";
                 index.addToWaitList(student);
             } else {
                 status = "Registered";
-                //Set new number of AUs
                 student.setNumberOfAUs(student.getNumberOfAUs()+course.getTotalAUs());
                 index.setVacancies(index.getVacancies()-1);
 
@@ -142,11 +169,18 @@ public class StudentModeController {
             student.addRegCourses(rc);
             index.addToRegList(rc);
 
-            //Set Registered
             System.out.printf("You have been successfully added for index %d\n", index.getIndexNum());
             System.out.printf("The current status for the course is %s.\n", status);
             return;
         }
+
+    /**
+     * Method for student to drop a registered course
+     * @param student student object of this student login
+     * @param course course object of course to drop
+     * @param index index object of index to drop
+     * @param rc registered course object of registered course to drop
+     */
         public void dropCourse(Student student, Course course, Index index, RegisteredCourse rc) {
                 char ch;
                 do {
@@ -179,6 +213,10 @@ public class StudentModeController {
             }
 //        }
 
+    /**
+     * Print courses and its information student is registered in (timetable)
+     * @param student student object of student login
+     */
     public void printRegisteredCourses(Student student) {
         FileController fc=new FileController();
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
@@ -230,6 +268,10 @@ public class StudentModeController {
         }
         return;
     }
+
+    /**
+     * Check vacancies available in index of choice
+     */
     public void checkVacanciesAvailable() {
         DisplayDataController dd = new DisplayDataController();
         School school = dd.schSelection();
@@ -246,6 +288,11 @@ public class StudentModeController {
             }
         }
     }
+
+    /**
+     * Change index number of course student is registered in
+     * @param student student object of current student
+     */
     public void changeIndexNumber(Student student){
         FileController fc=new FileController();
         DisplayDataController dd = new DisplayDataController();
@@ -255,15 +302,26 @@ public class StudentModeController {
         Course indexCourse = fc.getCourseByCode(currentIn.getCourse());
         Index newIn = indexInput(indexCourse);
 
+        /**
+         * Check if the new index the student wants belongs to the same course as the old index
+         */
         if (!currentIn.getCourse().equals(newIn.getCourse())) {
             System.out.println("Current index and new index does not belong to the same course.");
             return;
         }
+
+        /**
+         * Check if student is registered in new index
+         */
         if(currentIn.getIndexNum()== newIn.getIndexNum())
         {
             System.out.println("You are already registered for this index");
             return;
         }
+
+        /**
+         * Get the number of vacancies in the new index
+         */
         if(newIn.getVacancies()==0){
             System.out.println("The system did not change the index number since the new index has no vacancies");
             return;
@@ -271,10 +329,20 @@ public class StudentModeController {
         dropCourse(student, indexCourse, currentIn, rc);
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
+
+    /**
+     * Swap index number with another student
+     * @param student1 current student login
+     */
     public void swapIndexnumber(Student student1) {
         FileController fc=new FileController();
         DisplayDataController dd = new DisplayDataController();
 
+        /**
+         * Get the index student wants to swap
+         * Get information of other student and other index
+         * Checks if other student is registered in the other index and if either of them will have timetable clashes after swap
+         */
         RegisteredCourse rc = dd.selectRegisteredCourses(student1);
         if (rc != null) {
             Student student2;
@@ -385,6 +453,11 @@ public class StudentModeController {
 
 
     }
+
+    /**
+     * Check the access period of STARS system for the school this student belongs in
+     * @param school school to check access period of
+     */
     public void checkAccessPeriod(School school) {
         Date regStartDate=school.getRegistrationStartPeriod();
         Date regEndDate=school.getRegistrationEndPeriod();
@@ -791,11 +864,23 @@ public class StudentModeController {
             return false;
         }
     }
+
+    /**
+     * Change vacancies in a course by n
+     * @param cCode course code of course to update
+     * @param n addition or subtraction of vacancies by this amount
+     */
     private void updateVacancies(String cCode, int n){
         FileController fc=new FileController();
         Course theCourse = fc.getCourseByCode(cCode);
         theCourse.editVacancies(n);
     }
+
+    /**
+     * Get array list of study groups of this student
+     * @param student the current student login
+     * @return array list of study group
+     */
     public ArrayList<StudyGroup> getStudyGroups(Student student) {
 
         ArrayList<StudyGroup> studyGroups = new ArrayList<>();
@@ -818,6 +903,11 @@ public class StudentModeController {
 
     }
 
+    /**
+     * Allocate vacancies after a student drop a course
+     * @param course course dropped by student
+     * @param index index of course dropped by student
+     */
     public void allocateVacancies(Course course, Index index) {
 
         Student student;

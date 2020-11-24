@@ -2,6 +2,10 @@ package stars;
 import java.util.Scanner;
 
 public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
+    /**
+     * Prints Student mode menu of STARS system
+     * @param user Student user
+     */
     public void showMenu(User user) {
         if (user != null) {
             //first use FileController to get student object reference by username

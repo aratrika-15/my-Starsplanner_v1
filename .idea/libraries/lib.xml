@@ -10,6 +10,7 @@
       <root url="jar://$PROJECT_DIR$/my-Starsplanner/lib/javax.annotation.jar!/" />
       <root url="jar://$PROJECT_DIR$/my-Starsplanner/lib/javax.resource.jar!/" />
       <root url="jar://$PROJECT_DIR$/my-Starsplanner/lib/javax.transaction.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/javax.mail.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

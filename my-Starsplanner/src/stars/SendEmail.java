@@ -19,10 +19,10 @@ public class SendEmail implements Notifications{
 
     /**
      * Send email notification to student to notify him/her of having gotten a position in a particular index for a course.
-     * @param recipient
-     * @param name
-     * @param indexNum
-     * @param courseCode
+     * @param recipient address to receive notification
+     * @param name name of recipient
+     * @param indexNum index number of index to notify recipient
+     * @param courseCode course code of course to notify recipient
      */
     public void sendNotification(String recipient, String name, int indexNum, String courseCode) {
 

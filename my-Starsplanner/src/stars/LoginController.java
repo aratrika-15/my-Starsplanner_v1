@@ -1,6 +1,13 @@
 package stars;
 public class LoginController {
 
+    /**
+     * Validate the login information entered
+     * @param userName username entered by user
+     * @param enteredPassword password entered by user
+     * @param typeOfUser user domain entered by user
+     * @return boolean if this is a valid login
+     */
     public boolean validateLogin(String userName, String enteredPassword, String typeOfUser)
     {
         User user;

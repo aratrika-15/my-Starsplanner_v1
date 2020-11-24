@@ -9,6 +9,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
 
 
+    /**
+     * Change the period a student can access STARS system
+     */
     public void editStudentAccessPeriod() {
         FileController fc = new FileController();
         DisplayDataController dd= new DisplayDataController();
@@ -17,7 +20,15 @@ public class AdminModeController implements DisplayErrorMsgUI{
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
         format.setLenient(false);
+        /**
+         * Select school to update period for
+         */
         updateSchool = dd.schSelection();
+
+        /**
+         * Get new start date and end date from admin
+         * Checks if date entered is valid
+         */
         do{
             try{
                 System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
@@ -58,12 +69,17 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
 
-    //method for admin to add a student
+    /**
+     * Method for admin to add new student into STARS system
+     */
     public void addStudent() {
         FileController fc = new FileController();
         ValidateIntController vc = new ValidateIntController();
         DisplayDataController dd= new DisplayDataController();
 
+        /**
+         * Enter information needed to create a new student
+         */
         sc.nextLine();
         Student student = new Student();
         student.setTypeOfUser("Student");
@@ -164,7 +180,11 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     System.out.println("Incorrect input. Try again.");
             }
         } while (ch != 'T' && ch != 'W' && ch != 'E');
-        //hashing of the password is done
+
+
+        /**
+         * performs password hashing on actual password before storing
+         */
         pass1 = student.buildPasswordHash(pass1);
 
         student = school.addStudent(name, matricNo, gender, nationality, year, school.getName(), choice, recipient, email, pass1, "Student", username);
@@ -172,13 +192,20 @@ public class AdminModeController implements DisplayErrorMsgUI{
         fc.saveStudentList();
         fc.saveSchoolList();
         System.out.println(student.getSchool());
-        //print the list of students after every new student is added
+
+        /**
+         * Prints student list for admin to check if student is added
+         */
         dd.printStudentList();
     }
 
-    //method for admin to add a student
 
-
+    /**
+     * Validate the format of the course code entered
+     * Checks if course code entered is of 6 characters, 2 letters followed by 4 numbers
+     * @param cCode Course code entered by user
+     * @return course code that is checked to be of correct format
+     */
     private String validateCourseCodeFormat(String cCode) {
         if (cCode.length() == 6) {
             try {
@@ -198,12 +225,20 @@ public class AdminModeController implements DisplayErrorMsgUI{
         return null;
     }
 
+    /**
+     * Add new study group for an index
+     * @param i index to add study group to
+     * @param lessonType lesson type of index
+     */
     private void addStudyGroup(Index i, LessonType lessonType) {
         ValidateIntController vc = new ValidateIntController();
 
         String venue, weekType;
         int dayOfWeek, startTime;
         int endTime = -1;
+        /**
+         * Enter details of new study group
+         */
         System.out.println("Enter the following lesson details for index " + i.getIndexNum() + ":");
         System.out.println(lessonType + " venue:");
         sc.nextLine();
@@ -242,9 +277,16 @@ public class AdminModeController implements DisplayErrorMsgUI{
         System.out.println("Study group successfully added");
     }
 
+    /**
+     * Add new index to a course
+     * @param c course to add new index to
+     */
     private void addIndex(Course c) {
         ValidateIntController vc = new ValidateIntController();
 
+        /**
+         * Enter details of new index
+         */
         System.out.println("Enter the following details of the Index you would like to add:");
         System.out.println("Index Number:");
         int indexNum = vc.validateInt(0, 99999);
@@ -267,18 +309,27 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     }
 
+    /**
+     * Add new course to school
+     */
     //	@SuppressWarnings("unused")
     public void addCourse() {
         ValidateIntController vc = new ValidateIntController();
         DisplayDataController dd= new DisplayDataController();
         FileController fc = new FileController();
 
+        /**
+         * Select an existing school to add course to
+         */
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
             s = dd.schSelection();
         }
 
+        /**
+         * Enter details of new course
+         */
         if (s != null) {
             System.out.println("Enter the following details of the course you would like to add:");
             System.out.println("Course Code:");
@@ -329,6 +380,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
 
         }
+        /**
+         * Print course list to check if course is added
+         */
         dd.printCourseList();
     }
     public boolean checkCourseHasStudents(Course c)
@@ -346,16 +400,27 @@ public class AdminModeController implements DisplayErrorMsgUI{
         }
             return false;
     }
+
+    /**
+     * Update information on a course or index of a course
+     */
     public void updateCourse() {
         FileController fc = new FileController();
         ValidateIntController vc = new ValidateIntController();
         DisplayDataController dd= new DisplayDataController();
 
+        /**
+         * Select school for which the course or index to update belongs to
+         */
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
             s = dd.schSelection();
         }
+
+        /**
+         * Select the course or course that the index to update belongs to
+         */
         Course c = dd.courseSelection(s);
         if (c != null) {
             System.out.println("1. Edit course information");
@@ -363,6 +428,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
             System.out.println("----------choose one of the options above");
             int choice = vc.validateInt(1,2);
             switch (choice) {
+                /**
+                 * Menu for when course is chosen to be updated
+                 */
                 case 1:
                     System.out.println("1. Edit course Name");
                     System.out.println("2. Edit course Type");
@@ -481,6 +549,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
                             System.out.println("invalid input");
                     }
                     break;
+                /**
+                 * Menu for when index is chosen to be updated
+                 */
                 case 2:
                     Index i = dd.indexSelection(c);
                     if (i != null) {
@@ -547,9 +618,15 @@ public class AdminModeController implements DisplayErrorMsgUI{
         }
     }
 
+    /**
+     * Method to remove course from an existing school
+     */
     public void removeCourse() {
         DisplayDataController dd= new DisplayDataController();
 
+        /**
+         * Select the school which the course to be removed belongs to
+         */
         School s = dd.schSelection();
         while (s == null) {
                 System.out.println("School does not exist");
@@ -571,12 +648,24 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
 
+    /**
+     * Check number of available slots for students to register in an index of choice
+     */
     public void checkAvailableSlot() {
         DisplayDataController dd = new DisplayDataController();
+        /**
+         * Select school which course of choice belongs to
+         */
         School school = dd.schSelection();
         if (school != null) {
+            /**
+             * Select course which the index belongs to
+             */
             Course course = dd.courseSelection(school);
             if(course != null) {
+                /**
+                 * Select which index you want to check
+                 */
                 Index index = dd.indexSelection(course);
                 if(index != null){
                     System.out.println("Number Of Vacancies available " + index.getVacancies() + " out of " + index.getTotalSlots());

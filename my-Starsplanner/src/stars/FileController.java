@@ -9,34 +9,78 @@ import java.lang.String;
 import static stars.CourseType.LEC_TUT_LAB;
 
 public class FileController implements Serializable {
+    /**
+     * Relative path of the admin data
+     */
     private static final String adminFileLoc= "Admin.dat";
+    /**
+     * Relative path of the student data
+     */
     private static final String studentFileLoc = "Student.dat";
+    /**
+     * Relative path of the school data
+     */
     private static final String schoolFileLoc = "School.dat";
+    /**
+     * Relative path of the course data
+     */
     private static final String courseFileLoc= "Course.dat";
 
+    /**
+     * Array list of all admins
+     */
     private static ArrayList<Admin> adminList = new ArrayList<>();
+    /**
+     * Array list of all students
+     */
     private static ArrayList<Student> studentList = new ArrayList<>();
+    /**
+     * Array list of all schools
+     */
     private static ArrayList<School> schoolList = new ArrayList<>();
+    /**
+     * Array list of all courses
+     */
     private static ArrayList<Course> courseList=new ArrayList<>();
     //private static User currentUser;
 
+    /**
+     * Get array list of all admins
+     * @return array list of admins
+     */
     public ArrayList<Admin> getAdminList() {
         return adminList;
     }
 
+    /**
+     * Get array list of all students
+     * @return array list of students
+     */
     public ArrayList<Student> getStudentList() {
         return studentList;
     }
+
+    /**
+     * Get array list of all schools
+     * @return array list of schools
+     */
     public ArrayList<School> getSchoolList() {
 
         return schoolList;
     }
+
+    /**
+     * Get array list of all courses
+     * @return array list of courses
+     */
     public ArrayList<Course> getCourseList() {
 
         return courseList;
     }
-    //method to save admins to the dat file
 
+    /**
+     * Method to save new or updated admin list to .dat file
+     */
     public void saveAdminList(){
         try {
             FileOutputStream fos = new FileOutputStream(adminFileLoc);
@@ -48,7 +92,9 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
-    //method to save students to the dat file
+    /**
+     * Method to save new or updated student list to .dat file
+     */
     public void saveStudentList(){
         try {
             FileOutputStream fos = new FileOutputStream(studentFileLoc);
@@ -60,7 +106,9 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
-    //method to save schools to the dat file
+    /**
+     * Method to save new or updated school list to .dat file
+     */
     public void saveSchoolList(){
         try {
             FileOutputStream fos = new FileOutputStream(schoolFileLoc);
@@ -72,6 +120,9 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
+    /**
+     * Method to save new or updated course list to .dat file
+     */
     public void saveCourseList(){
         try {
             FileOutputStream fos = new FileOutputStream(courseFileLoc);
@@ -83,7 +134,10 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
-    //method to retrieve admin info from files into the system
+
+    /**
+     * Method to retrieve admin list from .dat file
+     */
     public void RetrieveAdmins(){
         try {
             FileInputStream fis = new FileInputStream(adminFileLoc);
@@ -101,7 +155,9 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
-    //method to retrieve school info from files into the system
+    /**
+     * Method to retrieve student list from .dat file
+     */
     public void RetrieveStudents(){
 
         try {
@@ -120,7 +176,9 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
-    //method to retrieve school info from files into the system
+    /**
+     * Method to retrieve school list from .dat file
+     */
     public void RetrieveSchools(){
 
         try {
@@ -139,6 +197,10 @@ public class FileController implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to retrieve course list from .dat file
+     */
     public void RetrieveCourses(){
 
         try {
@@ -158,7 +220,11 @@ public class FileController implements Serializable {
         }
     }
 
-    //function to get the Student object reference by username
+
+     /** Method to get student object reference by username
+     * @param userName username of student
+     * @return student object
+     */
     public Student getStudentByUsername(String userName)
     {
         for (int i=0;i<studentList.size();i++) {
@@ -168,7 +234,12 @@ public class FileController implements Serializable {
         return null;
     }
 
-//function to get the Admin object reference by username
+
+    /**
+     * Method to get admin object reference by username
+     * @param userName username of admin
+     * @return admin object
+     */
     public Admin getAdminByUsername(String userName)
     {
         for (int i=0;i<adminList.size();i++) {
@@ -178,7 +249,11 @@ public class FileController implements Serializable {
         return null;
     }
 
-    //function to get the School object reference by username
+    /**
+     * method to get school object reference by name
+     * @param name name of school
+     * @return school object
+     */
     public School getSchoolByName(String name)
     {
         for (int i=0;i<schoolList.size();i++) {
@@ -187,7 +262,12 @@ public class FileController implements Serializable {
         }
         return null;
     }
-    
+
+    /**
+     * Method to get index by ID
+     * @param ID ID of index
+     * @return index object
+     */
     public Index getIndexByID(int ID) {
     	for (int i=0;i<schoolList.size();i++) {
     		for (Course c : schoolList.get(i).getCourses()) {
@@ -200,6 +280,12 @@ public class FileController implements Serializable {
         }
         return null;
     }
+
+    /**
+     * Method to get course object reference by course code
+     * @param cCode course code of course
+     * @return course object
+     */
     public Course getCourseByCode(String cCode) {
     	for (int i=0;i<schoolList.size();i++) {
     		for (Course c : schoolList.get(i).getCourses()) {
@@ -211,7 +297,15 @@ public class FileController implements Serializable {
         }
         return null;
     }
+
+    /**
+     * method to initialise and populate .dat file
+     */
     public void initialise(){
+
+        /**
+         * Adding admins
+         */
         Admin ad1 = new Admin("rach@ntu.edu.sg", "password123", "Admin", "Li_Xian", "1234");
         Admin ad2 = new Admin("jos@ntu.edu.sg","password124", "Admin", "joshua_brown", "1235");
         Admin ad3 = new Admin("mick@ntu.edu.sg", "password125",  "Admin", "mickey_mouse", "1236");
@@ -224,13 +318,19 @@ public class FileController implements Serializable {
         adminList.add(ad4);
         adminList.add(ad5);
 
-        //hashing password of all admins
+        /**
+         * hashing password of all admins
+         */
         for (int i =0; i< adminList.size(); i++){
             String hashedPW = adminList.get(i).getPassword();
             hashedPW = adminList.get(i).buildPasswordHash(hashedPW);
             adminList.get(i).setPassword(hashedPW);
         }
         saveAdminList();
+
+        /**
+         * adding new schools and their respectives courses, indexes and study groups
+         */
         String sdate_SCSE = "11/11/2019";
         String edate_SCSE = "11/12/2021";
         String sdate_NBS = "11/11/2016";
@@ -420,6 +520,9 @@ public class FileController implements Serializable {
         SG_00680.add(SEM5_00680);
         Index_00680.setStudyGroup(SG_00680);
 
+        /**
+         * Adding students
+         */
         //(String name, String matricNumber, String gender, String nationality, int year, School school,String choice,String recipient, String email, String password,String typeOfUser, String userName)
         Student std1 = new Student("Peter Griffen", "2456", "Female", "Turkey", 2, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "pete@gmail.com", "pete@ntu.edu.sg", "password361", "Student", "Peter_Griffen");
         Student std2 = new Student("Aloysius Chow", "2457", "Male", "China", 1, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendTele", "84216859", "sand@ntu.edu.sg", "password362", "Student", "Aloysius_Chow");
@@ -469,6 +572,9 @@ public class FileController implements Serializable {
         studentList.add(std14);
         studentList.add(std15);
 
+        /**
+         * hashing passwords of students
+         */
         for (int i =0; i< studentList.size(); i++){
             String hashedPW = studentList.get(i).getPassword();
             hashedPW = studentList.get(i).buildPasswordHash(hashedPW);
@@ -477,6 +583,9 @@ public class FileController implements Serializable {
 
         saveStudentList();
 
+        /**
+         * Getting list of students in each school
+         */
         ArrayList<Student> SCSE_studentList = new ArrayList<Student>();
         for (int i = 0; i < studentList.size(); i++) {
             Student currentStudent = studentList.get(i);
@@ -502,6 +611,12 @@ public class FileController implements Serializable {
         saveSchoolList();
         saveCourseList();
     }
+
+    /**
+     * Method to format the date of a string date
+     * @param s string date entered
+     * @return string date in date format
+     */
     public Date formatDate(String s)
     {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
