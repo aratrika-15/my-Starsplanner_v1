@@ -151,7 +151,7 @@ public class DisplayDataController {
     public void printCourseList() {
         ArrayList<School> schoolList = fc.getSchoolList();
         System.out.println("==========List of Courses==========\n");
-        System.out.println("School\t\t\t\t\t  Course Code\t    Course Name");
+        System.out.println("School\t\t\t\t\t     Course Code\t        Course Name");
         System.out.println("----------------------------------------------------------------------------------------");
         for (int i=0;i<schoolList.size();i++) {
             for (Course c : schoolList.get(i).getCourses()) {

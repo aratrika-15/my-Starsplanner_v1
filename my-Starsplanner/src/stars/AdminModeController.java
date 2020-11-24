@@ -139,7 +139,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
         school = dd.schSelection();
         do {
-            System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W: ");
+            System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W): ");
             ch = sc.nextLine().charAt(0);
             switch (ch) {
                 case 'E':

@@ -138,7 +138,6 @@ public class StudentModeController {
                 RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), status , student.getUserName());
                 student.addRegCourses(rc);
                 index.addToRegList(rc);
-                index.displayRegList();
 
             }
 

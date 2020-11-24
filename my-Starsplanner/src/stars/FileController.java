@@ -422,11 +422,11 @@ public class FileController implements Serializable {
 
         //(String name, String matricNumber, String gender, String nationality, int year, School school,String choice,String recipient, String email, String password,String typeOfUser, String userName)
         Student std1 = new Student("Peter Griffen", "2456", "Female", "Turkey", 2, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "pete@gmail.com", "pete@ntu.edu.sg", "password361", "Student", "Peter_Griffen");
-        Student std2 = new Student("Sandy Cheeks", "2457", "Male", "China", 1, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendTele", "84216859", "sand@ntu.edu.sg", "password362", "Student", "Aloysius_Chow");
+        Student std2 = new Student("Aloysius Chow", "2457", "Male", "China", 1, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendTele", "84216859", "sand@ntu.edu.sg", "password362", "Student", "Aloysius_Chow");
         Student std3 = new Student("Harry Potter", "2458", "Female", "Vietnam", 2, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "hairyntu@gmail.com", "hairy@ntu.edu.sg", "password363", "Student", "Harry_Potter");
         Student std4 = new Student("Sherlock Holmes", "2459", "Female", "Poland", 4, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "sher@gmail.com", "sher@ntu.edu.sg", "password364", "Student", "Sherlock_Holmes");
-        Student std5 = new Student("Lewis Hamilton", "2460", "Male", "England", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "lew@gmail.com", "lew@ntu.edu.sg", "password365", "Student", "Aratrika_Pal");
-        Student std6 = new Student("John Green", "2461", "Female", "Singapore", 2, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "bairi.sahitya@gmail.com", "john@ntu.edu.sg", "password366", "Student", "Bairi_Sahitya");
+        Student std5 = new Student("Aratrika Pal", "2460", "Male", "England", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "lew@gmail.com", "lew@ntu.edu.sg", "password365", "Student", "Aratrika_Pal");
+        Student std6 = new Student("Bairi Sahitya", "2461", "Female", "Singapore", 2, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "bairi.sahitya@gmail.com", "john@ntu.edu.sg", "password366", "Student", "Bairi_Sahitya");
         Student std7 = new Student("Oliver Twist", "2462", "Male", "India", 1, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "oliv@gmail.com", "oliv@ntu.edu.sg", "password367", "Student", "Oliver_Twist");
         Student std8 = new Student("Anne Frank", "2463", "Female", "Sweden", 2, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "anne@gmail.com", "anne@ntu.edu.sg", "password368", "Student", "Anne_Frank");
         Student std9 = new Student("Christopher Williams", "2464", "Female", "United Kingdom", 4, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "chris@gmail.com", "chris@ntu.edu.sg", "password369", "Student", "Christopher_Williams");
@@ -435,7 +435,7 @@ public class FileController implements Serializable {
         Student std12 = new Student("Chan Bo Seng", "2467", "Male", "Singapore", 1, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "chan@gmail.com", "chan@ntu.edu.sg", "password372", "Student", "Chan_Bo_Seng");
         Student std13 = new Student("Chloe Lee", "2468", "Female", "Singapore", 2, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "chlo@gmail.com", "chlo@ntu.edu.sg", "password373", "Student", "Chloe_Lee");
         Student std14 = new Student("Mary Poppins", "2469", "Female", "Singapore", 4, "NANYANG_BUSINESS_SCHOOL", "SendEmail", "mary@gmail.com", "mary@ntu.edu.sg", "password374", "Student", "Mary_Poppins");
-        Student std15 = new Student("Lim Jin Long", "2470", "Male", "Singapore", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "limj@gmail.com", "limj@ntu.edu.sg", "password375", "Student", "Jaylene");
+        Student std15 = new Student("Jaylene", "2470", "Male", "Singapore", 3, "SCHOOL_OF_COMPUTER_SCIENCE_AND_ENGINEERING", "SendEmail", "limj@gmail.com", "limj@ntu.edu.sg", "password375", "Student", "Jaylene");
 
         std5.setNumberOfAUs(14);
         ArrayList<Course> pastC = new ArrayList<Course>();
