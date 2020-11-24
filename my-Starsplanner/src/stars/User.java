@@ -62,7 +62,7 @@ public class User implements Serializable{
         else
             return false;
     }
-    public static String getHash(String password) {
+    private static String getHash(String password) {
         StringBuilder hash = new StringBuilder();
 
         try {
