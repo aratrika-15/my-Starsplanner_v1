@@ -15,7 +15,7 @@ public class Student extends User implements Serializable{
     private HashMap<String, String> notificationType;
     private ArrayList<Course> pastCourses;// new
     private ArrayList<Review> myReviews ;//new
-    public static final  int MAX_AUs = 22;
+    public static final  int MAX_AUs = 21;
     public Student()
     {
         super();

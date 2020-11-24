@@ -143,7 +143,7 @@ public class Index implements Serializable {
                         Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
                         if(idx.getCourse().equals(course.getCourseCode())) {
 
-                            if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
+                            if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
                                 student.removeRegCourses(registeredCourse);
                                 ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
                                 if(!indRegList.isEmpty()) {

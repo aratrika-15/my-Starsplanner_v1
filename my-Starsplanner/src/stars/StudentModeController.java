@@ -84,8 +84,8 @@ public class StudentModeController {
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
 
             //Check for total AUS after addition of the course
-            if (student.getNumberOfAUs() + course.getTotalAUs() > 21) {
-                System.out.printf("You currently have %d AUs.\nYou are not allowed to exceed the AUs limit of 21.\n", student.getNumberOfAUs());
+            if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
+                System.out.printf("You currently have %d AUs.\nYou are not allowed to exceed the AUs limit of %d.\n", student.getNumberOfAUs(), Student.MAX_AUs );
                 return;
             }
 
