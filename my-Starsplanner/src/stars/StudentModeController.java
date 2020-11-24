@@ -166,17 +166,6 @@ public class StudentModeController {
             return;
         }
         public void dropCourse(Student student, Course course, Index index, RegisteredCourse rc) {
-            //TODO
-//            boolean isRegistered=false;
-//            for(int i=0;i<student.getRegCourses().size();i++) {
-//                Index idx = fc.getIndexByID(student.getRegCourses().get(i).getRegIndex());
-//                if (idx.equals(index))
-//                    isRegistered = true;
-//            }
-//            if (!isRegistered) {
-//                System.out.printf("You are not currently registered for index %d, course %s\n", index.getIndexNum(), fc.getCourseByCode(index.getCourse()).getCourseCode());
-//                return;
-//            } else {
                 char ch;
                 do {
                     System.out.println("Are you sure you want to drop course? (Y/N)");
@@ -201,8 +190,6 @@ public class StudentModeController {
                     for(int i = 0;i < indRegList.size(); i++) {
                         if(indRegList.get(i).getStudent().equals(student.getUserName())) {
                             index.removeFromRegList(indRegList.get(i));
-                            //System.out.println("Student has been removed from index.");
-
                         }
                     }
                 }
@@ -304,10 +291,6 @@ public class StudentModeController {
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
     public void swapIndexnumber(Student student1) {
-        //TODO
-
-        //Index Index2 = FileController.getIndexByID(Ix2);
-
         RegisteredCourse rc = dd.selectRegisteredCourses(student1);
         if (rc != null) {
             Student student2;
@@ -336,9 +319,6 @@ public class StudentModeController {
 
                             ArrayList<StudyGroup> s1 = student1.getStudyGroups();
                             ArrayList<StudyGroup> s2 = student2.getStudyGroups();
-
-                            //Check if clash with current timetable for both students
-                            //ArrayList<StudyGroup> s1 = student1.getStudyGroups();
                             ArrayList<StudyGroup> s1_2 = s1;
 
                             for (int k = 0; k < s1_2.size(); k++) {
@@ -374,13 +354,9 @@ public class StudentModeController {
                                 if (theCourse1.getCourseCode().equals(c.getCourseCode())) {
                                     RegisteredCourse oldRegisteredCourse1 = regCourses1.get(l);
                                     student1.removeRegCourses(oldRegisteredCourse1);
-                                    //idx1.getRegisteredCourses().remove(oldRegisteredCourse1);
-
                                     for (int n = 0; n < idx1.getRegisteredCourses().size(); n++) {
                                         if (idx1.getRegisteredCourses().get(n).getStudent().equals(student1.getUserName())) {
                                             idx1.removeFromRegList(idx1.getRegisteredCourses().get(n));
-                                            //System.out.println("Student has been removed from index.");
-
                                         }
                                     }
 
@@ -398,12 +374,10 @@ public class StudentModeController {
                                 if (theCourse2.equals(secondC)) {
                                     RegisteredCourse oldRegisteredCourse2 = regCourses2.get(m);
                                     student2.removeRegCourses(oldRegisteredCourse2);
-                                    //idx2.getRegisteredCourses().remove(oldRegisteredCourse2);
 
                                     for (int o = 0; o < idx2.getRegisteredCourses().size(); o++) {
                                         if (idx2.getRegisteredCourses().get(o).getStudent().equals(student2.getUserName())) {
                                             idx2.removeFromRegList(idx2.getRegisteredCourses().get(o));
-                                            //System.out.println("Student has been removed from index.");
 
                                         }
                                     }
@@ -423,7 +397,6 @@ public class StudentModeController {
                 }
                 System.out.printf("The student does not have inputted index you are trying to swap");
             }}
-        //Index index2 = dd.indexSelection(c);
         return;
 
 
@@ -497,14 +470,11 @@ public class StudentModeController {
                 }
             }
         }
-
-//        System.out.println(courses.toString());
         if (courses == null || courses.size() == 0){
             System.out.println("You have no past Courses");
             flag = false;
         }
         while(flag) {
-            // Get user's selection of courses
             System.out.println("Select the course you would like to add review for:");
             for(int i = 0; i < courses.size(); i++) {
                 System.out.println(i+1 + ". " + courses.get(i).getCourseCode());
@@ -519,7 +489,7 @@ public class StudentModeController {
             else {
                 System.out.println("Invalid selection.");
             }
-        } ;
+        }
         return null;
     }
 
@@ -561,7 +531,6 @@ public class StudentModeController {
      * @param student The student currently logged in
      */
     public void addReview(Student student){
-        //print all the courses(previously taken courses) and get course choice to add review to
         Course c = reviewCourseSelection(student);
         if (c != null){
             System.out.println("Enter your review below:");
@@ -671,7 +640,6 @@ public class StudentModeController {
             }
         } while(flag);
         do {
-            // Get user's selection of courses
             System.out.println("Select the course to view Reviews for:");
             System.out.println("");
             for(int i = 0; i < schCourses.size(); i++) {
@@ -731,8 +699,6 @@ public class StudentModeController {
         System.out.println("Course  Index  Lesson Type  Start Time - End Time  Venue    Week Type");
 
         for (Map.Entry<Integer, String> day : week.entrySet()) {
-
-//            System.out.printf("%s\n",day.getValue());
             System.out.println("------------------------"+day.getValue()+"------------------------");
 
 

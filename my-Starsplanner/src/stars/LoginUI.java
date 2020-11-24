@@ -22,7 +22,6 @@ private static String typeOfUser;
         Scanner sc = new Scanner(System.in);
         LoginController login = new LoginController();
         Console console = System.console();
-        String enteredPassword;
 
 
         System.out.print("Enter your username: ");
@@ -75,8 +74,10 @@ private static String typeOfUser;
         System.out.println("|\t\t         __/ |                               \t\t|");
         System.out.println("|\t\t        |___/                                \t\t|");
         System.out.println("");
-        System.out.println("Login to begin interaction");
-        System.out.println("*******************");
+        System.out.println("#############################################################");
+        System.out.println("Login to begin interaction with the planner");
+        System.out.println("*******************************************");
+
     }
 
 }
