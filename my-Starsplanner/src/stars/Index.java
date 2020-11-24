@@ -42,7 +42,6 @@ public class Index implements Serializable {
     }
     public void setVacancies(int vacancies)
     {
-        //FileController fc = new FileController();
         int diff = vacancies-this.vacancies;
         this.vacancies=vacancies;
     }
@@ -126,62 +125,6 @@ public class Index implements Serializable {
 
 
 
-    public void allocateVacancies(Course course, Index index) {
 
-        Student student;
-        Queue<Student> waitList = index.getWaitList();
-        int vacancy;
-        FileController fc = new FileController();
-
-        for (vacancy = index.getVacancies(); vacancy > 0; vacancy--) {
-            if (waitList != null){
-                Student ss = waitList.poll();
-                if (ss != null) {
-                    student = fc.getStudentByUsername(ss.getUserName());
-
-                    for(RegisteredCourse registeredCourse : student.getRegCourses()) {
-                        Index idx = fc.getIndexByID(registeredCourse.getRegIndex());
-                        if(idx.getCourse().equals(course.getCourseCode())) {
-
-                            if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
-                                student.removeRegCourses(registeredCourse);
-                                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
-                                if(!indRegList.isEmpty()) {
-                                    for(int i = 0;i < indRegList.size(); i++) {
-                                        if(indRegList.get(i).getStudent().equals(student.getUserName())) {
-                                            index.removeFromRegList(indRegList.get(i));
-                                        }
-                                    }
-                                }
-                                vacancy++;
-                            } else {
-                                student.removeRegCourses(registeredCourse);
-                                ArrayList<RegisteredCourse> indRegList=index.getRegisteredCourses();
-                                if(!indRegList.isEmpty()) {
-                                    for(int i = 0;i < indRegList.size(); i++) {
-                                        if(indRegList.get(i).getStudent().equals(student.getUserName())) {
-                                            index.removeFromRegList(indRegList.get(i));
-                                        }
-                                    }
-                                }
-                                RegisteredCourse regCourse=new RegisteredCourse(index.getIndexNum(),"Registered",student.getUserName());
-                                student.setNumberOfAUs(student.getNumberOfAUs() + course.getTotalAUs());
-                                student.addRegCourses(regCourse);
-                                index.addToRegList(regCourse);
-//
-                            }
-                        }
-                        //set new timetable schedule
-                    }
-                    NotificationController nc = new NotificationController();
-                    nc.notify(student, this);
-                } else {
-                    setVacancies(vacancy);
-                    break;
-                }
-            }
-        }
-        setVacancies(vacancy);
-    }
 
 }
