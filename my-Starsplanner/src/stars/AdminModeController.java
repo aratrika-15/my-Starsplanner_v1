@@ -565,7 +565,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> printStulistByCourse() {
-        ArrayList<String[]> stuList = new ArrayList<String[]>();
+        ArrayList<String[]> stuListByCourse = new ArrayList<String[]>();
         School school = dd.schSelection();
         if (school != null) {
             Course course = dd.courseSelection(school);
@@ -584,7 +584,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 String gender = student.getGender();
                                 String nationality = student.getNationality();
                                 String[] stuDetails = new String[] {name, gender, nationality};
-                                stuList.add(stuDetails);
+                                stuListByCourse.add(stuDetails);
                             }
                             else {
                                 displayErrorMsg("Error. No registration was made.");
@@ -595,7 +595,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         continue;
                     }
                 }
-                return stuList;
+                return stuListByCourse;
             }
             else {
                 displayErrorMsg("Error. No such index."); //maybe should setup NullPointerException
