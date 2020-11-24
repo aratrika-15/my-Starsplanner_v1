@@ -271,6 +271,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
     public void addCourse() {
         ValidateIntController vc = new ValidateIntController();
         DisplayDataController dd= new DisplayDataController();
+        FileController fc = new FileController();
 
         School s = dd.schSelection();
         while (s == null){
@@ -280,8 +281,24 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
         if (s != null) {
             System.out.println("Enter the following details of the course you would like to add:");
+            System.out.println("Course Code:");
+            String n = sc.next();
+            while (validateCourseCodeFormat(n) == null) {
+                System.out.println(n + " is not a valid input. Enter again:");
+                n = sc.next();
+            }
+            String courseCode = validateCourseCodeFormat(n);
+
+            Course check = fc.getCourseByCode(courseCode);
+            if (check != null){
+                System.out.println("The course you are trying to add already exists");
+                return;
+            }
+
             System.out.println("name:");
+            sc.nextLine();
             String name = sc.nextLine();
+
             System.out.println("Course Type (LEC, LEC_TUT, LEC_TUT_LAB) :");
             String cType = sc.next();
             String cTypes[] = {"LEC", "LEC_TUT", "LEC_TUT_LAB"};
@@ -296,13 +313,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             int nLectures = vc.validateInt(1,3);
 
 
-            System.out.println("Course Code:");
-            String n = sc.next();
-            while (validateCourseCodeFormat(n) == null) {
-                System.out.println(n + " is not a valid input. Enter again:");
-                n = sc.next();
-            }
-            String courseCode = validateCourseCodeFormat(n);
+
 
 
             System.out.println("total AUs:");
