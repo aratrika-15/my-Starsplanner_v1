@@ -8,8 +8,8 @@ public class Review implements Serializable {
     private String student;
     private String course;
     private String reviewID;
-
-
+    private Course theCourse;
+    private Student stu;
 
 
     public Review(String review, boolean recommended, String username, String courseCode) {
@@ -19,8 +19,8 @@ public class Review implements Serializable {
         this.student = username;
         this.course = courseCode;
         this.reviewID = username+courseCode;
-        Course theCourse= fc.getCourseByCode(courseCode);
-        Student stu = fc.getStudentByUsername(username);
+        theCourse= fc.getCourseByCode(courseCode);
+        stu = fc.getStudentByUsername(username);
         theCourse.addReview(this);
         stu.addMyReview(this);
 
@@ -31,7 +31,7 @@ public class Review implements Serializable {
         this.recommended = recommended;
         this.course = courseCode;
         this.reviewID = "NA";
-        Course theCourse= fc.getCourseByCode(courseCode);
+        theCourse= fc.getCourseByCode(courseCode);
         theCourse.addReview(this);
 
     }
