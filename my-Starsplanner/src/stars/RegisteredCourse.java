@@ -1,13 +1,9 @@
 package stars;
-import java.io.File;
-import java.util.*;
 import java.io.Serializable;
 public class RegisteredCourse implements Serializable {
     private int regIndex;
     private String regStatus;
     private String student;
-    FileController fc = new FileController();
-
     public RegisteredCourse(int regIndex, String regStatus, String student) {
         this.regIndex = regIndex;
         this.regStatus = regStatus;

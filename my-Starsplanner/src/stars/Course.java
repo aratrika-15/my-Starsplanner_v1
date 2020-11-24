@@ -13,7 +13,6 @@ public class Course implements Serializable {
     private double percRecommended;//new
     private int totalReviews;//new
     private ArrayList<Review> reviews = new ArrayList<Review>();//new
-    FileController fc = new FileController();
     public Course()
     {
 

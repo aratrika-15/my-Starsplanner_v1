@@ -10,7 +10,6 @@ public class StudyGroup implements Serializable{
     private String weekType;
     private int index;
     private LessonType lessonType;
-    FileController fc = new FileController();
     public StudyGroup()
     {
 

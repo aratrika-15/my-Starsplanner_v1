@@ -7,13 +7,13 @@ import java.util.Scanner;
 import java.text.ParseException;
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
-    FileController fc = new FileController();
-    ValidateIntController vc = new ValidateIntController();
-    DisplayDataController dd= new DisplayDataController();
-    SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
 
 
     public void editStudentAccessPeriod() {
+        FileController fc = new FileController();
+        DisplayDataController dd= new DisplayDataController();
+
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy/HH/mm");
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
         format.setLenient(false);
@@ -60,6 +60,10 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     //method for admin to add a student
     public void addStudent() {
+        FileController fc = new FileController();
+        ValidateIntController vc = new ValidateIntController();
+        DisplayDataController dd= new DisplayDataController();
+
         sc.nextLine();
         Student student = new Student();
         student.setTypeOfUser("Student");
@@ -195,6 +199,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
     private void addStudyGroup(Index i, LessonType lessonType) {
+        ValidateIntController vc = new ValidateIntController();
+
         String venue, weekType;
         int dayOfWeek, startTime;
         int endTime = -1;
@@ -237,6 +243,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
     private void addIndex(Course c) {
+        ValidateIntController vc = new ValidateIntController();
+
         System.out.println("Enter the following details of the Index you would like to add:");
         System.out.println("Index Number:");
         int indexNum = vc.validateInt(0, 99999);
@@ -261,6 +269,9 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     //	@SuppressWarnings("unused")
     public void addCourse() {
+        ValidateIntController vc = new ValidateIntController();
+        DisplayDataController dd= new DisplayDataController();
+
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
@@ -325,6 +336,10 @@ public class AdminModeController implements DisplayErrorMsgUI{
             return false;
     }
     public void updateCourse() {
+        FileController fc = new FileController();
+        ValidateIntController vc = new ValidateIntController();
+        DisplayDataController dd= new DisplayDataController();
+
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
@@ -522,6 +537,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
     public void removeCourse() {
+        DisplayDataController dd= new DisplayDataController();
+
         School s = dd.schSelection();
         while (s == null) {
                 System.out.println("School does not exist");
@@ -565,7 +582,10 @@ public class AdminModeController implements DisplayErrorMsgUI{
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> printStulistByCourse() {
-        ArrayList<String[]> stuListByCourse = new ArrayList<String[]>();
+        FileController fc = new FileController();
+        DisplayDataController dd= new DisplayDataController();
+
+        ArrayList<String[]> stuList = new ArrayList<String[]>();
         School school = dd.schSelection();
         if (school != null) {
             Course course = dd.courseSelection(school);
@@ -584,7 +604,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 String gender = student.getGender();
                                 String nationality = student.getNationality();
                                 String[] stuDetails = new String[] {name, gender, nationality};
-                                stuListByCourse.add(stuDetails);
+                                stuList.add(stuDetails);
                             }
                             else {
                                 displayErrorMsg("Error. No registration was made.");
@@ -595,7 +615,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                         continue;
                     }
                 }
-                return stuListByCourse;
+                return stuList;
             }
             else {
                 displayErrorMsg("Error. No such index."); //maybe should setup NullPointerException
@@ -612,7 +632,10 @@ public class AdminModeController implements DisplayErrorMsgUI{
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> printStulistByIndex() {
-        ArrayList<String[]> stuList = new ArrayList<String[]>();
+        FileController fc = new FileController();
+        DisplayDataController dd= new DisplayDataController();
+
+        ArrayList<String[]> stuListByCourse = new ArrayList<String[]>();
         School school = dd.schSelection();
         if(school != null) {
             Course course = dd.courseSelection(school);
@@ -630,14 +653,14 @@ public class AdminModeController implements DisplayErrorMsgUI{
                                 String gender = student.getGender();
                                 String nationality = student.getNationality();
                                 String[] stuDetails = new String[] {name, gender, nationality};
-                                stuList.add(stuDetails);
+                                stuListByCourse.add(stuDetails);
                             }
                             else {
                                 System.out.println("Error. No registration was made.");
                             }
                         }
                     }
-                    return stuList;
+                    return stuListByCourse;
                 }
                 else {
                     System.out.println("Error. No such index."); //maybe should setup NullPointerException

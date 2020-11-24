@@ -8,11 +8,12 @@ public class Review implements Serializable {
     private String student;
     private String course;
     private String reviewID;
-    FileController fc= new FileController();
+
 
 
 
     public Review(String review, boolean recommended, String username, String courseCode) {
+        FileController fc= new FileController();
         this.review = review;
         this.recommended = recommended;
         this.student = username;
@@ -25,6 +26,7 @@ public class Review implements Serializable {
 
     }
     public Review(String review, boolean recommended, String courseCode) {
+        FileController fc= new FileController();
         this.review = review;
         this.recommended = recommended;
         this.course = courseCode;
@@ -49,6 +51,7 @@ public class Review implements Serializable {
     }
 
     public void setRecommended(boolean recommended) {
+        FileController fc= new FileController();
         Course theCourse = fc.getCourseByCode(this.course);
         if (recommended  && !this.recommended) {
             theCourse.setPercRecommended((theCourse.getPercRecommended() * theCourse.getTotalReviews() + 1)/(double) theCourse.getTotalReviews());

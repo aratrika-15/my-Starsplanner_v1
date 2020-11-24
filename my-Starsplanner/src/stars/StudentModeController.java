@@ -1,16 +1,13 @@
 package stars;
 import java.util.*;
 import de.zabuza.grawlox.*;
-import jdk.jfr.Registered;
 
 import java.io.*;
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
-    FileController fc=new FileController();
-    DisplayDataController dd = new DisplayDataController();
-    ValidateIntController vc = new ValidateIntController();
-
     public void inputAddCourse(Student student){
+        DisplayDataController dd = new DisplayDataController();
+
 
         School school1 = dd.schSelection();
         if (school1 != null) {
@@ -25,6 +22,8 @@ public class StudentModeController {
     }
 
     private Index indexInput(Course course) {
+        ValidateIntController vc = new ValidateIntController();
+
         String time_1, time_2;
 
         Map<Integer, String> week = new HashMap<>();
@@ -82,8 +81,9 @@ public class StudentModeController {
 
 
     public void addCourse(Student student, ArrayList<RegisteredCourse> registeredCourses, Course course, Index index) {
+        FileController fc=new FileController();
 
-            //Check for total AUS after addition of the course
+        //Check for total AUS after addition of the course
             if (student.getNumberOfAUs() + course.getTotalAUs() > Student.MAX_AUs) {
                 System.out.printf("You currently have %d AUs.\nYou are not allowed to exceed the AUs limit of %d.\n", student.getNumberOfAUs(), Student.MAX_AUs );
                 return;
@@ -141,7 +141,6 @@ public class StudentModeController {
             RegisteredCourse rc = new RegisteredCourse(index.getIndexNum(), status , student.getUserName());
             student.addRegCourses(rc);
             index.addToRegList(rc);
-//            index.displayRegList();
 
             //Set Registered
             System.out.printf("You have been successfully added for index %d\n", index.getIndexNum());
@@ -181,6 +180,7 @@ public class StudentModeController {
 //        }
 
     public void printRegisteredCourses(Student student) {
+        FileController fc=new FileController();
         ArrayList<RegisteredCourse> regCourses = student.getRegCourses();
         ArrayList<RegisteredCourse> waitlistedCourses = new ArrayList<>();
         ArrayList<RegisteredCourse> registeredCourses = new ArrayList<>();
@@ -231,7 +231,6 @@ public class StudentModeController {
         return;
     }
     public void checkVacanciesAvailable() {
-        //TODO
         DisplayDataController dd = new DisplayDataController();
         School school = dd.schSelection();
         if (school != null) {
@@ -248,7 +247,8 @@ public class StudentModeController {
         }
     }
     public void changeIndexNumber(Student student){
-
+        FileController fc=new FileController();
+        DisplayDataController dd = new DisplayDataController();
         RegisteredCourse rc = dd.selectRegisteredCourses(student);
         School sch = fc.getSchoolByName(student.getSchool());
         Index currentIn = fc.getIndexByID(rc.getRegIndex());
@@ -272,6 +272,9 @@ public class StudentModeController {
         addCourse(student, student.getRegCourses(), indexCourse, newIn);
     }
     public void swapIndexnumber(Student student1) {
+        FileController fc=new FileController();
+        DisplayDataController dd = new DisplayDataController();
+
         RegisteredCourse rc = dd.selectRegisteredCourses(student1);
         if (rc != null) {
             Student student2;
@@ -479,6 +482,8 @@ public class StudentModeController {
      * @return return true if input is 1, false otherwise
      */
     private boolean getRec() {
+        ValidateIntController vc = new ValidateIntController();
+
         System.out.println("Would you recommend the course? (1/0)");
         int i = vc.validateInt(0,1);
         if (i==0){return false;}
@@ -512,6 +517,7 @@ public class StudentModeController {
      * @param student The student currently logged in
      */
     public void addReview(Student student){
+
         Course c = reviewCourseSelection(student);
         if (c != null){
             System.out.println("Enter your review below:");
@@ -578,7 +584,7 @@ public class StudentModeController {
      * @param student The student currently logged in
      */
     public void deleteReview(Student student) {
-
+        FileController fc=new FileController();
         Review rev = reviewSelection(student);
         if (rev != null){
             student.deleteReview(rev);
@@ -661,6 +667,8 @@ public class StudentModeController {
      * @param studyGroups ArrayList of studyGroups of the student
      */
     public void getTimetable(ArrayList<StudyGroup> studyGroups) {
+        FileController fc=new FileController();
+
 
         String time_1, time_2;
 
@@ -719,6 +727,7 @@ public class StudentModeController {
      * @return true if there is clash, false otherwise
      */
     private boolean checkClash(Index index, ArrayList<StudyGroup> studyGroups) {
+        FileController fc=new FileController();
 
         String time_1, time_2, time_3, time_4;
         boolean clash = false;
@@ -783,6 +792,7 @@ public class StudentModeController {
         }
     }
     private void updateVacancies(String cCode, int n){
+        FileController fc=new FileController();
         Course theCourse = fc.getCourseByCode(cCode);
         theCourse.editVacancies(n);
     }

@@ -10,7 +10,6 @@ public class Index implements Serializable {
     private Queue<Student> waitList;
     private ArrayList<RegisteredCourse> regList;
     private ArrayList<StudyGroup> studyGroup;
-    FileController fc = new FileController();
     public Index()
     {
 
@@ -132,6 +131,7 @@ public class Index implements Serializable {
         Student student;
         Queue<Student> waitList = index.getWaitList();
         int vacancy;
+        FileController fc = new FileController();
 
         for (vacancy = index.getVacancies(); vacancy > 0; vacancy--) {
             if (waitList != null){
