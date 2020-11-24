@@ -9,10 +9,10 @@ import java.lang.String;
 import static stars.CourseType.LEC_TUT_LAB;
 
 public class FileController implements Serializable {
-    private static final String adminFileLoc= "./source/Admin.dat";
-    private static final String studentFileLoc = "./source/Student.dat";
-    private static final String schoolFileLoc = "./source/School.dat";
-    private static final String courseFileLoc= "./source/Course.dat";
+    private static final String adminFileLoc= "Admin.dat";
+    private static final String studentFileLoc = "Student.dat";
+    private static final String schoolFileLoc = "School.dat";
+    private static final String courseFileLoc= "Course.dat";
 
     private static ArrayList<Admin> adminList = new ArrayList<>();
     private static ArrayList<Student> studentList = new ArrayList<>();
@@ -521,43 +521,6 @@ public class FileController implements Serializable {
 
         saveSchoolList();
         saveCourseList();
-    }
-    public void printStudentList()
-    {   System.out.println("");
-        System.out.println("List of students");
-        System.out.println(" Student Name\t\t   Matriculation Number\t      Gender \t  Nationality \t\t   School\t\t\t      Year of Study\t\t");
-        System.out.println("_________________________________________________________________________________________________________________");
-        for(int i=0;i<studentList.size();i++)
-        {
-            Student student=studentList.get(i);
-            String column0Format = "%3d";
-            String column1Format = "%-25s";
-            String column2Format = "%-23s";
-            String column3Format = "%-10s";
-            String column4Format = "%-20s";
-            String column5Format = "%-50s";
-            String column6Format = "%-1d";
-            String formatInfo = column0Format+ ". " + column1Format + " " + column2Format + " " + column3Format + " " + column4Format + " " + column5Format + " " + column6Format;
-            System.out.format(formatInfo, (i+1), student.getName(), student.getMatricNumber(), student.getGender(), student.getNationality(), getSchoolByName(student.getSchool()).getName(), student.getYear());
-            System.out.println();
-        }
-
-    }
-    public void printCourseList() {
-        System.out.println("==========List of Courses==========\n");
-        System.out.println("School\t\t\t\t\t  Course Code\t    Course Name");
-        System.out.println("----------------------------------------------------------------------------------------");
-        for (int i=0;i<schoolList.size();i++) {
-            for (Course c : schoolList.get(i).getCourses()) {
-                if (c.getCourseCode() != null) {
-                    System.out.printf("%-50s",schoolList.get(i).getName());
-                    System.out.printf("%-15s",c.getCourseCode());
-                    System.out.printf("%-50s\n",c.getName());
-                }
-            }
-        }
-
-
     }
     public Date formatDate(String s)
     {

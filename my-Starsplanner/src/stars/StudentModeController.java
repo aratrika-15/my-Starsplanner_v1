@@ -55,7 +55,7 @@ public class StudentModeController {
 
             System.out.println((i+1)+ ": "+indexes.get(i).getIndexNum());
             System.out.println("Lesson Type  Day       Start Time - End Time   Venue    Week Type");
-            System.out.println("-------------------------------------------------------");
+            System.out.println("-----------------------------------------------------------------");
             for (StudyGroup sg : studyGroups){
                 System.out.printf("%-13s",sg.getLessonType());
                 System.out.printf("%-16s",week.get(sg.getDayOfWeek()));

@@ -19,37 +19,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
         School updateSchool;
         Date convertedStartDate=null,convertedEndDate=null;
         format.setLenient(false);
-//        do{
-//            System.out.println("Enter the School Name");
-//            String school=sc.nextLine().trim();
-//            updateSchool = fc.getSchoolByName(school);
-//            if(updateSchool==null)
-//                System.out.println("Error. This school does not exist.");
-//        }while(updateSchool==null);
         updateSchool = dd.schSelection();
-        /*try {
-            format.setLenient(false);
-            System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
-            String startDate=sc.next();
-
-            convertedStartDate = format.parse(startDate);
-            System.out.println(convertedStartDate);
-            System.out.println(format.format(convertedStartDate));
-            System.out.println("Enter the new registration end period in dd/mm/yyyy/hh/mm");
-            String endDate=sc.next();
-            convertedEndDate = format.parse(endDate);
-            System.out.println(convertedEndDate);
-            System.out.println(format.format(convertedEndDate));
-        } catch (ParseException e) {
-            //e.printStackTrace();
-            System.out.println("Invalid registration period format");
-        }
-        catch(NullPointerException e)
-        {
-            //e.printStackTrace();
-            System.out.println("Invalid registration period format");
-        }*/
-
         do{
             try{
                 System.out.println("Enter the new registration start period in dd/mm/yyyy/hh/mm");
@@ -59,7 +29,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 System.out.println(convertedStartDate);
                 System.out.println(format.format(convertedStartDate));
             } catch (ParseException e) {
-                //e.printStackTrace();
                 System.out.println("Invalid registration period format");
             }
         } while (convertedStartDate == null);
@@ -73,7 +42,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 System.out.println(convertedEndDate);
                 System.out.println(format.format(convertedEndDate));
             } catch (ParseException e) {
-                //e.printStackTrace();
                 System.out.println("Invalid registration period format");
             }
         } while (convertedEndDate == null);
@@ -171,14 +139,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
         } while (!gender.equals("Female") && !gender.equals("Male"));
 
-//        do {
-//            System.out.println("Enter the student's school name ");
-//            schoolName = sc.nextLine().trim().toUpperCase();
-//            school = fc.getSchoolByName(schoolName);
-//            if (school == null) {
-//                System.out.println("Error. This school does not exist.");
-//            }
-//        } while (school == null);
         school = dd.schSelection();
         do {
             System.out.println("Enter the student's preferred notification type (Email E/Telegram T/Whatsapp W: ");
@@ -213,34 +173,12 @@ public class AdminModeController implements DisplayErrorMsgUI{
         fc.saveSchoolList();
         System.out.println(student.getSchool());
         //print the list of students after every new student is added
-        fc.printStudentList();
+        dd.printStudentList();
     }
 
     //method for admin to add a student
 
 
-
-//    private void validateInt() {
-//        while (!sc.hasNextInt()) {
-//            String input = sc.next();
-//            System.out.println(input + " is not a valid input. Enter again:");
-//        }
-//    }
-//    private int validateInt(int min, int max) {
-//        do {
-//            if (sc.hasNextInt()) {
-//                int choice = sc.nextInt();
-//                if (choice>=min && choice <=max) {
-//                    return choice;
-//                } else {
-//                    System.out.println("Invalid selection. Enter a valid input.");
-//                }
-//            }else {
-//                String input = sc.next();
-//                System.out.println("Invalid selection.Enter a valid input.");
-//            }
-//        } while(true);
-//    }
     private String validateCourseCodeFormat(String cCode) {
         if (cCode.length() == 6) {
             try {
@@ -327,9 +265,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     //	@SuppressWarnings("unused")
     public void addCourse() {
-//        System.out.println("Enter the school you would like to add a course to:");
-//        String schName = sc.next();
-//        School s = fc.getSchoolByName(schName);
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
@@ -376,7 +311,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             }
 
         }
-        fc.printCourseList();
+        dd.printCourseList();
     }
     public boolean checkCourseHasStudents(Course c)
     {
@@ -394,10 +329,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
             return false;
     }
     public void updateCourse() {
-//        System.out.println("Enter the Course Code of the course you would like to update: ");
-//        String courseCode = sc.next();
-//        // convert string index to Index class
-//        Course c = fc.getCourseByCode(courseCode);
         School s = dd.schSelection();
         while (s == null){
             System.out.println("School does not exist");
@@ -529,16 +460,6 @@ public class AdminModeController implements DisplayErrorMsgUI{
                     }
                     break;
                 case 2:
-//                    System.out.println("Enter the index ID you would like to update:");
-//                    vc.validateInt();
-//                    int index_id = sc.nextInt();
-//                    Index i = null;
-//                    for (Index ind : c.getIndex()) {
-//                        if (ind.getIndexNum() == index_id) {
-//                            i = ind;
-//                        }
-//                    }
-//				Index i = fc.getIndexByID(index_id);
                     Index i = dd.indexSelection(c);
                     if (i != null) {
                         System.out.println("1. Edit group number");
@@ -605,13 +526,8 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
 
     public void removeCourse() {
-//        System.out.println("Enter the Course Code of the course you would like to remove: ");
-//        String courseCode = sc.next();
-//        // convert string index to Index class
-//        Course c = fc.getCourseByCode(courseCode);
-
-            School s = dd.schSelection();
-            while (s == null) {
+        School s = dd.schSelection();
+        while (s == null) {
                 System.out.println("School does not exist");
                 s = dd.schSelection();
             }
@@ -619,7 +535,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
             if (c != null) {
               if(checkCourseHasStudents(c)==false){
                   s.deleteCourse(c);
-                  fc.printCourseList();
+                  dd.printCourseList();
               }
               else
                   System.out.println("Cannot remove course since students are already registered");

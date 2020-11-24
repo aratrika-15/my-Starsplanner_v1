@@ -21,7 +21,3 @@ public class Admin extends User implements Serializable {
     }
 
 }
-
-// we never pass in type of user as constructor for User in class diagram
-// method signature of Admin class incomplete as well in class diagram
-// also missing Admin constructor in class diagram
