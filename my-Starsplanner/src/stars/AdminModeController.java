@@ -226,7 +226,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
                 System.out.println("Invalid selection.Enter a valid input.");
             }
         } while(flag);
-        System.out.println("Day of the week the " + lessonType + "  will take place: (1.Mon, 2.Tues, 3.Wed, 4.Thurs, 5.Fri, 6.Sat");//how to add for multiple days?
+        System.out.println("Day of the week the " + lessonType + "  will take place: (1.Mon, 2.Tues, 3.Wed, 4.Thurs, 5.Fri, 6.Sat)");//how to add for multiple days?
         dayOfWeek = vc.validateInt(1,6);
         System.out.println("Week type of " + lessonType + "(ODD, EVEN, ALL)");
         weekType = sc.next();
