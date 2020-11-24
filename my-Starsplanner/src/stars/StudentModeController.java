@@ -153,11 +153,11 @@ public class StudentModeController {
                 do {
                     System.out.println("Are you sure you want to drop course? (Y/N)");
                     ch=sc.nextLine().charAt(0);
-                    if(ch=='N')
+                    if(ch=='N'||ch=='n')
                         return;
-                    if(ch!='Y'&&ch!='N')
+                    if(ch!='Y'&&ch!='N'&&ch!='y'&&ch!='n')
                         System.out.println("Invalid input. Try again");
-                }while(ch!='Y');
+                }while(ch!='Y'&&ch!='y');
                 student.setNumberOfAUs(student.getNumberOfAUs()-course.getTotalAUs());
                 System.out.println("The course has been dropped for you.");
                 index.setVacancies(index.getVacancies()+1);
