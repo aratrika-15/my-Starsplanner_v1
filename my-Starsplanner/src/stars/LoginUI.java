@@ -81,6 +81,10 @@ public class LoginUI {
 
     }
 
+    /**
+     * Method to show Welcome message
+     */
+
     private static void displayWelcomeMessage()
     {
         System.out.println("");
