@@ -37,6 +37,10 @@ public class StudyGroup implements Serializable{
      * Lesson type of this study group
      */
     private LessonType lessonType;
+
+    /**
+     * default constructor
+     */
     public StudyGroup()
     {
 

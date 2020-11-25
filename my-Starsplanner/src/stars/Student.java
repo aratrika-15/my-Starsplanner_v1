@@ -55,11 +55,32 @@ public class Student extends User implements Serializable{
      * maximum number of AUs this student can take
      */
     public static final  int MAX_AUs = 21;
+
+    /**
+     * default constructor
+     */
     public Student()
     {
         super();
     }
 
+    /**
+     *
+     * @param name name of new student
+     * @param matricNumber matriculation number of new student
+     * @param gender gender of new student
+     * @param nationality nationality of new student
+     * @param year year of study of new student
+     * @param numberOFAUs Number of AUs already registered by Student
+     * @param regCourses list of registered Courses by Student
+     * @param school school name this new student belongs to
+     * @param choice notification choice of new student
+     * @param recipient recipient address of new student
+     * @param email email of new student
+     * @param password actual password of new student
+     * @param typeOfUser user type of new student
+     * @param userName username of new student
+     */
     public Student(String name, String matricNumber, String gender, String nationality, int year, int numberOFAUs,
                    ArrayList<RegisteredCourse> regCourses, String school, String choice, String recipient, String email, String password, String typeOfUser, String userName) {
         super(email, password, typeOfUser, userName);

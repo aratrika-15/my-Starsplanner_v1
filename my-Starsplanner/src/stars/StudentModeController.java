@@ -8,6 +8,9 @@ import java.io.*;
  * Controller class to facilitate the logic for the Student functions
  */
 public class StudentModeController {
+    /**
+     * used to get user's input
+     */
     Scanner sc=new Scanner(System.in);
 
     /**

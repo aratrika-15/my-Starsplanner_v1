@@ -40,6 +40,10 @@ public class Index implements Serializable {
      * Array list of study groups of this index
      */
     private ArrayList<StudyGroup> studyGroup;
+
+    /**
+     * default constructor
+     */
     public Index()
     {
 

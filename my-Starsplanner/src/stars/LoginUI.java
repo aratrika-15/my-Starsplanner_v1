@@ -21,6 +21,10 @@ public class LoginUI {
      */
     private static String typeOfUser;
 
+    /**
+     * main method to run the programme
+     * @param args -
+     */
     public static void main(String[] args) {
         FileController fc = new FileController();
         /**

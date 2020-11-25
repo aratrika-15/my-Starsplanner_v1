@@ -54,6 +54,13 @@ public class Review implements Serializable {
         stu.addMyReview(this);
 
     }
+
+    /**
+     *
+     * @param review String review of this review
+     * @param recommended Boolean of whether is review recommends or not
+     * @param courseCode Course of this review
+     */
     public Review(String review, boolean recommended, String courseCode) {
         FileController fc= new FileController();
         this.review = review;

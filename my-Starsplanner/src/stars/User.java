@@ -27,7 +27,14 @@ public class User implements Serializable{
      * Username of user
      */
     private String userName;
+    /**
+     * used in password hashing
+     */
     private static final String SALT= "STARWARS";
+
+    /**
+     * default constructor
+     */
     public User()
     {
 

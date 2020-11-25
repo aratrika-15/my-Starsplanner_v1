@@ -52,6 +52,10 @@ public class Course implements Serializable {
      * all the reviews for this course stored in an array list
      */
     private ArrayList<Review> reviews = new ArrayList<Review>();//new
+
+    /**
+     * default constructor
+     */
     public Course()
     {
 
@@ -78,6 +82,17 @@ public class Course implements Serializable {
         this.nLectures=nLectures;
 
     }
+
+    /**
+     * Create a new course with the following details
+     * @param name Name of this course
+     * @param courseCode courseCode Course code of this course
+     * @param school school Which school this course belongs to
+     * @param courseType courseType Course type of this course
+     * @param totalAUs totalAUs Number of total AUs for this course
+     * @param nLectures nLectures Number of lectures conducted in this course
+     *
+     */
     public Course(String name, String courseCode, String school, CourseType courseType, int totalAUs, int nLectures)
     {	//need to do object creation for ArrayList index here maybe
         //if school is a composition of course, can we add a school object inside course?

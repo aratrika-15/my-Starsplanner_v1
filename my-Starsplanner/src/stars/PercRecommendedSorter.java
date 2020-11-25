@@ -8,9 +8,10 @@ import java.util.Comparator;
 public class PercRecommendedSorter implements Comparator<Course> {
     /**
      * Sort courses by percentage recommended.
-     * @param c1
-     * @param c2
+     * @param c1 first course to be compared
+     * @param c2 second course to be compared
      * @return int
+     *
      */
 
     public int compare(Course c1, Course c2) {

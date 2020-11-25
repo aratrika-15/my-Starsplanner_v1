@@ -10,6 +10,9 @@ import java.text.ParseException;
  * Controller class to facilitate the logic for the admin functions
  */
 public class AdminModeController implements DisplayErrorMsgUI{
+    /**
+     * To get user input
+     */
     Scanner sc = new Scanner(System.in);
 
 
@@ -389,6 +392,12 @@ public class AdminModeController implements DisplayErrorMsgUI{
          */
         dd.printCourseList();
     }
+
+    /**
+     * checks whether a course has studnets
+     * @param c The course to check for
+     * @return true if the course has students and false otherwise
+     */
     public boolean checkCourseHasStudents(Course c)
     {
         ArrayList<Index> indices=c.getIndex();

@@ -28,6 +28,10 @@ public class School implements Serializable{
      * Array list of courses in this school
      */
     private ArrayList<Course> courses;
+
+    /**
+     * default constructor
+     */
     public School(){}
     /**
      * Create School

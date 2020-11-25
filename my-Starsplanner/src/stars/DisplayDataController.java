@@ -7,8 +7,18 @@ import java.util.Scanner;
  * Controller class to display stored information for various entities and return a valid choice from user
  */
 public class DisplayDataController {
+    /**
+     * FileController object
+     */
     FileController fc = new FileController();
+    /**
+     * ValidateIntController object
+     */
     ValidateIntController vc=new ValidateIntController();
+
+    /**
+     * default constructor
+     */
     public DisplayDataController() {}
 
     /**

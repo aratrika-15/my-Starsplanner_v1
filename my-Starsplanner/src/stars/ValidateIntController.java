@@ -6,6 +6,9 @@ import java.util.*;
  * Controller class to ensure input by a user is as required
  */
 public class ValidateIntController {
+    /**
+     * used to get user's input
+     */
     Scanner sc = new Scanner(System.in);
 
     /**

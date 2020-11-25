@@ -14,8 +14,8 @@ public class NotificationFactory {
 
     /**
      * Dynamically loading selected class
-     * @param className
-     * @return Notification
+     * @param className method of notification (eg. email, whatsapp, telegram)
+     * @return Notification respective Notification object based on notification method
      */
     public Notifications getNotifObj(String className) {
         Notifications notification = null;
