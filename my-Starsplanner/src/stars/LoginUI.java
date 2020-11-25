@@ -3,6 +3,9 @@ package stars;
 import java.io.Console;
 import java.util.*;
 
+/**
+ * Boundary Class to show login option and get users login input
+ */
 public class LoginUI {
 
     /**
@@ -23,7 +26,7 @@ public class LoginUI {
         /**
          * initialise the database once before first use of STARS system
          */
-        //fc.initialise();
+//        fc.initialise();
         /**
          * Retrieve all .dat files needed to run STARS system
          */

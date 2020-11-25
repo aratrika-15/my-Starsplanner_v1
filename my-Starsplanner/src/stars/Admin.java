@@ -1,5 +1,9 @@
 package stars;
 import java.io.Serializable;
+
+/**
+ * Represents an Admin in the system. extends from the {@link #User(String, String, String, String)}
+ */
 public class Admin extends User implements Serializable {
     /**
      * Unique ID of each admin

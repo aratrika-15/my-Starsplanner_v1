@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.text.ParseException;
+
+/**
+ * Controller class to facilitate the logic for the admin functions
+ */
 public class AdminModeController implements DisplayErrorMsgUI{
     Scanner sc = new Scanner(System.in);
 
@@ -679,7 +683,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
 
     /**
      * Print student list by a course.
-     * @return ArrayList<String[]>
+     * @return ArrayList of String[]
      */
     public ArrayList<String[]> printStulistByCourse() {
         FileController fc = new FileController();
@@ -729,7 +733,7 @@ public class AdminModeController implements DisplayErrorMsgUI{
     }
     /**
      * Print student list by index of a course.
-     * @return ArrayList<String[]>
+     * @return ArrayList of String[]
      */
     public ArrayList<String[]> printStulistByIndex() {
         FileController fc = new FileController();

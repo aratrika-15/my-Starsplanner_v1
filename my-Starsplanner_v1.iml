@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/jaf-1.1.1/activation.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,12 +19,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/javamail/javax.mail.jar!/" />
+          <root url="jar://C:/NTU/Y2S1/2002 oop/javamail/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
