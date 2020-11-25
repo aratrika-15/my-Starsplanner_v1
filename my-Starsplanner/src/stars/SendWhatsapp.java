@@ -1,5 +1,8 @@
 package stars;
 
+/**
+ * Sends Whatsapp notification to be Student
+ */
 public class SendWhatsapp implements Notifications{
     /**
      *

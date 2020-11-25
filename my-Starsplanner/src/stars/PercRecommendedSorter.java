@@ -2,6 +2,9 @@ package stars;
 
 import java.util.Comparator;
 
+/**
+ * Comparator class used in sorting of Courses by percentage of students recommending the course
+ */
 public class PercRecommendedSorter implements Comparator<Course> {
     /**
      * Sort courses by percentage recommended.

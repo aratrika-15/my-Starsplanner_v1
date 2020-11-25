@@ -1,4 +1,8 @@
 package stars;
+
+/**
+ * controls the logic to create a relavant object based on students notification preferance and send the notification accordingly
+ */
 public class NotificationController {
     /**
      * default constructor

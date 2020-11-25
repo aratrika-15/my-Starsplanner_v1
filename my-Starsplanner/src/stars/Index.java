@@ -1,6 +1,12 @@
 package stars;
 import java.util.*;
 import java.io.Serializable;
+
+/**
+ * represents the Index of a course
+ * belongs to a single Course
+ * @see Course
+ */
 public class Index implements Serializable {
     /**
      * Course this index belongs to

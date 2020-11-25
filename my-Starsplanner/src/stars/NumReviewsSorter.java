@@ -1,6 +1,9 @@
 package stars;
 import java.util.Comparator;
 
+/**
+ * Comparator class used in sorting of Courses by number of Reviews
+ */
 public class NumReviewsSorter implements Comparator<Course> {
     /**
      * Sort courses by number of reviews.

@@ -10,6 +10,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * generates and sends the email notification to be Student
+ */
 public class SendEmail implements Notifications{
     /**
      *

@@ -1,5 +1,8 @@
 package stars;
 
+/**
+ * Sends telegram notification to be Student
+ */
 public class SendTele implements Notifications{
     /**
      *

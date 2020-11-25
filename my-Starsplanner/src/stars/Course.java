@@ -1,6 +1,12 @@
 package stars;
 import java.util.*;
 import java.io.Serializable;
+
+/**
+ * Represents a course in the system
+ * A course belongs to one School, can have multiple indexes, and is of one of the course types specified in the num CourseType
+ * @see CourseType
+ */
 public class Course implements Serializable {
     /**
      * Name of this course

@@ -3,6 +3,9 @@ package stars;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Controller class to display stored information for various entities and return a valid choice from user
+ */
 public class DisplayDataController {
     FileController fc = new FileController();
     ValidateIntController vc=new ValidateIntController();

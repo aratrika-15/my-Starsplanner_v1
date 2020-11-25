@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents users in the system
+ * Users can be students or Admin
+ */
 public class User implements Serializable{
     /**
      * Login password of user

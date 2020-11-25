@@ -2,6 +2,11 @@ package stars;
 import java.io.File;
 import java.util.*;
 import java.io.Serializable;
+
+/**
+ * Represents a School in the system
+ * contains myltiple Students and Courses
+ */
 public class School implements Serializable{
     /**
      * Name of this school

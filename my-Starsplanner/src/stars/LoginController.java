@@ -1,4 +1,8 @@
 package stars;
+
+/**
+ * Controller class to facilitate login validation
+ */
 public class LoginController {
 
     /**

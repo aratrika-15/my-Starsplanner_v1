@@ -2,6 +2,9 @@ package stars;
 
 import java.io.Serializable;
 
+/**
+ * Association class to store a review written by Student for a particular Course
+ */
 public class Review implements Serializable {
     /**
      * String review of this review

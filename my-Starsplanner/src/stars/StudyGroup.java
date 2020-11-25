@@ -1,6 +1,12 @@
 package stars;
 import java.io.File;
 import java.io.Serializable;
+
+/**
+ * Contains the lesson information of a particular lesson belonging to an index
+ * can be of the types specified in enum LessonType
+ * @see LessonType
+ */
 public class StudyGroup implements Serializable{
 
     /**

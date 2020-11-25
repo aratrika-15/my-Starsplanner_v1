@@ -2,6 +2,9 @@ package stars;
 import java.lang.*;
 import java.lang.reflect.*;
 
+/**
+ * generates a Notifications object dynamically
+ */
 public class NotificationFactory {
     /**
      * default constructor

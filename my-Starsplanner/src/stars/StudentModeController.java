@@ -3,6 +3,10 @@ import java.util.*;
 import de.zabuza.grawlox.*;
 
 import java.io.*;
+
+/**
+ * Controller class to facilitate the logic for the Student functions
+ */
 public class StudentModeController {
     Scanner sc=new Scanner(System.in);
 

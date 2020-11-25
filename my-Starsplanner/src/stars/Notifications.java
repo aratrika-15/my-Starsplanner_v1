@@ -1,5 +1,8 @@
 package stars;
 
+/**
+ * interface for defining a function to send notification
+ */
 public interface Notifications {
     /**
      * interface for defining a function to send notification

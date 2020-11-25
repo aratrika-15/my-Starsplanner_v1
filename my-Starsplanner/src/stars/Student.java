@@ -3,6 +3,9 @@ import java.util.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents a Student in the system
+ */
 public class Student extends User implements Serializable{
     /**
      * name of this student

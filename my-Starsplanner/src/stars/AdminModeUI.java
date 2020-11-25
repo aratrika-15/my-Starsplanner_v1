@@ -3,6 +3,9 @@ import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Boundary Class to display the admin functions to and get choice from an admin user
+ */
 public class AdminModeUI implements PrintMenuUI, DisplayErrorMsgUI{
     /**
      * Prints Admin mode menu of STARS system

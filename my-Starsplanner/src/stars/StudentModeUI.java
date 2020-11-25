@@ -1,6 +1,9 @@
 package stars;
 import java.util.Scanner;
 
+/**
+ * Boundary Class to display the student functions to and get choice from an Student user
+ */
 public class StudentModeUI implements PrintMenuUI, DisplayErrorMsgUI {
     /**
      * Prints Student mode menu of STARS system

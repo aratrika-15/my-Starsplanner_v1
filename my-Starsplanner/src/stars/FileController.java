@@ -8,6 +8,9 @@ import java.lang.String;
 
 import static stars.CourseType.LEC_TUT_LAB;
 
+/**
+ * Controller class to handle the logic for retrieving data from files in required format and saving data to binary files
+ */
 public class FileController implements Serializable {
     /**
      * Relative path of the admin data

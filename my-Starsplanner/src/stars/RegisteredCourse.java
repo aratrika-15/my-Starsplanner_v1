@@ -1,5 +1,10 @@
 package stars;
 import java.io.Serializable;
+
+/**
+ * represents a course registration by a student to a particular index
+ * can have {@link #regStatus} of Waitlist or Registered
+ */
 public class RegisteredCourse implements Serializable {
     /**
      * Index of this registered course
